@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.icon {
+  color: rgb(255, 193, 7);
+  font-size: 15 px;
+}
+.carousel {
+  box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.5);
+}
+.carousel-caption {
+  background-color: rgba(137, 137, 137, 0.5);
+}
+.carousel-item {
+  max-height: 300px;
+}
+.product-offer {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(61, 70, 77, 0.5);
+  z-index: 1;
+}
+.product-offer:hover {
+  transform: scale(1.08);
+  transition: all 0.5s ease;
+  opacity: 0.8;
+}
+.carousel-item:hover {
+  transform: scale(1.08);
+  transition: all 0.5s ease;
+}
+
+.icon,
+.nav-link,
+.navbar-collapse :hover {
+  transform: scale(1.01);
+  transition: all 0.5s ease;
+}
+
+.counter {
+  color: rgb(255, 116, 116);
+}
+
+.pallete-1 {
+  background-color: rgb(226, 226, 226);
+}
+.pallete-2 {
+  background-color: rgb(255, 193, 7);
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgb(255, 193, 7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* 255, 193, 7  yellow */
+/* 25, 135, 84  green */
