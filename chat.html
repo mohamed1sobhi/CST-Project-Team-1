@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- JQuery -->
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+    <!-- font-awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    ::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #9e9e9e; 
+  border-radius: 15px;
+  cursor:default;
+}
+.card-body:last-of-type::-webkit-scrollbar {
+  width: 8px;
+}
+.card-body:last-of-type::-webkit-scrollbar-thumb {
+  background: #ffa900;
+}
+.card-body{
+    overflow: auto;
+}
+    #chatbtn{
+        font-size: 18px;
+        color: #ffa900;
+        margin-left: 10px;
+    }
+    .chats{
+        position: fixed;
+        right: 70px;
+        bottom: -1000px;
+    }
+    @media (max-width:776px) {
+        .card:last-of-type{
+        display: none;
+    }
+    .card:first-of-type{
+        width: 100%;
+    }
+    .chats{
+        right: auto;
+    }
+    }
+    .messenger{
+        display: flex;
+        padding: 12px 15px;
+        transition: 1s;
+        position: relative;
+    }
+    .messenger:after{
+        content: "";
+        width: 80%;
+        height: 1px;
+        background-color: #dedede;
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+
+    }
+    .messenger:hover{
+        background-color: #dedede;
+    }
+    .messenger:hover::after{
+        width: 100%;
+    }
+    img{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    .messenger .info{
+        margin: 4px 0  0 15px;
+    }
+    .messenger .info h6{
+        padding-top: 5px;
+        margin-bottom: 0px;
+    }
+    .messenger .info p{
+        margin-bottom: 0px;
+        font-size: 14px;
+    }
+    .chat p{
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        margin-left: 10px;
+        margin-top: 10px;
+        max-width: 70%;
+    }
+    .chat .seller-mesg{
+        display: flex;
+        justify-content: start;
+        margin-bottom: 10px;
+    }
+    .chat .my-mesg{
+        display: flex;
+        justify-content: end;
+        margin-bottom: 10px;
+    }
+    .mesg{
+        background-color: #fff;
+        width: 90%;
+        border-radius: 12px;
+        font-size: 14px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 5px 10px;
+    }
+    .typing{
+        background-color: #f5f5f5;
+        width: 98%;
+        margin-top: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: end;
+        flex-wrap: wrap;
+    }
+    .typing textarea{
+        background-color: #f5f5f5;
+        outline: none;
+        border-radius: 8px;
+        padding:5px 4px;
+        width: 100%;
+        height: 60px;
+        resize: none;
+        line-height: 1;
+        caret-color: #ffa900;
+    }
+    .typing button{
+        padding: 5px 30px;
+    }
+</style>
+<script>
+     $(function () {
+        $("#chatbtn").on('click',function(){
+            $(".chats").css("bottom","0")
+        })
+        $("#exit").on('click',function(){
+            $(".chats").css("bottom","-1000px")
+        })
+     });//end of load
+</script>
+<body>
+    <i id="chatbtn" class="fa-regular fa-comment"></i>
+    <!-- chat pop up -->
+            <div class="chats col-md-8 col-lg-6">
+                <div class="d-flex justify-content-center rounded-top-3" style="border-top: 4px solid #ffa900;">
+                    <div class="card col-md-7 col-xl-8 rounded-end-0">
+                        <div class="card-header d-flex justify-content-between align-items-center p-3">
+                          <h5 class="mb-0">Chat messages</h5>
+                          <div class="d-flex flex-row align-items-center">
+                            <i class="fa-solid fa-ellipsis me-3 text-muted "></i>
+                            <i class="fas fa-comments me-3 text-muted fa-xs"></i>
+                          </div>
+                        </div>
+                        <div class="card-body" style="position: relative; height: 400px; background-color: #f5f5f5;">
+                            <p class="mesg mb-4">
+                                To protect your orders, always communicate through the website only.
+                            </p>
+                            <div class="chat">
+                                    <div class="seller-mesg">
+                                        <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus possimus nihil, officia veniam illum iure! Inventore reiciendis dolore sit quos, natus cum saepe laborum voluptatibus perferendis odit facilis nisi ipsam.</p>
+                                    </div>
+                                    <div class="my-mesg">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nulla facere alias reiciendis voluptatum? Libero id sequi, obcaecati, nostrum nulla harum a expedita repellendus doloribus rem maiores in delectus reiciendis.</p>
+                                    </div>               
+                                    <div class="seller-mesg">
+                                        <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                        <p>Done</p>
+                                    </div>
+                                    <div class="my-mesg">
+                                        <p>Done</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="text-muted d-flex flex-column justify-content-start align-items-center p-3 border-top border-#9e9e9e ">
+                            <div class="icon d-flex justify-content-start align-items-center w-100 ms-4">
+                                <i class="fa-regular fa-face-smile" style="margin-right: 8px;"></i>
+                                <i class="fa-regular fa-image" style="margin-right: 8px;"></i>
+                                <i class="fa-solid fa-file-arrow-up"></i>
+                            </div>
+                          <div class="typing mb-0">
+                            <textarea name="" id="" class="border-0" placeholder="Type message" ></textarea>
+                            <button class="btn btn-warning" type="button" style="padding-top: .55rem;">
+                              Send
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card col-md-5 col-xl-4 rounded-start-0">
+                        <div class="card-header  d-flex justify-content-between align-items-center p-3">
+                          <h5 class="mb-0">Messenger</h5>
+                          <div class="d-flex flex-row align-items-center">
+                            <i id="exit" class="fas fa-times text-muted fa-xs"></i>
+                          </div>
+                        </div>
+                        <div class="card-body p-0 " style="position: relative; height: 400px">
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                            <div class="messenger">
+                                <img src="https://i.sstatic.net/34AD2.jpg" alt="">
+                                <div class="info">
+                                    <h6>Ahmed</h6>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+</body>
+</html>
