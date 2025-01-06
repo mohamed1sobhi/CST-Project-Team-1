@@ -1,29 +1,31 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema';
-class Customer{
-  constructor(name,email,password,cart=[],linkedProduct=[]){
-    this.name=name;
-    this.email=email;
-    this.password=password;
-    this.cart=cart;
-    this.linkedProduct=linkedProduct;
+class Customer {
+  constructor(id, name, email, password, cart = [], likedProducts = []) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.cart = cart;
+    this.likedProducts = likedProducts;
   }
 }
-class Seller{
-  constructor(name,email,password){
-    this.name=name;
-    this.email=email;
-    this.password=password;
-  
+class Seller {
+  constructor(id, name, email, password) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
   }
 }
-class Admin{
-  constructor(name,email,password){
-    this.name=name;
-    this.email=email;
-    this.password=password;
-  
+class Admin {
+  constructor(id, name, email, password) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
   }
 }
+
 // async function addUser(account, newUser) {
 //   try {
 //       if (account === "customer") {
@@ -54,93 +56,107 @@ class Admin{
 //   }
 // }
 $(function () {
-  $.fn.extend({  
-      "singup":function(account){
-        pass=$(this).isPassValid($("input:eq(2)").val());
-        confpass=$(this).isconfpassValid($("input:eq(3)").val());
-        email=$(this).isEmailValid($("input:eq(1)").val());
-        Name=$(this).isNameValid($("input:eq(0)").val());
-        
-        $('input').on('input',function(){
-            $(this).parent().find("p").hide();
-        }) 
+  $.fn.extend({
+    singup: function (account) {
+      pass = $(this).isPassValid($("input:eq(2)").val());
+      confpass = $(this).isconfpassValid($("input:eq(3)").val());
+      email = $(this).isEmailValid($("input:eq(1)").val());
+      Name = $(this).isNameValid($("input:eq(0)").val());
 
-        if(Name===true &&email===true &&pass===true &&confpass===true){
-          let user=JSON.parse(localStorage.getItem(account))||[];
-          // let user=getUsers(account)||[];
+      $("input").on("input", function () {
+        $(this).parent().find("p").hide();
+      });
 
-          // Check for existing name and email
-              let nameExist = user.some(e => e.name === $("input:eq(0)").val());
-              let emailExist = user.some(e => e.email === $("input:eq(1)").val());
+      if (
+        Name === true &&
+        email === true &&
+        pass === true &&
+        confpass === true
+      ) {
+        let user = JSON.parse(localStorage.getItem(account)) || [];
+        // let user=getUsers(account)||[];
 
-              if (emailExist){
-                $("#p4").show();
-                $("input:eq(1)").focus();
-              }else{ 
-                $("#p4").hide();
-               
-              }
-              if (nameExist){
-                $("#p2").show();
-                $("input:eq(0)").focus();
-              }else{
-                $("#p2").hide();
-                
-              } 
-              
-          if(!nameExist && !emailExist &&$(":checkbox").prop("checked")==true){
-            if(account=="customer"){
-              obj=new Customer($("input:eq(0)").val(),$("input:eq(1)").val(),$("input:eq(2)").val())
-            }else{
-              obj=new Seller($("input:eq(0)").val(),$("input:eq(1)").val(),$("input:eq(2)").val())
-            }
-            // addUser(user,obj);
+        // Check for existing name and email
+        let nameExist = user.some((e) => e.name === $("input:eq(0)").val());
+        let emailExist = user.some((e) => e.email === $("input:eq(1)").val());
 
-            user.push(obj);
-            localStorage.setItem(account,JSON.stringify(user));
-            $("form").trigger("reset");
-            $("input").blur();
-          }        
-        }         
-          return $(this); 
-      },
+        if (emailExist) {
+          $("#p4").show();
+          $("input:eq(1)").focus();
+        } else {
+          $("#p4").hide();
+        }
+        if (nameExist) {
+          $("#p2").show();
+          $("input:eq(0)").focus();
+        } else {
+          $("#p2").hide();
+        }
 
-      "isNameValid":function(name){
-        let isvalid =/^[a-zA-Z_]+(\w\s?){0,40}$/.test(name);
-          $("#p1").toggle(!isvalid);
-          if (!isvalid) $("input:eq(0)").focus();
-          return isvalid;
-        },
-        "isEmailValid":function(email){
-          let isvalid =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
-            $("#p3").toggle(!isvalid);
-            if (!isvalid) $("input:eq(1)").focus();
-            return isvalid;
-        },
-        "isPassValid":function(password){
-          let isvalid =/^[\w+#?!@$%^&*-]{6,}$/.test(password);
-            $("#p5").toggle(!isvalid);
-            if (!isvalid) $("input:eq(2)").focus();
-            return isvalid;
-        },
-        "isconfpassValid":function(confirm){
-          let isvalid =$("input:eq(2)").val()==confirm;
-            $("#p6").toggle(!isvalid);
-            if (!isvalid) $("input:eq(3)").focus();
-            return isvalid;
-        }               
-})
+        if (
+          !nameExist &&
+          !emailExist &&
+          $(":checkbox").prop("checked") == true
+        ) {
+          if (account == "customer") {
+            obj = new Customer(
+              $("input:eq(0)").val(),
+              $("input:eq(1)").val(),
+              $("input:eq(2)").val()
+            );
+          } else {
+            obj = new Seller(
+              $("input:eq(0)").val(),
+              $("input:eq(1)").val(),
+              $("input:eq(2)").val()
+            );
+          }
+          // addUser(user,obj);
 
-$("button:first").on('click',function(e){
-e.preventDefault();
-$(this).singup("customer");
-})
+          user.push(obj);
+          localStorage.setItem(account, JSON.stringify(user));
+          $("form").trigger("reset");
+          $("input").blur();
+        }
+      }
+      return $(this);
+    },
 
-$("button:last").on('click',function(e){
-e.preventDefault();
-$(this).singup("seller");
-})
+    isNameValid: function (name) {
+      let isvalid = /^[a-zA-Z_]+(\w\s?){0,40}$/.test(name);
+      $("#p1").toggle(!isvalid);
+      if (!isvalid) $("input:eq(0)").focus();
+      return isvalid;
+    },
+    isEmailValid: function (email) {
+      let isvalid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
+      $("#p3").toggle(!isvalid);
+      if (!isvalid) $("input:eq(1)").focus();
+      return isvalid;
+    },
+    isPassValid: function (password) {
+      let isvalid = /^[\w+#?!@$%^&*-]{6,}$/.test(password);
+      $("#p5").toggle(!isvalid);
+      if (!isvalid) $("input:eq(2)").focus();
+      return isvalid;
+    },
+    isconfpassValid: function (confirm) {
+      let isvalid = $("input:eq(2)").val() == confirm;
+      $("#p6").toggle(!isvalid);
+      if (!isvalid) $("input:eq(3)").focus();
+      return isvalid;
+    },
+  });
 
-});//end of load
+  $("button:first").on("click", function (e) {
+    e.preventDefault();
+    $(this).singup("customer");
+  });
 
+  $("button:last").on("click", function (e) {
+    e.preventDefault();
+    $(this).singup("seller");
+  });
+}); //end of load
 
+export { Customer, Seller, Admin };
