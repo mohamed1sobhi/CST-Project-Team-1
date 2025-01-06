@@ -1,8 +1,9 @@
+import { getProducts } from './productstore.js';
 document.addEventListener('DOMContentLoaded', displayProducts);
 
 function displayProducts() {
   // Get products from localStorage
-  let products = JSON.parse(localStorage.getItem('products')) || [];
+  let products = getProducts();
   const container = document.getElementById('container');
   
   products.forEach(product => {

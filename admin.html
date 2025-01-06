@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin</title>
+  <script src="js/addproduct.js"></script>
+ 
+  
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- apexcharts -->
@@ -69,7 +73,7 @@
               <a href="#" class="dropdown-item">
                 <!--begin::Message-->
                 <div class="media">
-                  <img src="./img/myphoto1.jpg" class="mr-2 img-circle img-small" alt="User Image">
+                  <img src="imges/img/cat-1.jpg" class="mr-2 img-circle img-small" alt="User Image">
                   <div class="media-body">
                     <h3 class="dropdown-item-title">Brad Diesel
                       <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
@@ -83,7 +87,7 @@
               <a href="#" class="dropdown-item">
                 <!--begin::Message-->
                 <div class="media">
-                  <img src="./img/myphoto1.jpg" class="mr-3 img-circle img-medium" alt="User Image">
+                  <img src="imges/img/cat-1.jpg" class="mr-3 img-circle img-medium" alt="User Image">
                   <div class="media-body">
                     <h3 class="dropdown-item-title">John Pierce
                       <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
@@ -98,7 +102,7 @@
               <a href="#" class="dropdown-item">
                 <!--begin::Message-->
                 <div class="media">
-                  <img src="./img/myphoto1.jpg" class="mr-3 img-circle img-medium" alt="User Image">
+                  <img src="imges/img/cat-2.jpg" class="mr-3 img-circle img-medium" alt="User Image">
                   <div class="media-body">
                     <h3 class="dropdown-item-title">Nora Silvester
                       <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
@@ -153,13 +157,13 @@
           <!--begin::User Menu Dropdown-->
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <img src="./img/myphoto1.jpg" class="user-image img-circle elevation-2 img-small" alt="User Image">
+              <img src="imges/img/cat-1.jpg" class="user-image img-circle elevation-2 img-small" alt="User Image">
               <span class="d-none d-md-inline">Alexander Pierce</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <!--begin::User Image-->
               <div class="dropdown-header bg-primary">
-                <img src="./img/myphoto1.jpg" class="img-circle elevation-2 img-medium" alt="User Image">
+                <img src="imges/img/cat-1.jpg" class="img-circle elevation-2 img-medium" alt="User Image">
                 <p>Alexander Pierce - Web Developer<small>Member since Nov. 2023</small></p>
               </div>
               <!--end::User Image-->
@@ -364,9 +368,9 @@
          <p class="text-center"><strong>Goal Completion</strong></p>
          <div class="progress-group">
          Add Products to Cart
-        <span class="float-right"><b>160</b>/200</span>
+        <span class="float-right counter" ><b id="counter">1</b>/200</span>
         <div class="progress progress-sm">
-        <div class="progress-bar bg-primary" style="width: 80%"></div>
+        <div class="progress-bar bg-primary "id="progress" style="width: 0%"></div>
       </div>
     </div>
     <!-- /.progress-group -->
@@ -508,16 +512,16 @@
               <input
                 type="text"
                 class="form-control"
-                id="exampleInputName"
+                id="ProductName"
               
               />
             </div>
             <div class="mb-3">
               <label for="exampleInputPrice" class="form-label">Price</label>
-              <input type="number" class="form-control" id="exampleInputPrice" />
+              <input type="number" class="form-control" id="Price" />
             </div>
             <div class="input-group mb-3"> 
-              <input type="file" class="form-control" id="inputGroupFile" name="image" accept="image/*" />
+              <input type="file" class="form-control" id="ProductImage" name="image" accept="image/*" />
                <label class="input-group-text" for="inputGroupFile">Upload</label> 
               </div>
             <div class="mb-3">
@@ -528,7 +532,7 @@
           <!--end::Body-->
           <!--begin::Footer-->
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary" onclick="addProduct()">Add</button>
           </div>
           <!--end::Footer-->
         </form>
@@ -556,12 +560,12 @@ crossorigin="anonymous"
       const sales_chart_options = {
         series: [
           {
-            name: 'Digital Goods',
-            data: [28, 48, 40, 19, 86, 27, 90],
+            name: 'men clothese',
+            data: [10, 20, 5, 8, 10, 9, 25],
           },
           {
-            name: 'Electronics',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            name: 'wamen clothese',
+            data: [5, 15, 23, 4, 8, 15, 30],
           },
         ],
         chart: {
@@ -613,5 +617,7 @@ crossorigin="anonymous"
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/charts.js"></script>
+
 </body>
 </html>
