@@ -50,7 +50,7 @@ function creating(table,data){
         button1.append(icon1);
         td5.append(button2);
         button2.append(icon2);
-    
+
         a.innerText=++id;
         td2.innerText=e.name;
         span.innerText=e.email;

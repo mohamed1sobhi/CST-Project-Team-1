@@ -1,18 +1,20 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema';
 class Customer{
-  constructor(name,email,password,cart=[],linkedProduct=[]){
+  constructor(name,email,password,cart=[],linkedProduct=[],contact=[]){
     this.name=name;
     this.email=email;
     this.password=password;
     this.cart=cart;
     this.linkedProduct=linkedProduct;
+    this.contact=contact;
   }
 }
 class Seller{
-  constructor(name,email,password){
+  constructor(name,email,password,contact=[]){
     this.name=name;
     this.email=email;
     this.password=password;
+    this.contact=contact;
   
   }
 }
@@ -69,9 +71,10 @@ $(function () {
           let user=JSON.parse(localStorage.getItem(account))||[];
           // let user=getUsers(account)||[];
 
-          // Check for existing name and email
-              let nameExist = user.some(e => e.name === $("input:eq(0)").val());
-              let emailExist = user.some(e => e.email === $("input:eq(1)").val());
+          // Check for existing name and emailgit
+            let alluser=JSON.parse(localStorage.getItem("customer"))||[].concat(JSON.parse(localStorage.getItem("seller"))||[]);
+              let nameExist = alluser.some(e => e.name === $("input:eq(0)").val());
+              let emailExist = alluser.some(e => e.email === $("input:eq(1)").val());
 
               if (emailExist){
                 $("#p4").show();
@@ -142,5 +145,6 @@ $(this).singup("seller");
 })
 
 });//end of load
+
 
 
