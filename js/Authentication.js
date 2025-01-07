@@ -1,5 +1,8 @@
+import { Admin, Customer, Seller } from "./registration.js";
+
 $(document).ready(function () {
   $("#login-form").validate({
+    debug: true,
     rules: {
       email: {
         required: true,
@@ -21,11 +24,36 @@ $(document).ready(function () {
       },
     },
     errorPlacement: function (error, element) {
-      error.appendTo("#formError");
+      $("#formError").html(error);
+      element.focus();
     },
     submitHandler: function (form) {
-      alert("Form is valid and ready to be submitted!");
-      form.submit();
+      const email = $("#email").val();
+      const password = $("#password").val();
+
+      // Check if match any stored user
+      const users = JSON.parse(localStorage.getItem("seller")) || [];
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+
+      if (user instanceof Admin) {
+        alert("Authentication successful!");
+        $(".login-form").attr("action", "admin.html");
+        form.submit();
+      } else if (user instanceof Seller) {
+        alert("Authentication successful!");
+        $(".login-form").attr("action", "seller.html");
+        form.submit();
+      } else if (user instanceof Customer) {
+        alert("Authentication successful!");
+        $(".login-form").attr("action", "customer.html");
+        form.submit();
+      } else {
+        alert("Invalid email or password.");
+        $("#formError").text("Invalid email or password.");
+      }
+      return false; // Prevent the default form submission
     },
   });
 });

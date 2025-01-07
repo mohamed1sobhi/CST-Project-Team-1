@@ -1,7 +1,8 @@
-// import {customerDB,sellerDB,adminDB,productsDB} from './dbschema';
+// import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
 class Customer {
-  constructor(id, name, email, password, cart = [], likedProducts = []) {
-    this.id = id;
+  static idCounter = 0;
+  constructor(name, email, password, cart = [], likedProducts = []) {
+    this.id = Customer.idCounter++;
     this.name = name;
     this.email = email;
     this.password = password;
@@ -9,17 +10,21 @@ class Customer {
     this.likedProducts = likedProducts;
   }
 }
+
 class Seller {
-  constructor(id, name, email, password) {
-    this.id = id;
+  static idCounter = 0;
+  constructor(name, email, password) {
+    this.id = Seller.idCounter++;
     this.name = name;
     this.email = email;
     this.password = password;
   }
 }
+
 class Admin {
-  constructor(id, name, email, password) {
-    this.id = id;
+  static idCounter = 0;
+  constructor(name, email, password) {
+    this.id = Admin.idCounter++;
     this.name = name;
     this.email = email;
     this.password = password;
@@ -58,10 +63,10 @@ class Admin {
 $(function () {
   $.fn.extend({
     singup: function (account) {
-      pass = $(this).isPassValid($("input:eq(2)").val());
-      confpass = $(this).isconfpassValid($("input:eq(3)").val());
-      email = $(this).isEmailValid($("input:eq(1)").val());
-      Name = $(this).isNameValid($("input:eq(0)").val());
+      let pass = $(this).isPassValid($("input:eq(2)").val());
+      let confpass = $(this).isconfpassValid($("input:eq(3)").val());
+      let email = $(this).isEmailValid($("input:eq(1)").val());
+      let Name = $(this).isNameValid($("input:eq(0)").val());
 
       $("input").on("input", function () {
         $(this).parent().find("p").hide();
@@ -98,18 +103,21 @@ $(function () {
           !emailExist &&
           $(":checkbox").prop("checked") == true
         ) {
+          let obj;
           if (account == "customer") {
             obj = new Customer(
               $("input:eq(0)").val(),
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
+            console.log(obj);
           } else {
             obj = new Seller(
               $("input:eq(0)").val(),
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
+            console.log(obj);
           }
           // addUser(user,obj);
 

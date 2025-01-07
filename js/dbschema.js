@@ -1,4 +1,4 @@
-import Dexie from "dexie";
+import Dexie from "./dexie";
 
 // Initialize the Customer database
 const customerDB = new Dexie("CustomerDatabase");
