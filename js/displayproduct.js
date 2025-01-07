@@ -6,9 +6,11 @@ function displayProducts() {
   let products = getProducts();
   const container = document.getElementById('container');
   
-  products.forEach(product => {
+  // Convert products object to array of entries and iterate
+  Object.entries(products).forEach(([id, product]) => {
     const productDiv = document.createElement('div');
     productDiv.className = 'col-lg-3 col-md-4 col-sm-6 pb-1';
+    productDiv.dataset.productId = id;
     
     productDiv.innerHTML = `
       <div class="product-item bg-light mb-4">

@@ -142,7 +142,7 @@
                             <h3 class="m-2"> products </h3>
                             <p>
                             <table class="table table-striped table-hover" id="result">
-                                <tr>
+                                <thead>
                                     <th>Product ID</th>
                                     <th>Product Name</th>
                                     <th>cost</th>
@@ -151,66 +151,16 @@
                                     <th>Stock</th>
                                     <th>active</th>
                                     <th>Remove</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100</td>
-                                    <td>120</td>
-                                    <td>20</td>
-                                    <td>10</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="toggleSwitch">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger ms-3 ">Remove </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Product 2</td>
-                                    <td>100</td>
-                                    <td>120</td>
-                                    <td>20</td>
-                                    <td>10</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="toggleSwitch">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger ms-3 ">Remove</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Product 3</td>
-                                    <td>100</td>
-                                    <td>120</td>
-                                    <td>20</td>
-                                    <td>10</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="toggleSwitch">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger ms-3 ">Remove</button>
-                                    </td>
-                                </tr>
-                                <tfoot>
-                                    <tr>
+                                </thead>
+                                <tbody id="body"></tbody>
+                                <tfoot id="foot">
+                                    <tr id="total">
                                         <td>Totals</td>
                                         <td>no. of products</td>
-                                        <td>300</td>
-                                        <td>360</td>
-                                        <td>60</td>
-                                        <td>30</td>
+                                        <td>totalcost</td>
+                                        <td>total price</td>
+                                        <td>total revenu</td>
+                                        <td>totalstock</td>
                                         <td colspan="2">total active</td>
                                     </tr>
                                 </tfoot>
@@ -259,6 +209,31 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function removeRow(btn) {
+        var result = confirm("Are you sure you want to remove this row?");
+        if (result) {
+            // Get the button's parent row
+            var row = btn.parentNode.parentNode;
+            // Get the product ID from the first cell
+            var productId = row.cells[0].innerHTML.trim();
+            
+            // Get all items from localStorage
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const item = JSON.parse(localStorage.getItem(key));
+                // Check if item has an id property matching productId
+                if (item && item.id === productId) {
+                    localStorage.removeItem(key);
+                    break;
+                }
+            }
+            
+            // Remove the row from the table
+            row.parentNode.removeChild(row);
+        }
+    }
+</script>
     
 </body>
 
