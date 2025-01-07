@@ -28,26 +28,28 @@ $(document).ready(function () {
       element.focus();
     },
     submitHandler: function (form) {
+      form.preventDefault();
       const email = $("#email").val();
       const password = $("#password").val();
 
       // Check if match any stored user
-      const users = JSON.parse(localStorage.getItem("seller")) || [];
+      const users = JSON.parse(localStorage.Seller)[0];
+      console.log(users);
       const user = users.find(
         (u) => u.email === email && u.password === password
       );
 
-      if (user instanceof Admin) {
+      if (user.type === "admin") {
         alert("Authentication successful!");
-        $(".login-form").attr("action", "admin.html");
+        $("#login-form").attr("action", "admin.html");
         form.submit();
-      } else if (user instanceof Seller) {
+      } else if (user.type === "seller") {
         alert("Authentication successful!");
-        $(".login-form").attr("action", "seller.html");
+        $("#login-form").attr("action", "seller.html");
         form.submit();
-      } else if (user instanceof Customer) {
+      } else if (user.type === "customer") {
         alert("Authentication successful!");
-        $(".login-form").attr("action", "customer.html");
+        $("#login-form").attr("action", "customer.html");
         form.submit();
       } else {
         alert("Invalid email or password.");

@@ -1,13 +1,14 @@
-import { Seller } from "./seller.js";
-
 class Products {
-  constructor(name, id, price, cost, quantity) {
-    this.id = id;
+  static idCounter = 0;
+  constructor(name, price, cost, quantity, seller, img = "") {
+    this.id = idCounter++;
     this.name = name;
     this.cost = cost;
     this.price = price;
     this.quantity = quantity;
-    this.seller = Seller.name;
+    this.seller = seller;
+    this.img = img;
+    this.active = true;
   }
 }
 class Cart {
@@ -16,3 +17,5 @@ class Cart {
     this.quantity = quantity;
   }
 }
+
+export { Products, Cart };
