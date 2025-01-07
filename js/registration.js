@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
+=======
+// import {customerDB,sellerDB,adminDB,productsDB} from './dbschema';
+<<<<<<< HEAD
+>>>>>>> af78c2cf83e9201fd932775e908bee0cb423ee62
 class Customer {
   static idCounter = 0;
   constructor(name, email, password, cart = [], likedProducts = []) {
@@ -18,6 +23,25 @@ class Seller {
     this.name = name;
     this.email = email;
     this.password = password;
+=======
+class Customer{
+  constructor(name,email,password,cart=[],linkedProduct=[],contact=[]){
+    this.name=name;
+    this.email=email;
+    this.password=password;
+    this.cart=cart;
+    this.linkedProduct=linkedProduct;
+    this.contact=contact;
+  }
+}
+class Seller{
+  constructor(name,email,password,contact=[]){
+    this.name=name;
+    this.email=email;
+    this.password=password;
+    this.contact=contact;
+  
+>>>>>>> 3a4c04bb3f108032fb58aefee9ada274cff63aaa
   }
 }
 
@@ -72,6 +96,7 @@ $(function () {
         $(this).parent().find("p").hide();
       });
 
+<<<<<<< HEAD
       if (
         Name === true &&
         email === true &&
@@ -80,6 +105,12 @@ $(function () {
       ) {
         let user = JSON.parse(localStorage.getItem(account)) || [];
         // let user=getUsers(account)||[];
+=======
+          // Check for existing name and emailgit
+            let alluser=JSON.parse(localStorage.getItem("customer"))||[].concat(JSON.parse(localStorage.getItem("seller"))||[]);
+              let nameExist = alluser.some(e => e.name === $("input:eq(0)").val());
+              let emailExist = alluser.some(e => e.email === $("input:eq(1)").val());
+>>>>>>> 3a4c04bb3f108032fb58aefee9ada274cff63aaa
 
         // Check for existing name and email
         let nameExist = user.some((e) => e.name === $("input:eq(0)").val());
@@ -167,4 +198,8 @@ $(function () {
   });
 }); //end of load
 
+<<<<<<< HEAD
 export { Customer, Seller, Admin };
+=======
+
+>>>>>>> 3a4c04bb3f108032fb58aefee9ada274cff63aaa
