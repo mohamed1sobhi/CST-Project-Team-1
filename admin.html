@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin</title>
   <script src="js/addproduct.js"></script>
- 
+  
   
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -247,76 +247,30 @@
       <table class="table m-0">
         <thead>
           <tr>
-            <th>User ID</th>
-            <th>Nmae</th>
+            <th>customer ID</th>
+            <th>Name</th>
             <th>Emails</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="customers">
+          
+        </tbody>
+        <thead>
           <tr>
-            <td>
-              <a href="pages/examples/invoice.html" class="text-primary">OR</a>
-            </td>
-            <td>Khaled</td>
-            <td><span class="badge badge-success"> khaled@gmai.com</span></td>
-            <td><div id="table-sparkline-1"></div></td>
-            <td>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-              <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-            </td>
+            <th>seller ID</th>
+            <th>Name</th>
+            <th>Emails</th>
+            <th>Actions</th>
           </tr>
-          <tr>
-            <td>
-              <a href="pages/examples/invoice.html" class="text-primary">1R</a>
-            </td>
-            <td>Mohmed</td>
-            <td><span class="badge badge-warning">moo@ggg.com</span></td>
-            <td><div id="table-sparkline-2"></div></td>
-            <td>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-              <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="pages/examples/invoice.html" class="text-primary">2R</a>
-            </td>
-            <td>Ahmed</td>
-            <td><span class="badge badge-danger"> ah@gmma.com </span></td>
-            <td><div id="table-sparkline-3"></div></td>
-            <td>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-              <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="pages/examples/invoice.html" class="text-primary">3R</a>
-            </td>
-            <td>Amina</td>
-            <td><span class="badge badge-info">AMy@ggg.com</span></td>
-            <td><div id="table-sparkline-4"></div></td>
-            <td>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-              <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="pages/examples/invoice.html" class="text-primary">4R</a>
-            </td>
-            <td>Eman</td>
-            <td><span class="badge badge-warning">Emy.gg.com</span></td>
-            <td><div id="table-sparkline-5"></div></td>
-            <td>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-              <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-            </td>
-          </tr>
+        </thead>
+        <tbody id="sellers">
+          
         </tbody>
       </table>
+      
     </div>
+      
   </div>
 </div>
 <!--end::Latest Order Widget-->
@@ -618,6 +572,8 @@ crossorigin="anonymous"
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="js/charts.js"></script>
+
+  <script src="js/user.js"></script>
 
 </body>
 </html>
