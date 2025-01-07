@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="./js/contact.js"></script>
      <style>
         .contact{
             background-color: #F5F5F5;
@@ -45,12 +46,22 @@
             color: #ffb82b;
             margin-right: 10px;
         }
-
+        form p{
+        margin: 2px 0 -10px 5px !important;
+        font-size:14px;
+        color: red;
+        font-weight: 600;
+        display: none;
+      }
+      form p i{
+        margin-right: 5px;
+      }
 
 
             
     
      </style>
+
 </head>
 <body>
    <!-- nav  bar-->
@@ -110,25 +121,21 @@
         <div class="col-lg-7 mb-5">
             <div class="contact-form bg-white p-4">
                 <form class="w-100" action="">
-                    <div class="">
-                        <input type="text" class="" id="name" placeholder="Your Name"
-                            required="required"/>
-                        <p class="help-block text-danger"></p>
+                    <div class="mb-3">
+                        <input type="text" class="" id="name" placeholder="Your Name"/>  
+                        <p><i class="fa-solid fa-circle-exclamation"></i>Your Name Not Found</p>
                     </div>
-                    <div class="">
-                        <input type="email" class="" id="email" placeholder="Your Email"
-                            required="required"/>
-                        <p class="help-block text-danger"></p>
+                    <div class="mb-3">
+                        <input type="email" class="" id="email" placeholder="Your Email"/>
+                        <p><i class="fa-solid fa-circle-exclamation"></i>Your Email Not Found</p>
                     </div>
-                    <div class="">
-                        <input type="text" class="" id="subject" placeholder="Subject"
-                            required="required"/>
-                        <p class="help-block text-danger"></p>
+                    <div class="mb-3">
+                        <input type="text" class="" id="subject" placeholder="Subject"/>
+                        
                     </div>
-                    <div class="">
-                        <textarea class="" rows="8" id="message" placeholder="Message"
-                            required="required"></textarea>
-                        <p class="help-block text-danger"></p>
+                    <div class="mb-3">
+                        <textarea class="" rows="8" id="message" placeholder="Message"></textarea>
+                        
                     </div>
                     <div>
                         <button class="btn py-2 px-4" type="submit" id="sendMessageButton">Send Message</button>
