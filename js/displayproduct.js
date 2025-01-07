@@ -6,9 +6,11 @@ function displayProducts() {
   let products = getProducts();
   const container = document.getElementById('container');
   
-  products.forEach(product => {
+  // Convert products object to array of entries and iterate
+  Object.entries(products).forEach(([id, product]) => {
     const productDiv = document.createElement('div');
     productDiv.className = 'col-lg-3 col-md-4 col-sm-6 pb-1';
+    productDiv.dataset.productId = id;
     
     productDiv.innerHTML = `
       <div class="product-item bg-light mb-4">
@@ -39,3 +41,26 @@ function displayProducts() {
     container.appendChild(productDiv);
   });
 }
+/*
+function appendproduct() {
+  // Get products from localStorage
+  let products = getProducts();
+  let table=document.getElementById('result');
+    products.forEach(product => {
+        const revenu = product.price - product.cost;
+        const productDiv = document.createElement('tr');
+        productDiv.className = 'col-lg-3 col-md-4 col-sm-6 pb-1';
+        
+        productDiv.innerHTML = `
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${product.cost}</td>
+        <td>${revenu}</td>
+        <td>${product.stock}</td>
+        <td><button class="btn btn-primary ms-3 ">Edit</button></td>
+        <td><button class="btn btn-danger ms-3 ">Remove</button></td>
+        `;
+        
+        table.appendChild(productDiv);
+    })
+}*/

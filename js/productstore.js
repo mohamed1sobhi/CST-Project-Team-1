@@ -1,8 +1,11 @@
 export function getProducts() {
     // Get the products from localStorage
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    
-    // Return the products or handle them as needed
-    return products;
-  }
+    try {
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        return products;
+    } catch (error) {
+        console.error('Error parsing products from localStorage:', error);
+        return [];
+    }
+}
   
