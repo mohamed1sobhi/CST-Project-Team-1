@@ -5,25 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outfit Suggestions</title>
-    <!-- jQuery and Bootstrap Bundle -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap CSS -->
+    <!-- Icon -->
+    <link rel="icon" href="imges/shopping-cart.png" type="image/png">
+    <!-- Bootstrap CSS (v4.5.2) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/outfitSuggestions.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle (v4.5.2) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <!-- nav  bar-->
+    <!-- Navbar -->
     <div class="container-fluid bg-dark mb-1">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="row w-100 align-items-center">
                 <!-- Left Section (Brand) -->
-                <div class="col-lg-4 d-none d-lg-block">
+                <div class="col-lg-4 d-none d-sm-none d-lg-block">
                     <a href="#" class="navbar-brand">
                         <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
                         <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-end">Store</span>
@@ -31,50 +33,72 @@
                 </div>
 
                 <!-- Center Section (Navbar Links) -->
-                <div class="col-lg-4 text-center d-none d-lg-block">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <div class="col-lg-4 text-center d-none d-sm-none d-lg-block">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item"><a href="#" class="nav-link text-warning">Home</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link text-warning">Shop</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-warning"
+                                    onclick="window.location.href ='HomePage.html';">Home</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-warning"
+                                    onclick="window.location.href = 'ProductCatalog.html';">Shop</a></li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle text-warning" data-bs-toggle="dropdown"
+                                <a href="#" class="nav-link dropdown-toggle text-warning" data-toggle="dropdown"
                                     aria-expanded="false">Pages</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="dropdown-item">Shopping Cart</a></li>
-                                    <li><a href="#" class="dropdown-item">Checkout</a></li>
+                                    <li><a href="#" class="dropdown-item"
+                                            onclick="window.location.href = 'ShoppingCart.html';">Shopping Cart</a></li>
+                                    <li><a href="#" class="dropdown-item"
+                                            onclick="window.location.href = 'checkout.html';">Checkout</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link text-warning">Contact</a>
+                                <a href="#" class="nav-link text-warning"
+                                    onclick="window.location.href = 'contact.html';">Contact</a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Right Section (Favorites & Cart) -->
-                <div class="col-lg-4 text-right">
-                    <a href="#" class="btn px-0 d-inline d-sm-none" title="Home"><i
-                            class="fas fa-home text-warning"></i></a>
-                    <a href="#" class="btn px-0 ms-3" title="Favorites"><i class="fas fa-heart text-warning"></i></a>
-                    <a href="#" class="btn px-0 ms-3" title="Shopping Cart"><i
-                            class="fas fa-shopping-cart text-warning"></i></a>
+                <div class="col-lg-4 text-lg-right text-center">
+                    <!-- Icons visible only on small screens -->
+                    <a href="#" class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home"><i
+                            class="fas fa-home text-warning" onclick="window.location.href = 'HomePage.html';"></i></a>
+                    <a href="#" class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits"><i
+                            class="fas fa-heart text-warning"
+                            onclick="window.location.href = 'outfitSuggestions.html';"></i></a>
+                    <a href="#" class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart"><i
+                            class="fas fa-shopping-cart text-warning"
+                            onclick="window.location.href = 'ShoppingCart.html';"></i></a>
+
+                    <!-- Icons hidden on small screens -->
+                    <a href="#" class="btn px-0 ms-3 d-none d-lg-inline" title="Home"><i
+                            class="fas fa-home text-warning" onclick="window.location.href = 'HomePage.html';"></i></a>
+                    <a href="#" class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits"><i
+                            class="fas fa-heart text-warning"
+                            onclick="window.location.href = 'outfitSuggestions.html';"></i></a>
+                    <a href="#" class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart"><i
+                            class="fas fa-shopping-cart text-warning"
+                            onclick="window.location.href = 'ShoppingCart.html';"></i></a>
                 </div>
             </div>
         </nav>
     </div>
     <!-- End of Navbar -->
+
+    <!-- Main Content -->
     <div class="container my-5">
         <h2 class="text-center section-title position-relative text-uppercase mx-xl-5 mb-4 mt-1 d-none d-md-block"><span
                 class="bg-warning text-light py-2 px-3 rounded-pill shadow-sm">Outfit Suggestions</span></h2>
         <div class="row justify-content-center">
             <!-- one -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="500$"></i></button>
                     <img src="imges/outfits/outfit1.webp" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -85,9 +109,9 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Classic Kids Outfit</h5>
-                        <p class="text-muted">This outfit is perfect for kids, combining comfort and elegance, making it
-                            suitable for alloccasions.</p>
+                        <h3 class="text-dark">Classic Kids Outfit</h3>
+                        <p class="text-muted">This outfit is perfect for kids, combining comfort and elegance, making
+                            itsuitable for all occasions.</p>
                         <div class="ratings">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -100,9 +124,10 @@
                 </div>
             </div>
             <!-- two -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="600$"></i></button>
                     <img src="imges/outfits/oufit2.jpg" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -113,10 +138,9 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Men's Versatile T-Shirt</h5>
+                        <h3 class="text-dark">Men's Versatile T-Shirt</h3>
                         <p class="text-muted">A versatile t-shirt for men, available in various colors, perfect for any
                             occasion with comfort and style.</p>
-
                         <div class="ratings">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -129,9 +153,10 @@
                 </div>
             </div>
             <!-- three -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="300$"></i></button>
                     <img src="imges/outfits/outfit3.jpg" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -142,9 +167,9 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Women's Stylish T-Shirt</h5>
+                        <h3 class="text-dark">Women's Stylish T-Shirt</h3>
                         <p class="text-muted">A stunning women's t-shirt, available in various colors and a contemporary
-                            design for an elegantlook.</p>
+                            design for an elegant look.</p>
                         <div class="ratings">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -161,9 +186,10 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <!-- four -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="450$"></i></button>
                     <img src="imges/outfits/outfit4.jpg" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -174,7 +200,7 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Women's Stunning Tracksuit</h5>
+                        <h3 class="text-dark">Women's Stunning Tracksuit</h3>
                         <p class="text-muted">A beautiful women's tracksuit made of premium cotton, offering comfort.
                         </p>
                         <div class="ratings">
@@ -189,9 +215,10 @@
                 </div>
             </div>
             <!-- five -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="240$"></i></button>
                     <img src="imges/outfits/outfit5.jpg" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -202,7 +229,7 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Men's Youthful Cotton T-Shirt</h5>
+                        <h3 class="text-dark">Men's Cotton T-Shirt</h3>
                         <p class="text-muted">A fantastic cotton t-shirt for young men, available in a variety of colors
                             to suit any style.</p>
                         <div class="ratings">
@@ -217,9 +244,10 @@
                 </div>
             </div>
             <!-- six -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="outfit-card position-relative">
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="add-to-cart" aria-label="Add to Cart"><i class="fas fa-shopping-cart"
+                            price="350$"></i></button>
                     <img src="imges/outfits/outfit6.jpg" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
@@ -230,7 +258,7 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h5 class="text-dark">Women's Stylish Printed Blouse</h5>
+                        <h3 class="text-dark">Women's Printed Blouse</h3>
                         <p class="text-muted">A gorgeous printed blouse for women, available in two stunning colors,
                             perfect for any occasion.</p>
                         <div class="ratings">
@@ -246,7 +274,62 @@
             </div>
         </div>
     </div>
-    <script src="js/outfitSuggestions.js"></script>
+    <!-- End of Main Content -->
+
+
+    <!--Hover effect-->
+    <script>
+        $(document).ready(function () {
+            $(".main-image").each(function () {
+                $(this).data("original-src", $(this).attr("src"));
+            });
+            $(".small-images img").hover(function () {
+                const src = $(this).attr("src");
+                $(this).closest(".outfit-card").find(".main-image").attr("src", src);
+            });
+            $(".main-image").hover(
+                function () { },
+                function () {
+                    $(this).attr("src", $(this).data("original-src"));
+                }
+            );
+        });
+    </script>
+
+    <!-- Add to Cart functionality -->
+    <script>
+        $(document).on("click", ".add-to-cart", function () {
+            const productName = $(this).closest(".outfit-card").find(".description h3").text().trim();
+            const productPrice = parseFloat($(this).find("i").attr("price").replace('$', '').trim());
+            const productImage = $(this).closest(".outfit-card").find(".main-image").attr("src");
+            const confirmAction = confirm(`Do you really want to add "${productName}" with price ${productPrice} to the cart?`);
+            if (confirmAction) {
+                // Create a product object to store the product details
+                const product = {
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1,
+                };
+
+                // Get the cart items from localStorage
+                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+                // Check if the product already exists in the cart
+                if (cartItems.some((item) => item.name === product.name)) {
+                    alert("Product already exists in the cart.");
+                    return;
+                } else {
+                    // Add product to localStorage (cartItems)
+                    cartItems.push(product);
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                }
+            } else {
+                // If the user cancels, do nothing
+            }
+        });
+    </script>
+
 </body>
 
 </html>

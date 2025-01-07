@@ -1,175 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    .checkout-container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    .summary {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    .summary-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .total {
-      font-weight: bold;
-      border-top: 1px solid #ddd;
-      padding-top: 10px;
-    }
-
-    .payment-header, .map-header, .address-header {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .payment-options {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 10px;
-    }
-
-    .payment-method {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .payment-method:last-child {
-      margin-bottom: 0;
-    }
-
-    .payment-method input {
-      margin-right: 10px;
-    }
-
-    .credit-card-form {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 20px;
-      display: none;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    #map {
-      height: 300px;
-      border-radius: 8px;
-      margin-top: 15px;
-      border: 1px solid #ddd;
-    }
-
-    .proceed-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #ffc107;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .proceed-btn:hover {
-      background-color: #ffa000;
-    }
-
-    .remove-btn {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .remove-btn:hover {
-      background-color: #e60000;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    table th, table td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-
-    table th {
-      background-color: #f4f4f4;
-    }
-
-    table td:last-child {
-      text-align: center;
-    }
-
-    .address-form {
-      display: block;
-      margin-top: 20px;
-    }
-
-  </style>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="css/checkoutStyle.css">
 </head>
+
 <body>
   <div class="checkout-container">
     <h2>Checkout</h2>
@@ -260,20 +101,17 @@
     <button class="proceed-btn" id="sold">Proceed to Checkout</button>
   </div>
 
+  <!-- main style js -->
   <script>
     // Initialize the map
-    const map = L.map('map').setView([51.505, -0.09], 13);
+    const map = L.map('map').setView([30.0444, 31.2357], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-
-    const marker = L.marker([51.505, -0.09], { draggable: true }).addTo(map);
-
+    const marker = L.marker([30.0444, 31.2357], { draggable: true }).addTo(map);
     marker.on('dragend', function () {
       const position = marker.getLatLng();
-      alert(`Delivery location selected: Latitude ${position.lat}, Longitude ${position.lng}`);
     });
-
     // Toggle Credit Card Form
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
     const creditCardForm = document.getElementById('credit-card-form');
@@ -287,24 +125,9 @@
         }
       });
     });
-
-    // Confirm Order Button
-    const confirmButton = document.querySelector('.proceed-btn');
-    confirmButton.addEventListener('click', () => {
-      const position = marker.getLatLng();
-      const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-
-      const addressLine1 = document.getElementById('address-line1').value;
-      const city = document.getElementById('city').value;
-      const postalCode = document.getElementById('postal-code').value;
-      const country = document.getElementById('country').value;
-
-      alert(`Order confirmed!
-        Delivery location: Latitude ${position.lat}, Longitude ${position.lng}
-        Payment Method: ${selectedPaymentMethod === 'cash-on-delivery' ? 'Cash on Delivery' : selectedPaymentMethod}
-        Address: ${addressLine1}, ${city}, ${postalCode}, ${country}`);
-    });
   </script>
-</body>
-</html>
 
+  <script src="js/checkout.js"></script>
+</body>
+
+</html>
