@@ -11,28 +11,29 @@ function appendproduct() {
     let totalstock = 0;
     let totalchecked = 0;
 
-    // Convert products object to array of entries and iterate
-    Object.entries(products).forEach(([id, product]) => {
+    // Iterate through products array
+    Object.values(products).forEach((product) => {
         totalcost += parseInt(product.cost);
         totalprice += parseInt(product.price);
-        totalrevenu += product.price - product.cost;
-        totalstock += parseInt(product.stock);
-        totalchecked += parseInt(product.checked);
-        const revenu = product.price - product.cost;
+        totalrevenu += parseInt(product.price) - parseInt(product.cost);
+        totalstock += parseInt(product.quantity);
+        totalchecked += product.active ? 1 : 0;
+        const revenu = parseInt(product.price) - parseInt(product.cost);
         
         const productDiv = document.createElement('tr');
         const total = document.getElementById('total');
         tablebody.className = 'table table-striped table-hover';
         
         productDiv.innerHTML = `
-            <td>${id}</td>
+            <td>${product.productId}</td>
             <td>${product.name}</td>
             <td>${product.cost}</td>
             <td>${product.price}</td>
             <td>${revenu}</td>
-            <td>${product.stock}</td>
-            <td><input type="checkbox" id="toggleSwitch" ${product.checked ? 'checked' : ''}></td>
-            <td><button class="btn btn-danger bg-danger ms-3" onclick="removeRow(this)">Remove</button></td>
+            <td>${product.quantity}</td>
+            <td><input type="checkbox" id="toggleSwitch_${product.id}" ${product.active ? 'checked' : ''}></td>
+            <td colspan="2"><button class="btn btn-danger bg-danger ms-3" onclick="removeRow(this)">Remove</button></td>
+            <td> <button class="btn btn-danger bg-danger ms-3">Edit</button> </td>
         `;
         
         tablebody.appendChild(productDiv);

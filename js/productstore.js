@@ -5,8 +5,8 @@ export function getProducts() {
             console.error('localStorage is not available');
             return [];
         }
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        return products;
+        const products = localStorage.getItem('products');
+        return products ? JSON.parse(products) : [];
     } catch (error) {
         console.error('Error parsing products from localStorage:', error);
         return [];
