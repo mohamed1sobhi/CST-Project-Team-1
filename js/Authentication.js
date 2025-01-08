@@ -1,8 +1,6 @@
-import { Admin, Customer, Seller } from "./registration.js";
-
 $(document).ready(function () {
   $("#login-form").validate({
-    debug: true,
+    debug: false,
     rules: {
       email: {
         required: true,
@@ -11,6 +9,9 @@ $(document).ready(function () {
       password: {
         required: true,
         minlength: 6,
+      },
+      checkbox: {
+        required: true,
       },
     },
     messages: {
@@ -22,37 +23,56 @@ $(document).ready(function () {
         required: "Please provide a password",
         minlength: "Your password must be at least 6 characters long",
       },
+      checkbox: {
+        required: "You must agree to the Terms of Service",
+      },
     },
     errorPlacement: function (error, element) {
       $("#formError").html(error);
-      element.focus();
     },
     submitHandler: function (form) {
-      form.preventDefault();
       const email = $("#email").val();
       const password = $("#password").val();
 
       // Check if match any stored user
-      const users = JSON.parse(localStorage.Seller)[0];
-      console.log(users);
+      // Get all users from localStorage
+      let sellers = [],
+        admins = [],
+        customers = [];
+      try {
+        sellers = JSON.parse(localStorage.getItem("seller")) || [];
+        admins = JSON.parse(localStorage.getItem("admin")) || [];
+        customers = JSON.parse(localStorage.getItem("customer")) || [];
+      } catch (e) {
+        console.error("Error parsing localStorage:", e);
+      }
+
+      const users = [...sellers, ...admins, ...customers];
       const user = users.find(
         (u) => u.email === email && u.password === password
       );
 
-      if (user.type === "admin") {
-        alert("Authentication successful!");
-        $("#login-form").attr("action", "admin.html");
-        form.submit();
-      } else if (user.type === "seller") {
-        alert("Authentication successful!");
-        $("#login-form").attr("action", "seller.html");
-        form.submit();
-      } else if (user.type === "customer") {
-        alert("Authentication successful!");
-        $("#login-form").attr("action", "customer.html");
-        form.submit();
+      if (user) {
+        // Store user info in session (optional)
+        sessionStorage.clear();
+        sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify({
+            id: user.id,
+            email: user.email,
+            type: user.type,
+            status: "logged in",
+          })
+        );
+        // Redirect using window.location instead of form submission
+        if (user.type === "admin") {
+          window.location.href = "admin.html";
+        } else if (user.type === "seller") {
+          window.location.href = "SellerDash.html";
+        } else if (user.type === "customer") {
+          window.location.href = "HomePage.html";
+        }
       } else {
-        alert("Invalid email or password.");
         $("#formError").text("Invalid email or password.");
       }
       return false; // Prevent the default form submission

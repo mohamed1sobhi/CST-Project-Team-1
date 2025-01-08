@@ -99,6 +99,12 @@
         }
       })
     });//end of load
+    //check if user is already logged in
+    let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+    if (loginStatus.status == "logged in") {
+      console.log();
+      window.location.href = '404.html';
+    }
   </script>
 
 </head>

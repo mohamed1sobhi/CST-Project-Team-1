@@ -1,6 +1,6 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
 class Customer {
-  static idCounter = 0;
+  static idCounter = localStorage.getItem('CustomerIdCounter', Customer.idCounter)|| 0;
   constructor(name, email, password, cart = [], likedProducts = []) {
     this.id = Customer.idCounter++;
     this.type = "customer";
@@ -13,7 +13,7 @@ class Customer {
 }
 
 class Seller {
-  static idCounter = 0;
+  static idCounter = localStorage.getItem('SellerIdCounter', Customer.idCounter)|| 0;
   constructor(name, email, password) {
     this.type = "seller";
     this.id = Seller.idCounter++;
@@ -24,7 +24,7 @@ class Seller {
 }
 
 class Admin {
-  static idCounter = 0;
+  static idCounter = localStorage.getItem('AdminIdCounter', Customer.idCounter)|| 0;
   constructor(name, email, password) {
     this.type = "admin";
     this.id = Admin.idCounter++;
@@ -114,22 +114,39 @@ $(function () {
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
+            localStorage.setItem('CustomerIdCounter', Customer.idCounter);
+            window.location.href = "HomePage.html";
             console.log(obj);
           } else {
+
             obj = new Seller(
               $("input:eq(0)").val(),
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
+            localStorage.setItem('SellerIdCounter', Seller.idCounter);
+            window.location.href = "SellerDash.html";
             console.log(obj);
           }
           // addUser(user,obj);
-
           user.push(obj);
           localStorage.setItem(account, JSON.stringify(user));
+         
+          // Store user info in session (optional)
+          sessionStorage.clear();
+          sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify({
+            id: obj.id,
+            email: obj.email,
+            type: obj.type,
+            status: "logged in",
+          })
+        );
           $("form").trigger("reset");
           $("input").blur();
-        }
+          
+        } 
       }
       return $(this);
     },
@@ -163,11 +180,14 @@ $(function () {
   $("button:first").on("click", function (e) {
     e.preventDefault();
     $(this).singup("customer");
+  
+    
   });
 
   $("button:last").on("click", function (e) {
     e.preventDefault();
     $(this).singup("seller");
+    
   });
 }); //end of load
 
