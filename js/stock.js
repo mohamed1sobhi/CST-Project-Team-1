@@ -17,5 +17,15 @@ class Cart {
     this.quantity = quantity;
   }
 }
+class Orders {
+  static idCounter = 0;
+  constructor(customer, products, total, status) {
+    this.id = idCounter++;
+    this.customer = customer;
+    this.products = products;
+    this.total = total;
+    this.status = status;
+  }
+}
 
 export { Products, Cart };

@@ -8,6 +8,13 @@
     <link href="bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/HomePage.css">
     <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+        if (loginStatus) {
+            console.log(loginStatus);
+        }
+    </script>
 
 </head>
 
@@ -458,8 +465,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.10/dexie.js"></script>
-    <script src="js/dbschema.js" type="module"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.10/dexie.js"></script> -->
+    <!-- <script src="js/dbschema.js" type="module"></script> -->
 
 </body>
 
