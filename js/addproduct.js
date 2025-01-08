@@ -1,7 +1,7 @@
 import { Products } from "./stock.js";
 import { Seller } from "./registration.js";
 
-let adding= document.getElementById("adding");
+let adding = document.getElementById("adding");
 adding.addEventListener("click", addProduct);
 function addProduct() {
   // Get form elements
@@ -23,24 +23,24 @@ function addProduct() {
         : Math.max(...Object.keys(products).map(Number)) + 1;
 
     // Create a product object using the Products class
-    const user = JSON.parse(localStorage.getItem("currentUser"));
-    const seller = new Seller(user.name, user.email, user.password);
+    const user = JSON.parse(localStorage.getItem("currentUser")) || [];
+    console.log(user);
+    // const seller = new Seller(user.name, user.email, user.password);
     const product = new Products(
-      nextId,
       name,
       cost,
       price,
       stock,
-      seller.id,
+      user.id,
       imagebase64
     );
 
     // Store the product with its ID
-    products[nextId] = product;
+    products = product;
     localStorage.setItem("products", JSON.stringify(products));
 
     // Clear the form
-    document.getElementById("productForm").reset();
+    document.getElementById("").reset();
   };
 
   if (imagePath) {

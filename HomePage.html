@@ -14,6 +14,12 @@
         if (loginStatus.status == "logged in") {
             console.log(loginStatus);
         }
+        $(document).ready(function () {
+            $(".logout").click(function () {
+                sessionStorage.removeItem("currentUser");
+                window.location.href = 'HomePage.html';
+            });
+        });
     </script>
 
 </head>
@@ -65,6 +71,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="LogIn.html">Log In</a>
+                    </li>
+                    <li class="nav-item logout">
+                        <a class="nav-link" href="">Log Out</a>
                     </li>
                 </ul>
                 <form class="d-flex w-auto" role="search">
