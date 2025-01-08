@@ -61,6 +61,7 @@ $(document).ready(function () {
             id: user.id,
             email: user.email,
             type: user.type,
+            status: "logged in",
           })
         );
         // Redirect using window.location instead of form submission
