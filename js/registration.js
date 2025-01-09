@@ -176,7 +176,7 @@ $(function () {
       return isvalid;
     },
   });
-
+  
   $("button:first").on("click", function (e) {
     e.preventDefault();
     $(this).singup("customer");
@@ -189,6 +189,10 @@ $(function () {
     $(this).singup("seller");
     
   });
+  
+    
+  
+  
 }); //end of load
-
+// export {singup};
 export { Customer, Seller, Admin };
