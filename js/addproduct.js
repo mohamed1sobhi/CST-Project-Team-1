@@ -52,6 +52,9 @@ class ProductManager {
 
       let products = JSON.parse(localStorage.getItem("products")) || [];
       console.log(products);
+      let currentSellerData =
+        JSON.parse(sessionStorage.getItem("currentUser")) || [];
+      console.log(currentSellerData);
 
       // Create and save new product
       const product = new Products(
@@ -60,7 +63,7 @@ class ProductManager {
         price,
         cost,
         stock,
-        1,
+        currentSellerData.id,
         imagebase64
       );
       products.push(product);

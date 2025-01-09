@@ -14,10 +14,10 @@
 
     <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
     <script>
-       /* let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+        let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
         if (loginStatus.type != "seller") {
             window.location.href = '404.html';
-        }*/
+        }
     </script>
     <style>
         * {
@@ -224,7 +224,7 @@
             if (result) {
                 var row = btn.parentNode.parentNode;
                 var productId = row.cells[0].innerHTML.trim(); // Get the product ID from first cell
-                console.log('Removing product:', productId);   
+                console.log('Removing product:', productId);
 
                 try {
                     let products = JSON.parse(localStorage.getItem('products'));
