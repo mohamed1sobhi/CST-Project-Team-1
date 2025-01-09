@@ -1,6 +1,6 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
 class Customer {
-  constructor(id, name, email, password, cart = [], likedProducts = [],contactUs=[]) {
+  constructor(id, name, email, password, cart = [], likedProducts = []) {
     this.id = id;
     this.type = "customer";
     this.name = name;
@@ -8,18 +8,16 @@ class Customer {
     this.password = password;
     this.cart = cart;
     this.likedProducts = likedProducts;
-    this.contactUs=contactUs;
   }
 }
 
 class Seller {
-  constructor(id, name, email, password,contactUs=[]) {
+  constructor(id, name, email, password) {
     this.id = id;
     this.type = "seller";
     this.name = name;
     this.email = email;
     this.password = password;
-    this.contactUs=contactUs;
   }
 }
 
