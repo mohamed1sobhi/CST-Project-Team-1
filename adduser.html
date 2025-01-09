@@ -27,13 +27,31 @@
                 let user = JSON.parse(localStorage.getItem(useraccount)) || [];
                         let obj;
                         if (useraccount == "admin"){
+                            let id = 0;
+                            const productsitem =
+                            JSON.parse(localStorage.getItem("admin")) || [];
+                            if (productsitem.length === 0) {
+                            id = 0;
+                            } else {
+                            id = productsitem[productsitem.length - 1].id + 1;
+                            }
                             obj = new Admin(
+                                id,
                                 $("input:eq(0)").val(),
                                 $("input:eq(1)").val(),
                                 $("input:eq(2)").val()
                             )
                         }else{
+                            let id = 0;
+                            const productsitem =
+                            JSON.parse(localStorage.getItem("seller")) || [];
+                            if (productsitem.length === 0) {
+                            id = 0;
+                            } else {
+                            id = productsitem[productsitem.length - 1].id + 1;
+                            }
                             obj = new Seller(
+                                id,
                                 $("input:eq(0)").val(),
                                 $("input:eq(1)").val(),
                                 $("input:eq(2)").val()

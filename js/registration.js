@@ -124,7 +124,7 @@ $(function () {
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem("CustomerIdCounter", Customer.idCounter);
+            // localStorage.setItem("CustomerIdCounter", Customer.idCounter);
             window.location.href = "HomePage.html";
             console.log(obj);
           } else {
@@ -142,7 +142,7 @@ $(function () {
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem("SellerIdCounter", Seller.idCounter);
+            // localStorage.setItem("SellerIdCounter", Seller.idCounter);
             window.location.href = "SellerDash.html";
             console.log(obj);
           }
@@ -158,6 +158,7 @@ $(function () {
               id: obj.id,
               email: obj.email,
               type: obj.type,
+              name:obj.name,
               status: "logged in",
             })
           );
