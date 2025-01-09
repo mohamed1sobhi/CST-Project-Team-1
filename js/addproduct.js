@@ -21,17 +21,8 @@ class ProductManager {
 
   static async addProduct(event) {
     event.preventDefault(); // Prevent form submission
-
+    
     try {
-      // Get form elements
-      let id = 0;
-      const productsitem = JSON.parse(localStorage.getItem("products")) || [];
-      if (productsitem.length === 0) {
-        id = 0;
-      } else {
-        id = productsitem[productsitem.length - 1].id + 1;
-      }
-
       const name = document.getElementById("ProductName").value.trim();
       const price = parseFloat(document.getElementById("Price").value);
       const cost = parseFloat(document.getElementById("Cost").value);
@@ -45,27 +36,27 @@ class ProductManager {
       const imagebase64 = await ProductManager.convertToBase64(imagePath);
 
       // Get current user and existing products
-      const user = JSON.parse(sessionStorage.getItem("currentUser"));
+     /* const user = JSON.parse(sessionStorage.getItem("currentUser"));
       if (!user) {
         throw new Error("User not authenticated");
-      }
+      }*/
 
       let products = JSON.parse(localStorage.getItem("products")) || [];
-      console.log(products);
-      let currentSellerData =
-        JSON.parse(sessionStorage.getItem("currentUser")) || [];
-      console.log(currentSellerData);
-
+      let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
+      // Find the highest product ID and set the static ID counter
+      const highestId = products.reduce((max, product) => 
+        product.productid > max ? product.productid : max, 0);
+      Products.id = highestId + 1;
       // Create and save new product
       const product = new Products(
-        id,
         name,
         price,
         cost,
         stock,
-        currentSellerData.id,
+        currentseler.id,
         imagebase64
       );
+      console.log(product);
       products.push(product);
       localStorage.setItem("products", JSON.stringify(products));
 
@@ -74,14 +65,27 @@ class ProductManager {
       alert("Product added successfully!");
       window.location.href = "SellerDash.html";
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      alert(error.message);
     }
   }
 
   static convertToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
+      reader.onload = () => {
+        const img = new Image();
+        img.src = reader.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxWidth = 800;
+          const scale = maxWidth / img.width;
+          canvas.width = maxWidth;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', 0.7));
+        };
+      };
       reader.onerror = () => reject(new Error("Failed to read file"));
       reader.readAsDataURL(file);
     });

@@ -230,7 +230,7 @@
                     let products = JSON.parse(localStorage.getItem('products'));
                     if (Array.isArray(products)) {
                         // Filter out the product with matching ID, ensure string comparison
-                        products = products.filter(product => String(product.productId) !== productId);
+                        products = products.filter(product => String(product.productid) !== productId);
                         localStorage.setItem('products', JSON.stringify(products));
                     }
                     row.parentNode.removeChild(row);

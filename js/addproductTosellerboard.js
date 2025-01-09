@@ -1,9 +1,19 @@
 import { getProducts } from './productstore.js';
+// Get the seller ID from localStorage
+let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
+
+// Function to filter products by seller ID
+function getSellerProducts() {
+    let allProducts = getProducts();
+    return Object.values(allProducts).filter(product => 
+        product.seller === currentseler.id
+    );
+}
 document.addEventListener('DOMContentLoaded', appendproduct);
 
 function appendproduct() {
     // Get products from localStorage
-    let products = getProducts();
+    let products = getSellerProducts();
     let tablebody = document.getElementById('body');
     let totalcost = 0;
     let totalprice = 0;
@@ -25,7 +35,7 @@ function appendproduct() {
         tablebody.className = 'table table-striped table-hover';
         
         productDiv.innerHTML = `
-            <td>${product.productId}</td>
+            <td>${product.productid}</td>
             <td>${product.name}</td>
             <td>${product.cost}</td>
             <td>${product.price}</td>
