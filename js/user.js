@@ -1,10 +1,13 @@
 
 let customers=document.getElementById('customers');
 let sellers=document.getElementById('sellers');
+let admins=document.getElementById('admin');
+
 
 
 creating(customers,'customer');
 creating(sellers,'seller');
+creating(admins,'admin');
 
 function creating(table,data){
     let users=JSON.parse(localStorage.getItem(data))||[];
