@@ -1,6 +1,6 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
 class Customer {
-  constructor(id, name, email, password, cart = [], likedProducts = []) {
+  constructor(id, name, email, password, cart = [], likedProducts = [],contactUs=[]) {
     this.id = id;
     this.type = "customer";
     this.name = name;
@@ -8,16 +8,18 @@ class Customer {
     this.password = password;
     this.cart = cart;
     this.likedProducts = likedProducts;
+    this.contactUs=contactUs;
   }
 }
 
 class Seller {
-  constructor(id, name, email, password) {
+  constructor(id, name, email, password,contactUs=[]) {
     this.id = id;
     this.type = "seller";
     this.name = name;
     this.email = email;
     this.password = password;
+    this.contactUs=contactUs;
   }
 }
 
@@ -124,7 +126,7 @@ $(function () {
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem("CustomerIdCounter", Customer.idCounter);
+            // localStorage.setItem("CustomerIdCounter", Customer.idCounter);
             window.location.href = "HomePage.html";
             console.log(obj);
           } else {
@@ -142,7 +144,7 @@ $(function () {
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem("SellerIdCounter", Seller.idCounter);
+            // localStorage.setItem("SellerIdCounter", Seller.idCounter);
             window.location.href = "SellerDash.html";
             console.log(obj);
           }
@@ -158,6 +160,7 @@ $(function () {
               id: obj.id,
               email: obj.email,
               type: obj.type,
+              name:obj.name,
               status: "logged in",
             })
           );
