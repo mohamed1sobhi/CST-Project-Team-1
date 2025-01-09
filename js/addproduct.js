@@ -24,6 +24,14 @@ class ProductManager {
 
     try {
       // Get form elements
+      let id = 0;
+      const productsitem = JSON.parse(localStorage.getItem("products")) || [];
+      if (productsitem.length === 0) {
+        id = 0;
+      } else {
+        id = productsitem[productsitem.length - 1].id + 1;
+      }
+
       const name = document.getElementById("ProductName").value.trim();
       const price = parseFloat(document.getElementById("Price").value);
       const cost = parseFloat(document.getElementById("Cost").value);
@@ -35,24 +43,33 @@ class ProductManager {
 
       // Handle image
       const imagebase64 = await ProductManager.convertToBase64(imagePath);
-      
+
       // Get current user and existing products
-      const user = JSON.parse(localStorage.getItem("currentUser"));
-      if (!user || !user.id) {
+      const user = JSON.parse(sessionStorage.getItem("currentUser"));
+      if (!user) {
         throw new Error("User not authenticated");
       }
 
       let products = JSON.parse(localStorage.getItem("products")) || [];
+      console.log(products);
 
       // Create and save new product
-      const product = new Products(name, price, cost, stock, 1, imagebase64);
+      const product = new Products(
+        id,
+        name,
+        price,
+        cost,
+        stock,
+        1,
+        imagebase64
+      );
       products.push(product);
       localStorage.setItem("products", JSON.stringify(products));
 
       // Clear the form
       document.getElementById("form").reset();
       alert("Product added successfully!");
-
+      window.location.href = "SellerDash.html";
     } catch (error) {
       alert(`Error: ${error.message}`);
     }
