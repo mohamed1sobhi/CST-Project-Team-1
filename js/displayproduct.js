@@ -7,15 +7,15 @@ function displayProducts() {
   const container = document.getElementById('container');
   
   // Convert products object to array of entries and iterate
-  Object.entries(products).forEach(([id, product]) => {
+  Object.values(products).forEach(product => {
     const productDiv = document.createElement('div');
     productDiv.className = 'col-lg-3 col-md-4 col-sm-6 pb-1';
-    productDiv.dataset.productId = id;
+   // productDiv.dataset.productId = product.id;
     
     productDiv.innerHTML = `
       <div class="product-item bg-light mb-4">
         <div class="product-img position-relative overflow-hidden">
-          <img class="img-fluid w-100" src="${product.image}" alt="Product Image">
+          <img class="img-fluid w-100" src="${product.img}" alt="Product Image">
           <div class="product-action text-center mt-2">
             <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-shopping-cart"></i></a>
             <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>

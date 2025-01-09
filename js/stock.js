@@ -1,14 +1,13 @@
 class Products {
-  static idCounter = 0;
-  constructor(name, price, cost, quantity, seller_id, img) {
-    this.id = Products.idCounter++;
+  constructor(id, name, price, cost, quantity, seller_id, img) {
+    this.id = id;
     this.name = name;
-    this.cost = cost;
     this.price = price;
+    this.cost = cost;
     this.quantity = quantity;
     this.seller = seller_id;
     this.img = img;
-    this.active = true;
+    this.active = "true";
   }
 }
 class Cart {
@@ -18,9 +17,8 @@ class Cart {
   }
 }
 class Orders {
-  static idCounter = 0;
-  constructor(customer, products, total, status) {
-    this.id = Orders.idCounter++;
+  constructor(id, customer, products, total, status) {
+    this.id = id;
     this.customer = customer;
     this.products = products;
     this.total = total;
