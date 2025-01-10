@@ -20,7 +20,7 @@ import { getProducts } from "./productstore.js";
         });
         console.log(matchedProducts);
         
-        let currentSeller = JSON.parse(sessionStorage.getItem("currentUser") || '{}');
+        let currentSeller = JSON.parse(localStorage.getItem("seller") || '{}');
         const sellerProducts = matchedProducts.filter(product => product.seller === currentSeller.id);
         
 

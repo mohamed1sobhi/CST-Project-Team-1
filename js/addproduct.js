@@ -43,7 +43,7 @@ class ProductManager {
       }*/
 
       let products = JSON.parse(localStorage.getItem("products")) || [];
-      let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
+      let currentseler = JSON.parse(localStorage.getItem("seller"));
       // Find the highest product ID and set the static ID counter
       const highestId = products.reduce((max, product) => 
         product.productid > max ? product.productid : max, 0);
