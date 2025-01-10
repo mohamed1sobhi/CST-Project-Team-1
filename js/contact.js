@@ -74,7 +74,6 @@ $("#sendMessageButton").on('click',function(e){
     
 
 
-
     // console.log(new Date().toTimeString().split(' ')[0]);
 
 });//end of load
