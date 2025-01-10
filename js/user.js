@@ -1,14 +1,19 @@
 
 let customers=document.getElementById('customers');
 let sellers=document.getElementById('sellers');
+let admins=document.getElementById('admin');
 
+let contact=document.getElementById('message');
+creating(contact,'contactus');
 
 creating(customers,'customer');
 creating(sellers,'seller');
+creating(admins,'admin');
+
 
 function creating(table,data){
     let users=JSON.parse(localStorage.getItem(data))||[];
-    let id=0;
+    // let id=0;
     users.forEach(e => {
         let row=document.createElement('tr')
         let td1=document.createElement('td')
@@ -41,19 +46,24 @@ function creating(table,data){
         row.append(td1);
         row.append(td2);
         row.append(td3);
-        row.append(td4);
+        if(data=="contactus"){
+            row.append(td4);
+        }
         row.append(td5);
         td1.append(a);
         td3.append(span);
-        td4.append(div);
+        if(data=="contactus"){
+            td4.append(div);
+        }
         td5.append(button1);
         button1.append(icon1);
         td5.append(button2);
         button2.append(icon2);
 
-        a.innerText=++id;
+        a.innerText=e.id;
         td2.innerText=e.name;
         span.innerText=e.email;
+        div.innerText=e.message;
     
 
         button1.addEventListener('click', (e) => {
@@ -66,6 +76,16 @@ function creating(table,data){
             localStorage.setItem(data,JSON.stringify(newusers));
             e.currentTarget.parentElement.parentElement.remove();
            }
+        })
+        
+        button2.addEventListener('click', (e) => {
+           let mesg=[e.currentTarget.parentElement.parentElement.children[1].innerText,
+                e.currentTarget.parentElement.parentElement.children[2].children[0].innerText,
+            e.currentTarget.parentElement.parentElement.children[3].children[0].innerText
+        ]
+            localStorage.setItem('mesg', JSON.stringify(mesg));
+            window.location.href = "edit.html";
+           
         })
     });
     

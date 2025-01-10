@@ -1,8 +1,7 @@
 // import {customerDB,sellerDB,adminDB,productsDB} from './dbschema.js';
 class Customer {
-  static idCounter = localStorage.getItem('CustomerIdCounter', Customer.idCounter)|| 0;
-  constructor(name, email, password, cart = [], likedProducts = []) {
-    this.id = Customer.idCounter++;
+  constructor(id, name, email, password, cart = [], likedProducts = []) {
+    this.id = id;
     this.type = "customer";
     this.name = name;
     this.email = email;
@@ -13,10 +12,9 @@ class Customer {
 }
 
 class Seller {
-  static idCounter = localStorage.getItem('SellerIdCounter', Customer.idCounter)|| 0;
-  constructor(name, email, password) {
+  constructor(id, name, email, password) {
+    this.id = id;
     this.type = "seller";
-    this.id = Seller.idCounter++;
     this.name = name;
     this.email = email;
     this.password = password;
@@ -24,13 +22,20 @@ class Seller {
 }
 
 class Admin {
-  static idCounter = localStorage.getItem('AdminIdCounter', Customer.idCounter)|| 0;
-  constructor(name, email, password) {
+  constructor(id, name, email, password) {
+    this.id = id;
     this.type = "admin";
-    this.id = Admin.idCounter++;
     this.name = name;
     this.email = email;
     this.password = password;
+  }
+}
+export class Contact{
+  constructor(id, name, email,message){
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.message=message;
   }
 }
 
@@ -85,9 +90,13 @@ $(function () {
         // let user=getUsers(account)||[];
 
         // Check for existing name and email
-        let alluser=JSON.parse(localStorage.getItem("customer"))||[].concat(JSON.parse(localStorage.getItem("seller"))||[]);
-        let nameExist = alluser.some(e => e.name === $("input:eq(0)").val());
-        let emailExist = alluser.some(e => e.email === $("input:eq(1)").val());
+        let alluser =
+          JSON.parse(localStorage.getItem("customer")) ||
+          [].concat(JSON.parse(localStorage.getItem("seller")) || []);
+        let nameExist = alluser.some((e) => e.name === $("input:eq(0)").val());
+        let emailExist = alluser.some(
+          (e) => e.email === $("input:eq(1)").val()
+        );
 
         if (emailExist) {
           $("#p4").show();
@@ -109,44 +118,61 @@ $(function () {
         ) {
           let obj;
           if (account == "customer") {
+            let id = 0;
+            const productsitem =
+              JSON.parse(localStorage.getItem("customer")) || [];
+            if (productsitem.length === 0) {
+              id = 0;
+            } else {
+              id = productsitem[productsitem.length - 1].id + 1;
+            }
             obj = new Customer(
+              id,
               $("input:eq(0)").val(),
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem('CustomerIdCounter', Customer.idCounter);
+            // localStorage.setItem("CustomerIdCounter", Customer.idCounter);
             window.location.href = "HomePage.html";
             console.log(obj);
           } else {
-
+            let id = 0;
+            const productsitem =
+              JSON.parse(localStorage.getItem("seller")) || [];
+            if (productsitem.length === 0) {
+              id = 0;
+            } else {
+              id = productsitem[productsitem.length - 1].id + 1;
+            }
             obj = new Seller(
+              id,
               $("input:eq(0)").val(),
               $("input:eq(1)").val(),
               $("input:eq(2)").val()
             );
-            localStorage.setItem('SellerIdCounter', Seller.idCounter);
+            // localStorage.setItem("SellerIdCounter", Seller.idCounter);
             window.location.href = "SellerDash.html";
             console.log(obj);
           }
           // addUser(user,obj);
           user.push(obj);
           localStorage.setItem(account, JSON.stringify(user));
-         
+
           // Store user info in session (optional)
           sessionStorage.clear();
           sessionStorage.setItem(
-          "currentUser",
-          JSON.stringify({
-            id: obj.id,
-            email: obj.email,
-            type: obj.type,
-            status: "logged in",
-          })
-        );
+            "currentUser",
+            JSON.stringify({
+              id: obj.id,
+              email: obj.email,
+              type: obj.type,
+              name:obj.name,
+              status: "logged in",
+            })
+          );
           $("form").trigger("reset");
           $("input").blur();
-          
-        } 
+        }
       }
       return $(this);
     },
@@ -176,19 +202,20 @@ $(function () {
       return isvalid;
     },
   });
-
+  
   $("button:first").on("click", function (e) {
     e.preventDefault();
     $(this).singup("customer");
-  
-    
   });
 
   $("button:last").on("click", function (e) {
     e.preventDefault();
     $(this).singup("seller");
-    
   });
+  
+    
+  
+  
 }); //end of load
-
-export { Customer, Seller, Admin };
+// export {singup};
+export { Customer, Seller, Admin};

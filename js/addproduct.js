@@ -21,13 +21,13 @@ class ProductManager {
 
   static async addProduct(event) {
     event.preventDefault(); // Prevent form submission
-
+    
     try {
-      // Get form elements
       const name = document.getElementById("ProductName").value.trim();
       const price = parseFloat(document.getElementById("Price").value);
       const cost = parseFloat(document.getElementById("Cost").value);
       const stock = parseInt(document.getElementById("stock").value);
+      const Active= document.getElementById("Active").checked;
       const imagePath = document.getElementById("ProductImage").files[0];
 
       // Validate inputs
@@ -35,33 +35,59 @@ class ProductManager {
 
       // Handle image
       const imagebase64 = await ProductManager.convertToBase64(imagePath);
-      
+
       // Get current user and existing products
-      const user = JSON.parse(localStorage.getItem("currentUser"));
-      if (!user || !user.id) {
+     /* const user = JSON.parse(sessionStorage.getItem("currentUser"));
+      if (!user) {
         throw new Error("User not authenticated");
-      }
+      }*/
 
       let products = JSON.parse(localStorage.getItem("products")) || [];
-
+      let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
+      // Find the highest product ID and set the static ID counter
+      const highestId = products.reduce((max, product) => 
+        product.productid > max ? product.productid : max, 0);
+      Products.id = highestId + 1;
       // Create and save new product
-      const product = new Products(name, price, cost, stock, 1, imagebase64);
+      const product = new Products(
+        name,
+        price,
+        cost,
+        stock,
+        currentseler.id,
+        imagebase64,
+        Active
+      );
+      console.log(product);
       products.push(product);
       localStorage.setItem("products", JSON.stringify(products));
 
       // Clear the form
       document.getElementById("form").reset();
       alert("Product added successfully!");
-
+      window.location.href = "SellerDash.html";
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      alert(error.message);
     }
   }
 
   static convertToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
+      reader.onload = () => {
+        const img = new Image();
+        img.src = reader.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxWidth = 800;
+          const scale = maxWidth / img.width;
+          canvas.width = maxWidth;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', 0.7));
+        };
+      };
       reader.onerror = () => reject(new Error("Failed to read file"));
       reader.readAsDataURL(file);
     });

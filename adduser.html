@@ -15,30 +15,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+     <script src="js/jquery.validate.js"></script>
      <script type="module">
-        import {Customer, Seller, Admin } from './js/registration.js';
-        function adding(useraccount){
-                let user = JSON.parse(localStorage.getItem(useraccount)) || [];
-                let obj;
-                if (useraccount == "admin"){
-                    obj = new Admin(
-                        $("input:eq(0)").val(),
-                        $("input:eq(1)").val(),
-                        $("input:eq(2)").val()
-                    )
-                }else{
-                    obj = new Seller(
-                        $("input:eq(0)").val(),
-                        $("input:eq(1)").val(),
-                        $("input:eq(2)").val()
-                        );
-                    }
-                    user.push(obj);
-                    localStorage.setItem(useraccount, JSON.stringify(user));           
-            }
+        // import {singup} from './js/registration.js';
+        import {Customer, Seller, Admin} from './js/registration.js';
         $(function () { 
-        
-        $("#addAdmin").on("click", function (e) {
+            function adding(useraccount){
+                let user = JSON.parse(localStorage.getItem(useraccount)) || [];
+                        let obj;
+                        if (useraccount == "admin"){
+                            let id = 0;
+                            const productsitem =
+                            JSON.parse(localStorage.getItem("admin")) || [];
+                            if (productsitem.length === 0) {
+                            id = 0;
+                            } else {
+                            id = productsitem[productsitem.length - 1].id + 1;
+                            }
+                            obj = new Admin(
+                                id,
+                                $("input:eq(0)").val(),
+                                $("input:eq(1)").val(),
+                                $("input:eq(2)").val()
+                            )
+                        }else{
+                            let id = 0;
+                            const productsitem =
+                            JSON.parse(localStorage.getItem("seller")) || [];
+                            if (productsitem.length === 0) {
+                            id = 0;
+                            } else {
+                            id = productsitem[productsitem.length - 1].id + 1;
+                            }
+                            obj = new Seller(
+                                id,
+                                $("input:eq(0)").val(),
+                                $("input:eq(1)").val(),
+                                $("input:eq(2)").val()
+                                );
+                            }
+                            user.push(obj);
+                            localStorage.setItem(useraccount, JSON.stringify(user));  
+            }
+                
+                    
+
+                
+
+           
+        $("#addAdmin").on("click", function (e) {  
             e.preventDefault();
             adding("admin");
         });
@@ -114,8 +142,8 @@
 
  <!-- Contact Start -->
  <div class="contact">
-            <div class="contact-form bg-white p-5">
-                <form class="w-100" action="">
+            <div  class="contact-form bg-white p-5">
+                <form id="adduserform" class="w-100" action="">
                     <div class="mb-3">
                         <input type="text" class="" id="name" placeholder="Your Name"/>  
                         <p><i class="fa-solid fa-circle-exclamation"></i>Your Name Not Found</p>
@@ -127,6 +155,7 @@
                     <div class="mb-3">
                         <input type="password" class="" id="subject" placeholder="Subject"/>   
                     </div>
+                    <div id="formError" class="error"></div>
                     <div>
                         <div class="btn py-2 px-4"  id="addAdmin">add admin</div>
                         <div class="btn py-2 px-4" id="addSeller">add seller</div>

@@ -61,6 +61,7 @@ $(document).ready(function () {
             id: user.id,
             email: user.email,
             type: user.type,
+            name:user.name,
             status: "logged in",
           })
         );
