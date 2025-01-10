@@ -176,7 +176,6 @@
      <script>
         function openProductPage() {
                 let products = JSON.parse(localStorage.getItem("products"));
-                alert("Product page opened");
                 const productElement = event.target.closest(".product-item");
                 const productName = productElement.querySelector(".h4").innerText.trim();
                 const productPrice = productElement.querySelector("h5").innerText.trim();
