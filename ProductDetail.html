@@ -479,11 +479,11 @@
 
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
-                const productDetails = JSON.parse(localStorage.getItem('productDetails'));
-                if (productDetails) {
-                    $('#product-carousel img').attr('src', productDetails.imgSrc);
-                    $("#PNinDP").text(productDetails.name);
-                    $("#PPinDP").text(productDetails.price);
+                const currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
+                if (currentProduct) {
+                    $('#product-carousel img').attr('src', currentProduct.imgSrc);
+                    $("#PNinDP").text(currentProduct.name);
+                    $("#PPinDP").text(currentProduct.price);
                 } else {
                     alert('Product details are not available!');
                 }
