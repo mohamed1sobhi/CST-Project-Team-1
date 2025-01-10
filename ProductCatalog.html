@@ -17,6 +17,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script  type="module"src="js/displayproduct.js"></script>
+    <script src="js/outofstock.js"></script>
 </head>
 
 <body>
@@ -484,6 +485,7 @@
                 if (existingProductIndex > -1) {
                     cartItems[existingProductIndex].quantity += 1;
                 } else {
+                    updateProductQuantity(product)
                     cartItems.push(product);
                     alert(`"${productName}" added to the cart.`);
                 }
@@ -517,6 +519,7 @@
                     alert("Product already exists in the cart.");
                     return;
                 } else {
+                    updateProductQuantity(product)
                     // Add product to localStorage (cartItems)
                     cartItems.push(product);
                     localStorage.setItem("cartItems", JSON.stringify(cartItems));

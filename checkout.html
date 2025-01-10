@@ -126,6 +126,13 @@
       });
     });
   </script>
+   <script> 
+    document.getElementById('sold').addEventListener('click', function() {
+    let count = localStorage.getItem('countofpurchace') ? parseInt(localStorage.getItem('countofpurchace')) : 0; 
+    count++; 
+    localStorage.setItem('countofpurchace', count.toString()); }); 
+
+</script>
 
   <script src="js/checkout.js"></script>
   

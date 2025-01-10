@@ -9,4 +9,13 @@ window.onload = function() {
         progress.style.width = parseInt(count) * 1 + '%';
         
     } 
+    if (localStorage.getItem('countofpurchace')) { 
+        let countofpurchace = parseInt(localStorage.getItem('countofpurchace'));
+        console.log(countofpurchace); 
+        let number = document.getElementById('counter1'); 
+        number.innerText = countofpurchace; 
+        let progress = document.getElementById("progress1");
+        progress.style.width = parseInt(countofpurchace) * 1 + '%';
+        
+    } 
 };

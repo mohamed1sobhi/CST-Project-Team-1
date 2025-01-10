@@ -8,10 +8,12 @@ function displayProducts() {
   
   // Convert products object to array of entries and iterate
   Object.values(products).forEach(product => {
+    // Skip inactive products
+    if (!product.active) return;
+
     const productDiv = document.createElement('div');
     productDiv.className = 'col-lg-3 col-md-4 col-sm-6 pb-1';
-   // productDiv.dataset.productId = product.id;
-    
+   
     productDiv.innerHTML = `
       <div class="product-item bg-light mb-4">
         <div class="product-img position-relative overflow-hidden">
@@ -26,6 +28,7 @@ function displayProducts() {
           <a class="h6 text-decoration-none text-truncate" href="#">${product.name}</a>
           <div class="d-flex align-items-center justify-content-center mt-2">
             <h5>${product.price}</h5>
+            ${product.quantity === 0 ? '<span class="text-danger ms-2">Out of Stock</span>' : ''}
           </div>
           <div class="d-flex align-items-center justify-content-center mb-1">
             <small class="fa fa-star text-primary mr-1"></small>
