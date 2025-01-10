@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Sellers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script type="module" src="js/addproduct.js" defer></script>
+    <script type="module" src="js/addproductTosellerboard.js"></script>
+    <script  src="js/outofstock.js"></script>
+
+    <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
+    <style>
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        .sidebar {height: 100%;background-color: #f8f9fa;padding-top: 20px;}
+        .sidebar a {padding: 10px;font-size: 18px;color: #333;}
+        .content {padding: 20px;}
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-xl bg-dark navbar-dark rounded">
+        <div class="container-fluid">
+            <a class="nav-link ms-sm-5 me-2" href="#">
+                <span class="h2 bg-warning p-1 text-dark rounded px-2">Admin</span>
+                <span class="h2 bg-light p-1 text-warning rounded px-2 ml-n1">Dashboard</span>
+            </a>
+            <!-- Rest of the Navbar -->
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="AdminDash.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manageOrders.html">Manage Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manageProducts.html">Manage Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="viewSellers.html">View Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reports.html">Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="content">
+                    <h1 class="h2">View Sellers</h1>
+                    <p>Here you can view the list of sellers.</p>
+
+                    <div class="table-container">
+                        <h2>Sellers Information</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Seller ID</th>
+                                    <th>Seller Name</th>
+                                    <th>Added Products</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sellersBody">
+                                <!-- Seller data will be dynamically loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+            
+                    <!-- Table for Products Assigned to Selected Seller -->
+                    <div class="table-container">
+                        <h2>Products Assigned to Seller</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsBody">
+                                <!-- Products data will be dynamically loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Example sellers data
+                        const sellers = [
+                            { id: 1, name: 'John Doe', products: 5, email: 'john@example.com', phone: '123-456-7890' },
+                            { id: 2, name: 'Jane Smith', products: 8, email: 'jane@example.com', phone: '987-654-3210' },
+                            { id: 3, name: 'Alice Johnson', products: 3, email: 'alice@example.com', phone: '555-123-4567' },
+                        ];
+            
+                        // Example products data linked to sellers by Seller ID
+                        const products = [
+                            { id: 101, name: 'Product A', price: 100, stock: 10, status: 'active', sellerId: 1 },
+                            { id: 102, name: 'Product B', price: 150, stock: 5, status: 'inactive', sellerId: 1 },
+                            { id: 103, name: 'Product C', price: 200, stock: 20, status: 'active', sellerId: 2 },
+                            { id: 104, name: 'Product D', price: 250, stock: 8, status: 'active', sellerId: 3 },
+                        ];
+            
+                        // Populate sellers table
+                        const sellersBody = document.getElementById('sellersBody');
+                        sellers.forEach(seller => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${seller.id}</td>
+                                <td>${seller.name}</td>
+                                <td>${seller.products}</td>
+                                <td>${seller.email}</td>
+                                <td>${seller.phone}</td>
+                                <td>
+                                    <button class="btn btn-primary view-products" data-seller-id="${seller.id}">View Products</button>
+                                </td>
+                            `;
+                            sellersBody.appendChild(row);
+                        });
+            
+                        // Add event listener to view products buttons
+                        document.querySelectorAll('.view-products').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const sellerId = parseInt(this.getAttribute('data-seller-id'));
+            
+                                // Filter products for the selected seller
+                                const sellerProducts = products.filter(product => product.sellerId === sellerId);
+            
+                                // Populate products table
+                                const productsBody = document.getElementById('productsBody');
+                                productsBody.innerHTML = '';
+                                sellerProducts.forEach(product => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                        <td>${product.id}</td>
+                                        <td>${product.name}</td>
+                                        <td>${product.price}</td>
+                                        <td>${product.stock}</td>
+                                        <td>${product.status}</td>
+                                    `;
+                                    productsBody.appendChild(row);
+                                });
+                            });
+                        });
+                    });
+                </script>
+            </body>
+            
+            </html>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
