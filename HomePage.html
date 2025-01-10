@@ -19,6 +19,10 @@
                 sessionStorage.removeItem("currentUser");
                 window.location.href = 'HomePage.html';
             });
+            $("#contact").on('click',function(){
+                window.location.href="contact.html";
+            }
+            );
         });
     </script>
 
@@ -30,7 +34,7 @@
         <!-- main container -->
         <div class="container-fluid">
             <a class="nav-link ms-5 me-2" href="#">
-                <span class="h2  pallete-2 p-1 text-dark rounded px-2">Brandy</span>
+                <span id="contact" class="h2  pallete-2 p-1 text-dark rounded px-2">Brandy</span>
                 <span class="h2  bg-light p-1 text-warning rounded px-2 ml-n1">Shop</span>
             </a>
             <!-- toggler with target id  -->

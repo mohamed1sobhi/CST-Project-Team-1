@@ -31,11 +31,10 @@ class Admin {
   }
 }
 export class Contact{
-  constructor(id, name, email,subject,message){
+  constructor(id, name, email,message){
     this.id = id;
     this.name = name;
     this.email = email;
-    this.subject=subject;
     this.message=message;
   }
 }
