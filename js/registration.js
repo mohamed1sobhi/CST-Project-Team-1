@@ -213,8 +213,6 @@ $(function () {
     $(this).singup("seller");
   });
   
-    
-  
   
 }); //end of load
 // export {singup};
