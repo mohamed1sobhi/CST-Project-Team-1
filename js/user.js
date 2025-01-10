@@ -65,7 +65,7 @@ function creating(table,data){
         span.innerText=e.email;
         div.innerText=e.message;
     
-
+        
         button1.addEventListener('click', (e) => {
             let removeuser=e.currentTarget.parentElement.parentElement.children[2].children[0].innerText;
             let answer=confirm(`Are you sure to delete this account ${removeuser}`);
@@ -77,16 +77,18 @@ function creating(table,data){
             e.currentTarget.parentElement.parentElement.remove();
            }
         })
+        if(data=="contactus"){
+            button2.addEventListener('click', (e) => {
+                let mesg=[e.currentTarget.parentElement.parentElement.children[1].innerText,
+                     e.currentTarget.parentElement.parentElement.children[2].children[0].innerText,
+                 e.currentTarget.parentElement.parentElement.children[3].children[0].innerText
+             ]
+                 localStorage.setItem('mesg', JSON.stringify(mesg));
+                 window.location.href = "edit.html";
+                
+             })
+        }
         
-        button2.addEventListener('click', (e) => {
-           let mesg=[e.currentTarget.parentElement.parentElement.children[1].innerText,
-                e.currentTarget.parentElement.parentElement.children[2].children[0].innerText,
-            e.currentTarget.parentElement.parentElement.children[3].children[0].innerText
-        ]
-            localStorage.setItem('mesg', JSON.stringify(mesg));
-            window.location.href = "edit.html";
-           
-        })
     });
     
 }
