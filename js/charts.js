@@ -10,7 +10,7 @@ window.onload = function() {
         let number = document.getElementById('counter'); 
         number.innerText = "/"+count; 
         let progress = document.getElementById("progress");
-        progress.style.width = (count / totalProducts * 100) + '%';
+        progress.style.width = (totalProducts / count * 100) + '%'; // Changed this line
     } 
 
     if (localStorage.getItem('countofpurchace')) { 
@@ -20,6 +20,6 @@ window.onload = function() {
         let number = document.getElementById('counter1'); 
         number.innerText = "/"+countofpurchace; 
         let progress = document.getElementById("progress1");
-        progress.style.width = (countofpurchace / totalProducts * 100) + '%';
+        progress.style.width = (totalProducts / countofpurchace * 100) + '%'; // Changed this line
     } 
 };
