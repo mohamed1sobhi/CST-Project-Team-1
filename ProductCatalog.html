@@ -15,10 +15,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/ProductCatalog.css">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script  type="module"src="js/displayproduct.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="module" src="js/displayproduct.js"></script>
     <script src="js/outofstock.js"></script>
 </head>
 
@@ -27,7 +30,7 @@
     <div class="container-fluid bg-dark mb-1">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand">
-                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
+                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">SKAFE</span>
                 <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-right">Store</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -49,18 +52,32 @@
                     <li class="nav-item">
                         <a href="contact.html" class="nav-link text-warning">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <form class="me-5 d-none d-sm-flex" role="search">
+                            <input class="form-control me-1 w-75" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-warning" type="submit"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-4 text-lg-right text-center">
                 <!-- Icons visible only on small screens -->
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home" href="HomePage.html"><i class="fas fa-home text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits" href="outfitSuggestions.html"><i class="fas fa-heart text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart" href="ShoppingCart.html"><i class="fas fa-shopping-cart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home" href="HomePage.html"><i
+                        class="fas fa-home text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits" href="outfitSuggestions.html"><i
+                        class="fas fa-heart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart" href="ShoppingCart.html"><i
+                        class="fas fa-shopping-cart text-warning"></i></a>
 
                 <!-- Icons hidden on small screens -->
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Home" href="HomePage.html"><i class="fas fa-home text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits" href="outfitSuggestions.html"><i class="fas fa-heart text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart" href="ShoppingCart.html"><i class="fas fa-shopping-cart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Home" href="HomePage.html"><i
+                        class="fas fa-home text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits" href="outfitSuggestions.html"><i
+                        class="fas fa-heart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart" href="ShoppingCart.html"><i
+                        class="fas fa-shopping-cart text-warning"></i></a>
             </div>
         </nav>
     </div>
@@ -97,84 +114,145 @@
     <!-- End of Top Button -->
 
     <!-- Offer Text Animation -->
-    <script>
-        $(document).ready(function () {
-            var offerTexts = ["Limited Time Offer", "Get 20% Off Today", "Shop Now and Save Big", "Exclusive Deal for You", "Hurry, Offer Ends Soon",];
-            var currentTextIndex = 0;
-            var speed = 50;
-            function typeWriter(elementId, text, index) {
-                if (index < text.length) {
-                    $(elementId).append(text.charAt(index));
-                    index++;
-                    setTimeout(function () {
-                        typeWriter(elementId, text, index);
-                    }, speed);
-                } else {
-                    setTimeout(function () {
-                        $(elementId).text("");
-                        currentTextIndex = (currentTextIndex + 1) % offerTexts.length;
-                        typeWriter(elementId, offerTexts[currentTextIndex], 0);
-                    }, 1500);
-                }
-            } typeWriter("#offerText", offerTexts[currentTextIndex], 0);
-        });
-    </script>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <h5 class="text-light text-uppercase mb-4">Contact Us</h5>
+                <p class="mb-4">We'd love to hear from you! Get in touch for inquiries, support, or any questions you
+                    might
+                    have. We're here to help.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-warning mr-3"></i>Iti tanta </p>
+                <p class="mb-2"><i class="fa fa-envelope text-warning mr-3"></i>AMKE@gamil.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-warning mr-3"></i>+011 123 4567</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-light text-uppercase mb-4">Quick Shop</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="HomePage.html"><i
+                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="ProductCatalog.html"><i
+                                    class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-secondary mb-2" href="outfitSuggestions.html"><i
+                                    class="fa fa-angle-right mr-2"></i>Outfits</a>
+                            <a class="text-secondary mb-2" href="ShoppingCart.html"><i
+                                    class="fa fa-angle-right mr-2"></i>ShoppingCart</a>
+                            <a class="text-secondary mb-2" href="checkout.html"><i
+                                    class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-secondary" href="test.html"><i class="fa fa-angle-right mr-2"></i>Contact
+                                Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-light text-uppercase mb-4">Follow for Updates</h5>
+                        <p>Stay updated with the latest news and offers. Subscribe to our newsletter for exclusive deals
+                            and
+                            updates.</p>
+                        <div>
 
-
-
-    <!-- Add clothes to cart -->
-    <script>
-        $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
-            const productName = $(this).closest(".product-item").find("a.h4").text().trim();
-            const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
-            const productImage = $(this).closest(".product-item").find("img").attr("src");
-            const productPrice = parseFloat(productPriceText.replace('$', '').trim());
-            const productId = $(this).closest(".product-item").find("img").attr("alt");
-
-            console.log("Product ID:", productId); // Log the product ID to verify
-
-            Swal.fire({
-                title: 'Add product?',
-                text: `Do you really want to add "${productName}" with price $${productPrice} to the cart?`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Add it',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const product = {
-                        name: productName,
-                        price: productPrice,
-                        image: productImage,
-                        id: productId,
-                        quantity: 1,
-                    };
-                    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-                    const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
-                    if (existingProductIndex > -1) {
-                        cartItems[existingProductIndex].quantity += 1;
+                            <h6 class="text-light text-uppercase mt-4 mb-3">Follow Us</h6>
+                            <div class="d-flex">
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-warning btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-secondary">
+                        &copy; <a class="text-warning" href="#">Domain</a>. All Rights Reserved. Designed by
+                        <a class="text-light">AM KE</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        <script>
+            $(document).ready(function () {
+                var offerTexts = ["Limited Time Offer", "Get 20% Off Today", "Shop Now and Save Big", "Exclusive Deal for You", "Hurry, Offer Ends Soon",];
+                var currentTextIndex = 0;
+                var speed = 50;
+                function typeWriter(elementId, text, index) {
+                    if (index < text.length) {
+                        $(elementId).append(text.charAt(index));
+                        index++;
+                        setTimeout(function () {
+                            typeWriter(elementId, text, index);
+                        }, speed);
                     } else {
-                        updateProductQuantity(product);
-                        cartItems.push(product);
-                        Swal.fire({
-                            title: 'Added to Cart!',
-                            text: `"${productName}" added to the cart.`,
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        });
+                        setTimeout(function () {
+                            $(elementId).text("");
+                            currentTextIndex = (currentTextIndex + 1) % offerTexts.length;
+                            typeWriter(elementId, offerTexts[currentTextIndex], 0);
+                        }, 1500);
                     }
-                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-                    console.log("Cart Items:", cartItems); // Log the cart items to verify
-                } else {
-                    // Do nothing if canceled
-                }
+                } typeWriter("#offerText", offerTexts[currentTextIndex], 0);
             });
-        });
-    </script>
+        </script>
 
-    <!-- open product page -->
-     <script>
-        function openProductPage() {
+
+
+        <!-- Add clothes to cart -->
+        <script>
+            $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
+                const productName = $(this).closest(".product-item").find("a.h4").text().trim();
+                const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
+                const productImage = $(this).closest(".product-item").find("img").attr("src");
+                const productPrice = parseFloat(productPriceText.replace('$', '').trim());
+                const productId = $(this).closest(".product-item").find("img").attr("alt");
+
+                console.log("Product ID:", productId); // Log the product ID to verify
+
+                Swal.fire({
+                    title: 'Add product?',
+                    text: `Do you really want to add "${productName}" with price $${productPrice} to the cart?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Add it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const product = {
+                            name: productName,
+                            price: productPrice,
+                            image: productImage,
+                            id: productId,
+                            quantity: 1,
+                        };
+                        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                        const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
+                        if (existingProductIndex > -1) {
+                            cartItems[existingProductIndex].quantity += 1;
+                        } else {
+                            updateProductQuantity(product);
+                            cartItems.push(product);
+                            Swal.fire({
+                                title: 'Added to Cart!',
+                                text: `"${productName}" added to the cart.`,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                        console.log("Cart Items:", cartItems); // Log the cart items to verify
+                    } else {
+                        // Do nothing if canceled
+                    }
+                });
+            });
+        </script>
+
+        <!-- open product page -->
+        <script>
+            function openProductPage() {
                 let products = JSON.parse(localStorage.getItem("products"));
                 const productElement = event.target.closest(".product-item");
                 const productName = productElement.querySelector(".h4").innerText.trim();
@@ -188,7 +266,7 @@
                 }));
                 window.location.href = 'ProductDetail.html';
             }
-     </script>
+        </script>
 
 
 </body>

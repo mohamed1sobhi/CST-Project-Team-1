@@ -61,13 +61,13 @@ $(document).ready(function () {
             id: user.id,
             email: user.email,
             type: user.type,
-            name:user.name,
+            name: user.name,
             status: "logged in",
           })
         );
         // Redirect using window.location instead of form submission
         if (user.type === "admin") {
-          window.location.href = "admin.html";
+          window.location.href = "AdminDash.html";
         } else if (user.type === "seller") {
           window.location.href = "SellerDash.html";
         } else if (user.type === "customer") {

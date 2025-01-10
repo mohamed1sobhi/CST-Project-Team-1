@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandy</title>
+    <title>SKAFE</title>
     <link href="bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
     <!-- Bootstrap (v5.3.0) -->
@@ -17,15 +17,9 @@
     <!-- Font Awesome -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-<<<<<<< HEAD
         let loginStatus = JSON.parse(localStorage.getItem("currentUser")) || [];
-        if (loginStatus.status == "logged in") {
-            console.log(loginStatus);
-=======
-        let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
         if (loginStatus.status === "logged in") {
             $(".login").hide()
->>>>>>> bdc6a1baa5cdec330b74116b24f065509bacfce8
         }
         $(document).ready(function () {
             if (loginStatus.status === "logged in") {
@@ -113,7 +107,7 @@
         <div class="container-fluid">
             <!-- Left Section (Brand) -->
             <a class="navbar-brand me-5">
-                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
+                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">SKAFE</span>
                 <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-right">Store</span>
             </a>
             <!-- toggler with target id  -->
@@ -129,7 +123,7 @@
                     <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning active">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-warning" href="ProductCatalog.html"
                             aria-current="page">Gallery</a></li>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle text-warning"
+                    <!-- <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle text-warning"
                             data-toggle="dropdown" aria-expanded="false">Pages</a>
                         <ul class="dropdown-menu">
                             <li><a href="outfitSuggestions.html" class="dropdown-item"
@@ -138,9 +132,9 @@
                                     title="Review your selected items before checkout">Shopping Cart</a></li>
                             <li><a href="checkout.html" class="dropdown-item"
                                     title="Proceed to Secure Checkou">Checkout</a></li>
-                            <!-- <li><a href="chat.html"class="dropdown-item"  title="Chat with Us for Instant Assistance">Support Chat</a></li> -->
+                            <li><a href="chat.html"class="dropdown-item"  title="Chat with Us for Instant Assistance">Support Chat</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="nav-item"><a href="#" class="nav-link text-warning"
                             onclick="window.location.href = 'contact.html';">Contact</a></li>
                 </ul>
@@ -258,28 +252,30 @@
                             and
                             updates.</p>
                         <div>
- 
-                        <h6 class="text-light text-uppercase mt-4 mb-3">Follow Us</h6>
-                        <div class="d-flex">
-                            <a class="btn btn-warning btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-warning btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-warning btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-warning btn-square" href="#"><i class="fab fa-instagram"></i></a>
+
+                            <h6 class="text-light text-uppercase mt-4 mb-3">Follow Us</h6>
+                            <div class="d-flex">
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-warning btn-square mr-2" href="#"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-warning btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-warning" href="#">Domain</a>. All Rights Reserved. Designed by
-                    <a class="text-light">AM KE</a>
-                </p>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-secondary">
+                        &copy; <a class="text-warning" href="#">Domain</a>. All Rights Reserved. Designed by
+                        <a class="text-light">AM KE</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
 
         <!-- Back to Top -->
