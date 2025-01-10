@@ -1,8 +1,7 @@
-
 class Products {
-   static id=1  // Static variable shared across all instances, starts at 1
-  constructor(name, price, cost=100, quantity=5, seller_id, img, active) {
-    this.productid =Products.id++;  // Assigns current id then increments it
+  static id = 1; // Static variable shared across all instances, starts at 1
+  constructor(name, price, cost = 100, quantity = 5, seller_id, img, active) {
+    this.productid = Products.id++; // Assigns current id then increments it
     this.name = name;
     this.price = price;
     this.cost = cost;
@@ -28,4 +27,4 @@ class Orders {
   }
 }
 
-export { Products, Cart };
+export { Products, Cart, Orders };

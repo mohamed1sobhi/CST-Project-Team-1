@@ -14,7 +14,11 @@
   background-color: rgba(137, 137, 137, 0.5);
 }
 .carousel-item {
-  max-height: 300px;
+  max-height: 500px;
+}
+.carousel-item img {
+  height: 500px;
+  object-fit: cover;
 }
 .product-offer {
   margin: 50px;
@@ -64,6 +68,7 @@
   padding: 10px;
   cursor: pointer;
 }
+.nav-item .dropdown-item:hover {background-color: #343a40; color: #ffc107;}
 
 /* 255, 193, 7  yellow */
 /* 25, 135, 84  green */
