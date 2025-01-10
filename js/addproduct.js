@@ -27,6 +27,7 @@ class ProductManager {
       const price = parseFloat(document.getElementById("Price").value);
       const cost = parseFloat(document.getElementById("Cost").value);
       const stock = parseInt(document.getElementById("stock").value);
+      const Active= document.getElementById("Active").checked;
       const imagePath = document.getElementById("ProductImage").files[0];
 
       // Validate inputs
@@ -54,7 +55,8 @@ class ProductManager {
         cost,
         stock,
         currentseler.id,
-        imagebase64
+        imagebase64,
+        Active
       );
       console.log(product);
       products.push(product);

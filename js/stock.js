@@ -1,7 +1,7 @@
 
 class Products {
    static id=1  // Static variable shared across all instances, starts at 1
-  constructor(name, price, cost=100, quantity=5, seller_id, img) {
+  constructor(name, price, cost=100, quantity=5, seller_id, img, active) {
     this.productid =Products.id++;  // Assigns current id then increments it
     this.name = name;
     this.price = price;
@@ -9,7 +9,7 @@ class Products {
     this.quantity = quantity;
     this.seller = seller_id;
     this.img = img;
-    this.active = "true";
+    this.active = active;
   }
 }
 class Cart {

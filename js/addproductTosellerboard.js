@@ -41,10 +41,19 @@ function appendproduct() {
             <td>${product.price}</td>
             <td>${revenu}</td>
             <td>${product.quantity}</td>
-            <td><input type="checkbox" id="toggleSwitch_${product.id}" ${product.active ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="toggleSwitch_${product.productid}" ${product.active ? 'checked' : ''}></td>
             <td colspan="2"><button class="btn btn-danger bg-danger ms-3" onclick="removeRow(this)">Remove</button></td>
-            <td> <button class="btn btn-danger bg-danger ms-3">Edit</button> </td>
         `;
+        const checkbox = productDiv.querySelector(`#toggleSwitch_${product.productid}`);
+        checkbox.addEventListener('change', function() {
+            let allProducts = getProducts()
+        allProducts.filter(targetProduct => {
+            if (targetProduct.productid === product.productid) {
+                targetProduct.active = this.checked;
+                localStorage.setItem('products', JSON.stringify(allProducts));
+            }
+        });
+        });
         
         tablebody.appendChild(productDiv);
 
