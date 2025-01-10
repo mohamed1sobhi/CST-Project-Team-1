@@ -1,7 +1,7 @@
 import { getProducts } from './productstore.js';
 
 // Get the seller ID from localStorage
-let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
+let currentseler = JSON.parse(localStorage.getItem("seller"));
 
 // Function to filter products by seller ID
 function getSellerProducts() {
