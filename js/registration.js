@@ -30,6 +30,15 @@ class Admin {
     this.password = password;
   }
 }
+export class Contact{
+  constructor(id, name, email,subject,message){
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.subject=subject;
+    this.message=message;
+  }
+}
 
 // async function addUser(account, newUser) {
 //   try {
@@ -210,4 +219,4 @@ $(function () {
   
 }); //end of load
 // export {singup};
-export { Customer, Seller, Admin };
+export { Customer, Seller, Admin};
