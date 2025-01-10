@@ -485,8 +485,8 @@
                 if (existingProductIndex > -1) {
                     cartItems[existingProductIndex].quantity += 1;
                 } else {
-                    updateProductQuantity(product)
                     cartItems.push(product);
+                    updateProductQuantity(product)
                     alert(`"${productName}" added to the cart.`);
                 }
                 localStorage.setItem("cartItems", JSON.stringify(cartItems));
