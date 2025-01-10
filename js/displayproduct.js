@@ -19,23 +19,22 @@ function displayProducts() {
       <div class="product-img position-relative overflow-hidden">
         <img class="img-fluid w-100" src="${product.img}" alt="${product.productid}">
         <div class="product-action text-center mt-2">
-        ${product.quantity > 0 ? `<a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-shopping-cart"></i></a>` : ''}
-        <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
-        <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-sync-alt"></i></a>
+        ${product.quantity > 0 ? `<a class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></a>` : ''}
+        <a class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></a>
         </div>
       </div>
       <div class="text-center py-4">
-        <a class="h6 text-decoration-none text-truncate" href="#">${product.name}</a>
+        <a class="h4 text-decoration-none text-truncate">${product.name}</a>
         <div class="d-flex align-items-center justify-content-center mt-2">
         <h5>${product.price}</h5>
         ${product.quantity === 0 ? '<span class="text-danger ms-2">Out of Stock</span>' : ''}
         </div>
         <div class="d-flex align-items-center justify-content-center mb-1">
-        <small class="fa fa-star text-primary mr-1"></small>
-        <small class="fa fa-star text-primary mr-1"></small>
-        <small class="fa fa-star text-primary mr-1"></small>
-        <small class="fa fa-star-half-alt text-primary mr-1"></small>
-        <small class="fa fa-regular fa-star text-primary mr-1"></small>
+        <small class="fa fa-star text-warning mr-1"></small>
+        <small class="fa fa-star text-warning mr-1"></small>
+        <small class="fa fa-star text-warning mr-1"></small>
+        <small class="fa fa-star-half-alt text-warning mr-1"></small>
+        <small class="fa fa-regular fa-star text-warning mr-1"></small>
         </div>
       </div>
       </div>

@@ -1,37 +1,15 @@
 $(document).ready(function () {
-  let totalAmount = 1; // This will come from the cart value
-  let taxAndShippingPercentage = 10; // 10% tax and shipping
-  let taxAndShippingAmount = 0;
-  let finalAmount = 0;
-
-  // Function to calculate the tax and final total
-  function calculateAmounts(cartTotal) {
-    totalAmount = parseFloat(cartTotal); // Ensure totalAmount is a number
-    taxAndShippingAmount = (taxAndShippingPercentage / 100) * totalAmount;
-    finalAmount = totalAmount + taxAndShippingAmount;
-
-    // Update the displayed amounts in the summary section
-    $(".summary .summary-item:nth-child(1) span:last-child").text(
-      "$" + totalAmount.toFixed(2)
-    );
-    $(".summary .summary-item:nth-child(2) span:last-child").text(
-      "$" + taxAndShippingAmount.toFixed(2)
-    );
-    $(".summary .total span:last-child").text("$" + finalAmount.toFixed(2));
-  }
-
   // Load cart summary from localStorage
-  const cartSummary = JSON.parse(localStorage.getItem("cartSummary"));
-  if (cartSummary) {
-    $(".summary-item")
-      .eq(0)
-      .find("span")
-      .eq(1)
-      .text(`$${cartSummary.subtotal}`);
-    $(".summary-item").eq(1).find("span").eq(1).text(`$${cartSummary.tax}`);
-    $(".summary-item").eq(2).find("span").eq(1).text(`$${cartSummary.total}`);
-    calculateAmounts(cartSummary.total); // Call the function to calculate total amounts
-  }
+  let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  const productQuantitynum = cartItems.map((item) => item.quantity);
+  const productPrice = cartItems.map((item) => item.price);
+  const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price,0);
+  const tax = totalPrice * 0.1;
+  const subtotal = totalPrice + tax;
+  $(".summary-item").eq(0).find("span").eq(1).text(`$${totalPrice}`);
+  $(".summary-item").eq(1).find("span").eq(1).text(`$${tax}`);
+  $(".summary-item").eq(2).find("span").eq(1).text(`$${subtotal}`);
+  
 
   // Show message if all fields are not filled
   function checkDataCompleteness() {
@@ -44,10 +22,16 @@ $(document).ready(function () {
     if (
       $("#address-line1").val() === "" ||
       $("#city").val() === "" ||
-      $("#postal-code").val() === "" ||
       $("#country").val() === ""
     ) {
-      alert("Not completed required fields");
+      // alert("Not completed required fields");
+      Swal.fire({
+        title: "Incomplete Form",
+        text: "Please complete all required fields before proceeding.",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
+
       valid = false;
     }
 
@@ -92,40 +76,48 @@ $(document).ready(function () {
     let addressLine1 = $("#address-line1").val();
     let addressLine2 = $("#address-line2").val();
     let city = $("#city").val();
-    let postalCode = $("#postal-code").val();
     let country = $("#country").val();
 
     // Get the delivery location coordinates from the map
     const position = marker.getLatLng();
+    Swal.fire({
+      title: "Order Confirmed!",
+      html: `
+    <p><strong>Total Price:</strong> $${cartSummary.total}</p>
+    <p><strong>Payment Method:</strong> ${
+      selectedPaymentMethod === "cash-on-delivery"
+        ? "Cash on Delivery"
+        : selectedPaymentMethod
+    }</p>
+    <p><strong>Address:</strong> ${addressLine1}, ${city}, ${country}</p>
+    <p>Thank you for shopping with us!<br>We will deliver your order to the provided address.</p>`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
 
-    // Display order confirmation message
-    alert(`
-      Order confirmed!
-      Total Price: $${finalAmount.toFixed(2)}
-      Payment Method: ${
-        selectedPaymentMethod === "cash-on-delivery"
-          ? "Cash on Delivery"
-          : selectedPaymentMethod
-      }
-      Address: ${addressLine1}, ${city}, ${postalCode}, ${country}
-      Thank you for shopping with us!
-      We will deliver your order to the provided address.
-    `);
-
+    // send order data to the seller
+    const ordersForSeller =JSON.parse(localStorage.getItem("ordersForSeller")) || [];
+    let orderdataforSeller = {
+      productsNames: cartSummary.productNames,
+      productsQuantity: cartSummary.productQuantity,
+      productsIds: cartSummary.productIds,
+    };
+    ordersForSeller.push(orderdataforSeller);
+    localStorage.setItem("ordersForSeller", JSON.stringify(ordersForSeller));
+   
     // Save order data to LocalStorage
-    localStorage.setItem(
-      "orderData",
-      JSON.stringify({
-        paymentMethod: selectedPaymentMethod,
-        addressLine1: addressLine1,
-        addressLine2: addressLine2,
-        city: city,
-        postalCode: postalCode,
-        country: country,
-        lat: position.lat,
-        lng: position.lng,
-        totalAmount: finalAmount,
-      })
-    );
+    // localStorage.setItem(
+    //   "orderData",
+    //   JSON.stringify({
+    //     paymentMethod: selectedPaymentMethod,
+    //     addressLine1: addressLine1,
+    //     addressLine2: addressLine2,
+    //     city: city,
+    //     country: country,
+    //     lat: position.lat,
+    //     lng: position.lng,
+    //     totalAmount: finalAmount,
+    //   })
+    // );
   });
 });

@@ -3,7 +3,6 @@ function loadCart() {
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const cartTableBody = $(".cart-table tbody");
   cartTableBody.empty();
-
   // Loop through each product in the cart and display it
   cartItems.forEach((item) => {
     const productRow = `
@@ -81,23 +80,38 @@ function updateTotalPrice() {
   $(".cart-summary .d-flex .total")
     .eq(2)
     .text(`$${grandTotal.toFixed(2)}`);
-
+  let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  const productIds = cartItems.map((item) => item.id);
+  const productNames = cartItems.map((item) => item.name);
+  const productQuantitynum = cartItems.map((item) => item.quantity);
+  console.log(productQuantity);
   localStorage.setItem(
     "cartSummary",
     JSON.stringify({
       subtotal: subtotal.toFixed(2),
       tax: tax.toFixed(2),
       total: grandTotal.toFixed(2),
+      productIds: productIds,
+      productNames: productNames,
+      productQuantity: productQuantitynum,
     })
   );
 }
 
 // Proceed to checkout
 $(document).on("click", "#GoTOCheckout", function () {
-  const confirmAction = confirm("Do you really want to proceed to checkout?");
-  if (confirmAction) {
-    window.location.href = "checkout.html";
-  }
+  Swal.fire({
+    title: "Proceed to Checkout?",
+    text: "Are you sure you want to proceed to the checkout page to complete your order?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Yes, proceed",
+    cancelButtonText: "No, stay here",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "checkout.html";
+    }
+  });
 });
 
 // Call loadCart on page load

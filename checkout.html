@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout</title>
+  <!-- sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -39,10 +41,6 @@
         <label for="credit-card">Credit Card</label>
       </div>
       <div class="payment-method">
-        <input type="radio" id="paypal" name="payment-method" value="paypal">
-        <label for="paypal">PayPal</label>
-      </div>
-      <div class="payment-method">
         <input type="radio" id="cash-on-delivery" name="payment-method" value="cash-on-delivery">
         <label for="cash-on-delivery">Cash on Delivery</label>
       </div>
@@ -72,20 +70,16 @@
     <div class="address-form" id="address-form">
       <p class="address-header">Enter your Delivery Address:</p>
       <div class="form-group">
-        <label for="address-line1">Address Line 1</label>
-        <input type="text" id="address-line1" placeholder="Street address, P.O. box, company name">
+        <label for="address-line1">Apartment Details</label>
+        <input type="text" id="address-line1" placeholder="Apartment number or name">
       </div>
       <div class="form-group">
-        <label for="address-line2">Address Line 2 (Optional)</label>
-        <input type="text" id="address-line2" placeholder="Apartment, suite, unit, building, floor, etc.">
+        <label for="address-line2">Street Name & Number</label>
+        <input type="text" id="address-line2" placeholder="Street name and number">
       </div>
       <div class="form-group">
         <label for="city">City</label>
         <input type="text" id="city" placeholder="City">
-      </div>
-      <div class="form-group">
-        <label for="postal-code">Postal Code</label>
-        <input type="text" id="postal-code" placeholder="Postal Code">
       </div>
       <div class="form-group">
         <label for="country">Country</label>
@@ -131,8 +125,7 @@
     let count = localStorage.getItem('countofpurchace') ? parseInt(localStorage.getItem('countofpurchace')) : 0; 
     count++; 
     localStorage.setItem('countofpurchace', count.toString()); }); 
-
-</script>
+  </script>
 
   <script src="js/checkout.js"></script>
   
