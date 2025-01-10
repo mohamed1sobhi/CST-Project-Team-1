@@ -58,12 +58,14 @@ function appendproduct() {
         
         tablebody.appendChild(productDiv);
 
-        total.cells[0].innerHTML = `Total`;
-        total.cells[1].innerHTML = `number of products: ${Object.keys(products).length}`;
-        total.cells[2].innerHTML = `${totalcost}`;
-        total.cells[3].innerHTML = `${totalprice}`;
-        total.cells[4].innerHTML = `${totalrevenu}`;
-        total.cells[5].innerHTML = `${totalstock}`;
-        total.cells[6].innerHTML = `${totalchecked}`;
+        if (total && total.cells) {
+            total.cells[0].innerHTML = `Total`;
+            total.cells[1].innerHTML = `number of products: ${Object.keys(products).length}`;
+            total.cells[2].innerHTML = `${totalcost}`;
+            total.cells[3].innerHTML = `${totalprice}`;
+            total.cells[4].innerHTML = `${totalrevenu}`;
+            total.cells[5].innerHTML = `${totalstock}`;
+            total.cells[6].innerHTML = `${totalchecked}`;
+        }
     });
 }
