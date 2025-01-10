@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandy</title>
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/HomePage.css">
+    <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap (v5.3.0) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+        if (loginStatus.status == "logged in") {
+            console.log(loginStatus);
+        }
+        $(document).ready(function () {
+            $(".logout").click(function () {
+                sessionStorage.removeItem("currentUser");
+                window.location.href = 'HomePage.html';
+            });
+            $("#contact").on('click', function () {
+                window.location.href = "contact.html";
+            }
+            );
+        });
+    </script>
+  
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark my-2 ">
+        <div class="container-fluid">
+            <!-- Left Section (Brand) -->
+            <a class="navbar-brand me-5">
+                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
+                <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-right">Store</span>
+            </a>
+            <!-- toggler with target id  -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- collapsable content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+                    <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning active">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning" href="ProductCatalog.html" aria-current="page">Gallery</a></li>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle text-warning" data-toggle="dropdown" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="outfitSuggestions.html"class="dropdown-item"title="Outfit Suggestions just for you">For you</a></li>
+                            <li><a href="ShoppingCart.html"class="dropdown-item"title="Review your selected items before checkout">Shopping Cart</a></li>
+                            <li><a href="checkout.html"class="dropdown-item"title="Proceed to Secure Checkou">Checkout</a></li>
+                            <!-- <li><a href="chat.html"class="dropdown-item"  title="Chat with Us for Instant Assistance">Support Chat</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link text-warning" onclick="window.location.href = 'contact.html';">Contact</a></li>
+                </ul>
+
+                <form class="me-5 d-none d-sm-flex" role="search">
+                    <input class="form-control me-1 w-75" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                    <a href="Registration.html" title="Sign up"><i class="fa-solid fa-user-plus me-4 text-warning"></i></a>
+                    <a href="LogIn.html" title="log in"><i class="fa-solid fa-user me-4 text-warning"></i></a>
+                    <a href="#" title="log out" class="logout"><i class="fa-solid fa-right-to-bracket me-2 text-warning"></i></a>
+            </div>
+        </div>
+    </nav>
+    <!-- end of Navigation Bar -->
+
+
+    
+    <!-- adding Bootstrap JavaScript bundle which is required for interactive components like dropdowns to work  -->
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
