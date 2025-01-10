@@ -3,7 +3,7 @@ import { Contact } from "../js/registration.js";
 $(function () {
 $("#sendMessageButton").on('click',function(e){
     e.preventDefault();
-    let currentuser=JSON.parse(sessionStorage.getItem("currentUser"))||[];  
+    let currentuser=JSON.parse(localStorage.getItem("currentUser"))||[];  
         let emailExist = currentuser.email === $("#email").val();
         let nameExist = currentuser.name === $("#name").val();;
         $("input").on("input", function () {
@@ -51,7 +51,7 @@ $("#sendMessageButton").on('click',function(e){
             }     
     });
     let adminmesg=JSON.parse(localStorage.getItem('adminmesg'))||[];
-    let currentUser=JSON.parse(sessionStorage.getItem('currentUser'))||[];
+    let currentUser=JSON.parse(localStorage.getItem('currentUser'))||[];
 
     
     let test = adminmesg.filter(e => e.email === currentUser.email);

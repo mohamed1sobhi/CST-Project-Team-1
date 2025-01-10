@@ -159,8 +159,8 @@ $(function () {
           localStorage.setItem(account, JSON.stringify(user));
 
           // Store user info in session (optional)
-          sessionStorage.clear();
-          sessionStorage.setItem(
+          localStorage.removeItem("currentUser");
+          localStorage.setItem(
             "currentUser",
             JSON.stringify({
               id: obj.id,
@@ -212,8 +212,6 @@ $(function () {
     e.preventDefault();
     $(this).singup("seller");
   });
-  
-    
   
   
 }); //end of load

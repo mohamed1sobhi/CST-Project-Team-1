@@ -10,7 +10,6 @@ creating(customers,'customer');
 creating(sellers,'seller');
 creating(admins,'admin');
 
-
 function creating(table,data){
     let users=JSON.parse(localStorage.getItem(data))||[];
     // let id=0;
@@ -65,7 +64,6 @@ function creating(table,data){
         span.innerText=e.email;
         div.innerText=e.message;
     
-        
         button1.addEventListener('click', (e) => {
             let removeuser=e.currentTarget.parentElement.parentElement.children[2].children[0].innerText;
             let answer=confirm(`Are you sure to delete this account ${removeuser}`);

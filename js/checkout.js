@@ -22,7 +22,6 @@ $(document).ready(function () {
       $("#city").val() === "" ||
       $("#country").val() === ""
     ) {
-      // alert("Not completed required fields");
       Swal.fire({
         title: "Incomplete Form",
         text: "Please complete all required fields before proceeding.",
@@ -41,11 +40,9 @@ $(document).ready(function () {
       let cvv = $("#cvv").val();
 
       if (!cardNumber.match(/^\d{16}$/)) {
-        alert("Please enter a valid card number.");
         valid = false;
       }
       if (!cardHolderName) {
-        alert("Please enter the cardholder's name.");
         valid = false;
       }
       if (!expiryDate.match(/^\d{2}\/\d{2}$/)) {

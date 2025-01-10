@@ -174,42 +174,20 @@
 
     <!-- open product page -->
      <script>
-            // const productImages = document.querySelectorAll('img');
-            // productImages.forEach((image) => {
-            //     image.addEventListener('click', () => {
-            //         const productName = image.closest('.product-item').querySelector('.text-center .h6').textContent.trim();
-            //         const productPrice = image.closest('.product-item').querySelector('.text-center h5').textContent.trim();
-            //         const productOldPrice = image.closest('.product-item').querySelector('.text-center h6 del') ? image.closest('.product-item').querySelector('.text-center h6 del').textContent.trim() : null;
-            //         const productImgSrc = image.getAttribute('src');
-            //         localStorage.setItem('productDetails', JSON.stringify({
-            //             name: productName,
-            //             price: productPrice,
-            //             oldPrice: productOldPrice,
-            //             imgSrc: productImgSrc
-            //         }));
-            //         window.location.href = 'ProductDetail.html';
-            //     });
-            // });
-            const productImages = document.querySelectorAll('.img-fluid');
-                productImages.forEach((image) => {
-                    image.addEventListener('click', () => {
-                        const productItem = image.closest('.product-item');
-                        const productName = productItem.querySelector('.text-center a.h4').textContent.trim();
-                        const productPrice = productItem.querySelector('.text-center h5').textContent.trim();
-                        const productImgSrc = image.getAttribute('src');
-                        
-
-                        localStorage.setItem('productDetails', JSON.stringify({
-                            name: productName,
-                            price: productPrice,
-                            imgSrc: productImgSrc
-                        }));
-
-                        window.location.href = 'ProductDetail.html';
-                    });
-                });
-
-
+        function openProductPage() {
+                let products = JSON.parse(localStorage.getItem("products"));
+                const productElement = event.target.closest(".product-item");
+                const productName = productElement.querySelector(".h4").innerText.trim();
+                const productPrice = productElement.querySelector("h5").innerText.trim();
+                const productImgSrc = productElement.querySelector("img").getAttribute("src");
+                console.log(productName, " , ", productPrice);
+                localStorage.setItem('currentProduct', JSON.stringify({
+                    name: productName,
+                    price: productPrice,
+                    imgSrc: productImgSrc
+                }));
+                window.location.href = 'ProductDetail.html';
+            }
      </script>
 
 
