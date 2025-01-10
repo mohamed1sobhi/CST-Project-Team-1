@@ -338,40 +338,12 @@
 
     <!-- Add clothes to cart -->
     <script>
-        // Event listener for adding product to the cart
-        $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
-<<<<<<< HEAD
-            const productName = $(this).closest(".product-item").find("a.h6").text().trim();
-            const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
-            const productImage = $(this).closest(".product-item").find("img").attr("src");
-            const productPrice = parseFloat(productPriceText.replace('$', '').trim());
-            const confirmAction = confirm(`Do you really want to add "${productName}" with price $${productPrice} to the cart?`);
-            if (confirmAction) {
-                const product = {
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
-                    quantity: 1,
-                };
-                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-                const existingProductIndex = cartItems.findIndex((item) => item.name === product.name);
-                if (existingProductIndex > -1) {
-                    cartItems[existingProductIndex].quantity += 1;
-                } else {
-                    cartItems.push(product);
-                    updateProductQuantity(product)
-                    alert(`"${productName}" added to the cart.`);
-                }
-                localStorage.setItem("cartItems", JSON.stringify(cartItems));
-            } else { // do nothing 
-            }
-        });
-=======
-                const productName = $(this).closest(".product-item").find("a.h6").text().trim();
-                const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
-                const productImage = $(this).closest(".product-item").find("img").attr("src");
-                const productPrice = parseFloat(productPriceText.replace('$', '').trim());
->>>>>>> 3bdd15167ff638cc87ed4893f11bbc517449236e
+// Event listener for adding product to the cart
+$(document).on("click", ".btn-square i.fa-shopping-cart", function () {
+        const productName = $(this).closest(".product-item").find("a.h6").text().trim();
+        const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
+        const productImage = $(this).closest(".product-item").find("img").attr("src");
+        const productPrice = parseFloat(productPriceText.replace('$', '').trim());
 
                 Swal.fire({
                     title: 'Add product?',
