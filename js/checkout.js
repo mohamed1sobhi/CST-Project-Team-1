@@ -1,8 +1,6 @@
 $(document).ready(function () {
   // Load cart summary from localStorage
   let cartItems = JSON.parse(localStorage.getItem("cartItems"));
-  const productQuantitynum = cartItems.map((item) => item.quantity);
-  const productPrice = cartItems.map((item) => item.price);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price,0);
   const tax = totalPrice * 0.1;
   const subtotal = totalPrice + tax;
@@ -83,7 +81,7 @@ $(document).ready(function () {
     Swal.fire({
       title: "Order Confirmed!",
       html: `
-    <p><strong>Total Price:</strong> $${cartSummary.total}</p>
+    <p><strong>Total Price:</strong> $${totalPrice}</p>
     <p><strong>Payment Method:</strong> ${
       selectedPaymentMethod === "cash-on-delivery"
         ? "Cash on Delivery"
@@ -96,28 +94,22 @@ $(document).ready(function () {
     });
 
     // send order data to the seller
-    const ordersForSeller =JSON.parse(localStorage.getItem("ordersForSeller")) || [];
+    let cartSummary = JSON.parse(localStorage.getItem("cartSummary"));
+    const ordersForSeller = JSON.parse(localStorage.getItem("ordersForSeller")) || [];    
     let orderdataforSeller = {
+      orderId: ordersForSeller.length + 1,
+      city: city,
+      country: country,
+      lat: position.lat, //map returns the lat and lng of the marker
+      lng: position.lng,
+      orderAddressLine1: addressLine1,
+      orderAddressLine2: addressLine2,
+      paymentMethod: selectedPaymentMethod,
       productsNames: cartSummary.productNames,
       productsQuantity: cartSummary.productQuantity,
       productsIds: cartSummary.productIds,
     };
     ordersForSeller.push(orderdataforSeller);
     localStorage.setItem("ordersForSeller", JSON.stringify(ordersForSeller));
-   
-    // Save order data to LocalStorage
-    // localStorage.setItem(
-    //   "orderData",
-    //   JSON.stringify({
-    //     paymentMethod: selectedPaymentMethod,
-    //     addressLine1: addressLine1,
-    //     addressLine2: addressLine2,
-    //     city: city,
-    //     country: country,
-    //     lat: position.lat,
-    //     lng: position.lng,
-    //     totalAmount: finalAmount,
-    //   })
-    // );
   });
 });

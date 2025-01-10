@@ -84,7 +84,7 @@ function updateTotalPrice() {
   const productIds = cartItems.map((item) => item.id);
   const productNames = cartItems.map((item) => item.name);
   const productQuantitynum = cartItems.map((item) => item.quantity);
-  console.log(productQuantity);
+  console.log(productQuantitynum);
   localStorage.setItem(
     "cartSummary",
     JSON.stringify({
