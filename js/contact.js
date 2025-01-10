@@ -50,6 +50,31 @@ $("#sendMessageButton").on('click',function(e){
 
             }     
     });
+    let adminmesg=JSON.parse(localStorage.getItem('adminmesg'))||[];
+    let currentUser=JSON.parse(sessionStorage.getItem('currentUser'))||[];
+
+    
+    let test = adminmesg.filter(e => e.email === currentUser.email);
+    console.log(test);
+    let display=document.getElementById('displaymesg');
+    test.forEach(e => {
+        let div=document.createElement('div');
+        let p1=document.createElement('p');
+        let p2=document.createElement('p');
+        let p11=document.createElement('p');
+        let p22=document.createElement('p');
+        p11.innerText=e.usermesg;
+        p22.innerText=e.adminmasg;
+        p1.append(p11);
+        p2.append(p22);
+        div.append(p1);
+        div.append(p2); 
+        display.append(div);    
+    });
+    
+
+
+
     // console.log(new Date().toTimeString().split(' ')[0]);
 
 });//end of load

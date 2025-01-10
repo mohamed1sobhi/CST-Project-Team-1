@@ -57,7 +57,44 @@
         margin-right: 5px;
       }
 
+      /* .contact .Messages{
+        margin: 10px 100px;
+        padding: 5px;
+        background-color: #F5F5F5;
+        border-radius: 12px;
 
+      }*/
+      #displaymesg {
+        margin: 10px 100px;
+        padding: 5px;
+        background-color: #fff;
+        border-radius: 12px;
+      } 
+      #displaymesg p{
+        margin: 10px 0;
+      }
+      #displaymesg p:nth-child(1){
+        display: flex;
+        justify-content: start;
+      }
+      #displaymesg p:nth-child(2){
+        display: flex;
+        justify-content: end;
+      }
+      #displaymesg p:nth-child(1) p{
+        background-color:#F5F5F5 ;
+        border-radius: 12px;
+        padding: 10px;
+        margin-left: 10px;
+
+      }
+      
+      #displaymesg p:nth-child(2) p{
+        background-color: #ffc552;
+        border-radius: 12px;
+        padding: 10px;
+        margin-right: 10px;
+      }
             
     
      </style>
@@ -152,6 +189,13 @@
             </div>
         </div>
     </div>
+    <div class="Messages p-2">
+        <h2 class="text-uppercase mx-xl-5 mb-4">Messages</h2>
+        <div id="displaymesg">
+        
+    </div>
+    </div>
+    
 </div>
 <!-- Contact End -->
 </body>
