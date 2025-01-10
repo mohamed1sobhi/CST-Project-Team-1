@@ -1,4 +1,5 @@
 import { getProducts } from './productstore.js';
+
 // Get the seller ID from localStorage
 let currentseler = JSON.parse(sessionStorage.getItem("currentUser"));
 
