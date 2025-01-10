@@ -7,6 +7,8 @@
     <title>Products Cataloge</title>
     <!-- Icon -->
     <link rel="icon" href="imges/shopping-cart.png" type="image/png">
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap (v5.3.0) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -35,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning">Home</a></li>
-                    <li class="nav-item"><a href="ProductCatalog.html" class="nav-link text-warning">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link text-light">Gallery</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-warning" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
@@ -51,22 +53,14 @@
             </div>
             <div class="col-lg-4 text-lg-right text-center">
                 <!-- Icons visible only on small screens -->
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home"><i class="fas fa-home text-warning"
-                        onclick="window.location.href = 'HomePage.html';"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits"><i class="fas fa-heart text-warning"
-                        onclick="window.location.href = 'outfitSuggestions.html';"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart"><i
-                        class="fas fa-shopping-cart text-warning"
-                        onclick="window.location.href = 'ShoppingCart.html';"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home" href="HomePage.html"><i class="fas fa-home text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits" href="outfitSuggestions.html"><i class="fas fa-heart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart" href="ShoppingCart.html"><i class="fas fa-shopping-cart text-warning"></i></a>
 
                 <!-- Icons hidden on small screens -->
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Home"><i class="fas fa-home text-warning"
-                        onclick="window.location.href = 'HomePage.html';"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits"><i class="fas fa-heart text-warning"
-                        onclick="window.location.href = 'outfitSuggestions.html';"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart"><i
-                        class="fas fa-shopping-cart text-warning"
-                        onclick="window.location.href = 'ShoppingCart.html';"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Home" href="HomePage.html"><i class="fas fa-home text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits" href="outfitSuggestions.html"><i class="fas fa-heart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart" href="ShoppingCart.html"><i class="fas fa-shopping-cart text-warning"></i></a>
             </div>
         </nav>
     </div>
@@ -312,111 +306,9 @@
     </div>
     <!-- Products End -->
 
-    <!-- Shoes Products Start -->
-    <div class="product-slider">
-        <h4 class="section-title position-relative text-uppercase mx-xl-5 mt-5 d-none d-md-block"><span
-                class="bg-warning text-light py-2 px-3 rounded-pill shadow-sm">Shoes Section</span></h4>
-        <i class="fas fa-chevron-left arrow arrow-left"></i>
-        <div class="slider-container p-5">
-            <!-- product 1 -->
-            <div class="product-card">
-                <img src="imges/shoes/card-image3.jpg" alt="shoes 1">
-                <div class="overlay">
-                    <div class="product-name">50$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- product 2 -->
-            <div class="product-card">
-                <img src="imges/shoes/card-image1.jpg" alt="shoes 2">
-                <div class="overlay">
-                    <div class="product-name">80$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!-----3---->
-            <div class="product-card">
-                <img src="imges/shoes/card-item2.jpg" alt="shoes 3">
-                <div class="overlay">
-                    <div class="product-name">70$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!-----4---->
-            <div class="product-card">
-                <img src="imges/shoes/card-item1.jpg" alt="shoes 4">
-                <div class="overlay">
-                    <div class="product-name">100$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!------5--->
-            <div class="product-card">
-                <img src="imges/shoes/card-item2.jpg" alt="shoes 5">
-                <div class="overlay">
-                    <div class="product-name">60$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!----6----->
-            <div class="product-card">
-                <img src="imges/shoes/card-item4.jpg" alt="shoes 6">
-                <div class="overlay">
-                    <div class="product-name">40$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!-----7---->
-            <div class="product-card">
-                <img src="imges/shoes/card-item5.jpg" alt="shoes 7">
-                <div class="overlay">
-                    <div class="product-name">50$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!-----8---->
-            <div class="product-card">
-                <img src="imges/shoes/card-item7.jpg" alt="shoes 8">
-                <div class="overlay">
-                    <div class="product-name">60$</div>
-                    <div class="icons">
-                        <i class="fas fa-shopping-cart"></i>
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <!--------->
-        </div>
-        <i class="fas fa-chevron-right arrow arrow-right"></i>
-    </div>
-    <!-- Shoes Products End -->
-
     <!-- Back to Top Button -->
     <a class="btn border-warning text-warning back-to-top" href="#"><i class="fa fa-angle-double-up"></i></a>
     <!-- End of Top Button -->
-
-
 
     <!-- Offer Text Animation -->
     <script>
@@ -442,93 +334,75 @@
         });
     </script>
 
-    <!-- Shoes product slider functions -->
-    <script>
-        $(document).ready(function () {
-            // Product slider functions
-            const sliderContainer = $(".slider-container");
-            const productCardWidth = $(".product-card").outerWidth(true);
-            let scrollPosition = 0;
-            $(".arrow-right").click(function () {
-                if (scrollPosition > -(sliderContainer.width() - productCardWidth * 3)) {
-                    scrollPosition -= productCardWidth;
-                    sliderContainer.css("transform", `translateX(${scrollPosition}px)`);
-                }
-            });
-            $(".arrow-left").click(function () {
-                if (scrollPosition < 0) {
-                    scrollPosition += productCardWidth;
-                    sliderContainer.css("transform", `translateX(${scrollPosition}px)`);
-                }
-            });
-        });
-    </script>
+
 
     <!-- Add clothes to cart -->
     <script>
         // Event listener for adding product to the cart
         $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
-            const productName = $(this).closest(".product-item").find("a.h6").text().trim();
-            const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
-            const productImage = $(this).closest(".product-item").find("img").attr("src");
-            const productPrice = parseFloat(productPriceText.replace('$', '').trim());
-            const confirmAction = confirm(`Do you really want to add "${productName}" with price $${productPrice} to the cart?`);
-            if (confirmAction) {
-                const product = {
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
-                    quantity: 1,
-                };
-                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-                const existingProductIndex = cartItems.findIndex((item) => item.name === product.name);
-                if (existingProductIndex > -1) {
-                    cartItems[existingProductIndex].quantity += 1;
-                } else {
-                    updateProductQuantity(product)
-                    cartItems.push(product);
-                    alert(`"${productName}" added to the cart.`);
-                }
-                localStorage.setItem("cartItems", JSON.stringify(cartItems));
-            } else { // do nothing 
-            }
-        });
+                const productName = $(this).closest(".product-item").find("a.h6").text().trim();
+                const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
+                const productImage = $(this).closest(".product-item").find("img").attr("src");
+                const productPrice = parseFloat(productPriceText.replace('$', '').trim());
 
+                Swal.fire({
+                    title: 'Add product?',
+                    text: `Do you really want to add "${productName}" with price $${productPrice} to the cart?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes,Add it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const product = {
+                            name: productName,
+                            price: productPrice,
+                            image: productImage,
+                            quantity: 1,
+                        };
+                        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                        const existingProductIndex = cartItems.findIndex((item) => item.name === product.name);
+                        if (existingProductIndex > -1) {
+                            cartItems[existingProductIndex].quantity += 1;
+                        } else {
+                            updateProductQuantity(product);
+                            cartItems.push(product);
+                            Swal.fire({
+                                title: 'Added to Cart!',
+                                text: `"${productName}" added to the cart.`,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                    } else {
+                        // Do nothing if canceled
+                    }
+                });
+            });
     </script>
 
-    <!-- Add shoes to cart -->
-    <script>
-        // Event listener for shopping cart icon inside the shoes section
-        $(document).on("click", ".product-card .fa-shopping-cart", function () {
-            const productName = $(this).closest(".product-card").find("img").attr("alt").trim();
-            const productPrice = parseFloat($(this).closest(".product-card").find(".product-name").text().trim().replace('$', ''));
-            const productImage = $(this).closest(".product-card").find("img").attr("src");
-            const confirmAction = confirm(`Do you really want to add "${productName}" with price ${productPrice} to the cart?`);
-            if (confirmAction) {
-                const product = {
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
-                    quantity: 1,
-                };
-                // Get the cart items from localStorage
-                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    <!-- open product page -->
+     <script>
+            const productImages = document.querySelectorAll('#container img');
+            productImages.forEach((image) => {
+                image.addEventListener('click', () => {
+                    const productName = image.closest('.product-item').querySelector('.text-center .h6').textContent.trim();
+                    const productPrice = image.closest('.product-item').querySelector('.text-center h5').textContent.trim();
+                    const productOldPrice = image.closest('.product-item').querySelector('.text-center h6 del') ? image.closest('.product-item').querySelector('.text-center h6 del').textContent.trim() : null;
+                    const productImgSrc = image.getAttribute('src');
+                    localStorage.setItem('productDetails', JSON.stringify({
+                        name: productName,
+                        price: productPrice,
+                        oldPrice: productOldPrice,
+                        imgSrc: productImgSrc
+                    }));
+                    window.location.href = 'ProductDetail.html';
+                });
+            });
 
-                // Check if the product already exists in the cart
-                if (cartItems.some((item) => item.name === product.name)) {
-                    alert("Product already exists in the cart.");
-                    return;
-                } else {
-                    updateProductQuantity(product)
-                    // Add product to localStorage (cartItems)
-                    cartItems.push(product);
-                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-                }
-            } else {
-                // If canceled, do nothing
-            }
-        });
-    </script>
+     </script>
+
 
 </body>
 
