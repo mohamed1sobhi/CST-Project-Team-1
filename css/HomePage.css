@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  background-color: #fff7e6;
+}
 .icon {
   color: rgb(255, 193, 7);
   font-size: 15 px;
@@ -68,7 +71,10 @@
   padding: 10px;
   cursor: pointer;
 }
-.nav-item .dropdown-item:hover {background-color: #343a40; color: #ffc107;}
+.nav-item .dropdown-item:hover {
+  background-color: #343a40;
+  color: #ffc107;
+}
 
 /* 255, 193, 7  yellow */
 /* 25, 135, 84  green */
