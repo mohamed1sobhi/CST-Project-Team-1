@@ -39,7 +39,6 @@ $("#sendMessageButton").on('click',function(e){
                    id,
                    user.name,
                    user.email,
-                   $("#subject").val(),
                    $("#message").val(),
             );
             
