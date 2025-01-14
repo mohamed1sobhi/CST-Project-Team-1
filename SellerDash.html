@@ -10,88 +10,66 @@
 
     <script type="module" src="js/addproduct.js" defer></script>
     <script type="module" src="js/addproductTosellerboard.js"></script>
-    <script src="js/outofstock.js"></script>
+    <script  src="js/outofstock.js"></script>
     <script type="module" src="js/charts.js"></script>
-    <script type="module" src="js/showorders.js"></script>
-
-
+   
 
 
     <script src="https://kit.fontawesome.com/681150cec5.js" crossorigin="anonymous"></script>
     <script>
-        let loginStatus = JSON.parse(localStorage.getItem("currentUser")) || [];
-        if (loginStatus.type != "seller") {
-            window.location.href = '404.html';
-        }
+        //  let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+        // if (loginStatus.type != "seller") {
+        //     window.location.href = '404.html';
+        // }
     </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        .sidebar {height: 100%;background-color: #f8f9fa;padding-top: 20px;}
+        .sidebar a {padding: 10px;font-size: 18px;color: #333;}
+        .content {padding: 20px;}
+        .chart {max-height: 200px;}
+        
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-        .sidebar {
-            height: 100%;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
 
-        .sidebar a {
-            padding: 10px;
-            font-size: 18px;
-            color: #333;
-        }
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
 
-        .content {
-            padding: 20px;
-        }
+.table tr:hover {
+    background-color: #f5f5f5;
+}
 
-        .chart {
-            max-height: 200px;
-        }
+.btn-danger {
+    transition: all 0.3s ease;
+}
 
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .table th,
-        .table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .table th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-
-        .table tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .btn-danger {
-            transition: all 0.3s ease;
-        }
-
-        .btn-danger:hover {
-            transform: scale(1.05);
-        }
+.btn-danger:hover {
+    transform: scale(1.05);
+}
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark my-2 ">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-xl bg-dark navbar-dark rounded">
+        <!-- main container -->
         <div class="container-fluid">
-            <!-- Left Section (Brand) -->
-            <a class="navbar-brand me-5">
-                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
-                <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-right">Store</span>
+            <a class="nav-link ms-sm-5 me-2" href="#">
+                <span class="h2  bg-warning p-1 text-dark rounded px-2">Brandy</span>
+                <span class="h2  bg-light p-1 text-warning rounded px-2 ml-n1">Shop</span>
             </a>
             <!-- toggler with target id  -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -99,36 +77,51 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <!-- collapsable content -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
-                    <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning active">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-warning" href="ProductCatalog.html"
-                            aria-current="page">Gallery</a></li>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle text-warning"
-                            data-toggle="dropdown" aria-expanded="false">Pages</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="HomePage.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="ProductCatalog.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ShoppingCart.html">Cart</a>
+                    </li>
+                    <!-- dropdown menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            For Sellers
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="outfitSuggestions.html" class="dropdown-item"
-                                    title="Outfit Suggestions just for you">For you</a></li>
-                            <li><a href="ShoppingCart.html" class="dropdown-item"
-                                    title="Review your selected items before checkout">Shopping Cart</a></li>
-                            <li><a href="checkout.html" class="dropdown-item"
-                                    title="Proceed to Secure Checkou">Checkout</a></li>
-                            <!-- <li><a href="chat.html"class="dropdown-item"  title="Chat with Us for Instant Assistance">Support Chat</a></li> -->
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Chats</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link text-warning"
-                            onclick="window.location.href = 'contact.html';">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Registration.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LogIn.html">Log In</a>
+                    </li>
                 </ul>
-                <a href="Registration.html" title="Sign up"><i class="fa-solid fa-user-plus me-4 text-warning"></i></a>
-                <a href="LogIn.html" title="log in"><i class="fa-solid fa-user me-4 text-warning"></i></a>
-                <a href="#" title="log out" class="logout"><i
-                        class="fa-solid fa-right-to-bracket me-2 text-warning"></i></a>
+                <form class="d-flex w-auto" role="search">
+                    <input class="form-control me-1 w-50" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <a href="#"><i title="liked" class="icon fas fa-heart text-warning  ms-2 mt-2"></i></a>
+                    <span class="counter badge border border-secondary rounded-circle m-2">0</span>
+                    <a href="#"><i title="cart" class="icon fas fa-shopping-cart text-warning ms-2 mt-2"></i></a>
+                    <span class="counter badge border border-secondary rounded-circle m-2">0</span>
+                </form>
             </div>
         </div>
     </nav>
-    <!-- end of Navigation Bar -->
 
     <div class="container-fluid">
         <div class="row">
@@ -137,24 +130,12 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" onclick="showDashboard()">Seller Dashboard</a>
+                            <a class="nav-link active" href="#"> Seller Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showOrders()">Order Items</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </nav>
-
-            <div id="ordersTable" style="display: none;" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <table class="table table-striped">
-
-                    <tbody id="orderTableBody">
-                    </tbody>
-                </table>
-            </div>
-
-
 
             <!-- Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -165,93 +146,95 @@
                         <div class="col-md-4">
                             <p class="text-center"><strong>Goal Completion</strong></p>
                             <div class="progress-group">
-                                Add Products to Cart
-                                <span class="float-right counter"><b id="total">0</b><b id="counter">/0</b></span>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-primary " id="progress" style="width: 0%"></div>
-                                </div>
+                              Add Products to Cart
+                              <span class="float-right counter"><b id="total">0</b><b id="counter">/0</b></span>
+                              <div class="progress progress-sm">
+                                <div class="progress-bar bg-primary " id="progress" style="width: 0%"></div>
+                              </div>
                             </div>
                             <!-- /.progress-group -->
                             <div class="progress-group">
-                                Complete Purchase
-                                <span class="float-right"><b id="total1">0</b><b id="counter1">/0</b></span>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-danger" id="progress1" style="width: 75%"></div>
-                                </div>
+                              Complete Purchase
+                              <span class="float-right"><b id="total1">0</b><b id="counter1">/0</b></span>
+                              <div class="progress progress-sm">
+                                <div class="progress-bar bg-danger"id="progress1" style="width: 75%"></div>
+                              </div>
                             </div>
-
+                            
                             <!-- /.progress-group -->
+                          </div>
+                          <!-- /.col -->
                         </div>
-                        <!-- /.col -->
+                      </div>
+                        <div class="my-5 border border-1 rounded ">
+                            <h3 class="m-2"> products </h3>
+                            <p>
+                            <table class="table table-striped table-hover" id="result">
+                                <thead>
+                                    <th>Product ID</th>
+                                    <th>Product Name</th>
+                                    <th>cost</th>
+                                    <th>Price</th>
+                                    <th>revenue</th>
+                                    <th>Stock</th>
+                                    <th>active</th>
+                                    <th>control</th>
+                                </thead>
+                                <tbody id="body"></tbody>
+                                <tfoot id="foot">
+                                    <tr id="total">
+                                        <td>Totals</td>
+                                        <td>no. of products</td>
+                                        <td>totalcost</td>
+                                        <td>total price</td>
+                                        <td>total revenu</td>
+                                        <td>totalstock</td>
+                                        <td colspan="2">total active</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            </p>
+                        </div>
+                        <div class="my-5 border border-1 rounded ">
+                            <h3 class="m-2"> Add Product </h3>
+                            <p>
+                            <form class="mx-3" id="form">
+                                <div class="mb-3">
+                                    <label for="ProductName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="ProductName"
+                                        placeholder="Enter Your Product Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Cost" class="form-label">Product Cost</label>
+                                    <input type="text" class="form-control" id="Cost"
+                                        placeholder="Enter Cost For Your Product">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Price" class="form-label">Product Price</label>
+                                    <input type="text" class="form-control" id="Price"
+                                        placeholder="Enter Price For Your Product">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Stock" class="form-label">Available Stock</label>
+                                    <input type="number" class="form-control" value="1" min="1" max="10" id="stock">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="Active">
+                                    <label class="form-check-label" for="Active">Active</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="ProductImage">Upload Product Image</label>
+                                    <input type="file" class="form-control" id="ProductImage" name="image"
+                                        accept="image/*" />
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="adding">Add To Stock</button>
+                            </form>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="my-5 border border-1 rounded ">
-                    <h3 class="m-2"> products </h3>
-                    <p>
-                    <table class="table table-striped table-hover" id="result">
-                        <thead>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>cost</th>
-                            <th>Price</th>
-                            <th>revenue</th>
-                            <th>Stock</th>
-                            <th>active</th>
-                            <th>control</th>
-                        </thead>
-                        <tbody id="body"></tbody>
-                        <tfoot id="foot">
-                            <tr id="total">
-                                <td>Totals</td>
-                                <td>no. of products</td>
-                                <td>totalcost</td>
-                                <td>total price</td>
-                                <td>total revenu</td>
-                                <td>totalstock</td>
-                                <td colspan="2">total active</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    </p>
-                </div>
-                <div class="my-5 border border-1 rounded ">
-                    <h3 class="m-2"> Add Product </h3>
-                    <p>
-                    <form class="mx-3" id="form">
-                        <div class="mb-3">
-                            <label for="ProductName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="ProductName"
-                                placeholder="Enter Your Product Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="Cost" class="form-label">Product Cost</label>
-                            <input type="text" class="form-control" id="Cost" placeholder="Enter Cost For Your Product">
-                        </div>
-                        <div class="mb-3">
-                            <label for="Price" class="form-label">Product Price</label>
-                            <input type="text" class="form-control" id="Price"
-                                placeholder="Enter Price For Your Product">
-                        </div>
-                        <div class="mb-3">
-                            <label for="Stock" class="form-label">Available Stock</label>
-                            <input type="number" class="form-control" value="1" min="1" max="10" id="stock">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="Active">
-                            <label class="form-check-label" for="Active">Active</label>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="ProductImage">Upload Product Image</label>
-                            <input type="file" class="form-control" id="ProductImage" name="image" accept="image/*" />
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="adding">Add To Stock</button>
-                    </form>
-                    </p>
-                </div>
+            </main>
         </div>
-    </div>
-    </main>
-    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -279,18 +262,7 @@
         }
 
     </script>
-    <script>
-        function showDashboard() {
-            document.querySelector('main').style.display = 'block';
-            document.getElementById('ordersTable').style.display = 'none';
-        }
-
-        function showOrders() {
-            document.querySelector('main').style.display = 'none';
-            document.getElementById('ordersTable').style.display = 'block';
-        }
-    </script>
-
+    
 
 
 </body>
