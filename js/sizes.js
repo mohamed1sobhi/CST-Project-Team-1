@@ -154,6 +154,23 @@ $(document).on("click", "#triggerButton", async function () {
   const productPriceText = $("h3.font-weight-semi-bold.mb-4.text-secondary.mt-1").text().trim();
   const productImage = $("#product-carousel .carousel-item.active img").attr("src");
   const productPrice = parseFloat(productPriceText.replace("$", "").trim());
+  // Show a confirmation dialog before adding the product to the cart
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if (!currentUser) {
+  Swal.fire({
+    title: "You are not logged in!",
+    text: "Do you want to go to the login page?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, take me there!",
+    cancelButtonText: "No, stay here",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "login.html"; // Redirect to login page
+    }
+  });
+  return;
+}
   const confirmAction = await Swal.fire({
     title: "Are you sure?",
     text: `You want to add "${productName}" with price $${productPrice} to the cart?`,
