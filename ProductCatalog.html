@@ -268,11 +268,13 @@
                 const productName = productElement.querySelector(".h4").innerText.trim();
                 const productPrice = productElement.querySelector("h5").innerText.trim();
                 const productImgSrc = productElement.querySelector("img").getAttribute("src");
+                const productDescription = products.find(p => p.name === productName)?.description || "No description available";
                 console.log(productName, " , ", productPrice);
                 localStorage.setItem('currentProduct', JSON.stringify({
                     name: productName,
                     price: productPrice,
-                    imgSrc: productImgSrc
+                    imgSrc: productImgSrc,
+                    description: productDescription
                 }));
                 window.location.href = 'ProductDetail.html';
             }
