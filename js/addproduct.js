@@ -26,6 +26,7 @@ class ProductManager {
       const name = document.getElementById("ProductName").value.trim();
       const price = parseFloat(document.getElementById("Price").value);
       const cost = parseFloat(document.getElementById("Cost").value);
+      const description = document.getElementById("desc").value;
       const stock = parseInt(document.getElementById("stock").value);
       const Active= document.getElementById("Active").checked;
       const imagePath = document.getElementById("ProductImage").files[0];
@@ -53,6 +54,7 @@ class ProductManager {
         name,
         price,
         cost,
+        description,  
         stock,
         currentseler.id,
         imagebase64,
