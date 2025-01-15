@@ -50,6 +50,7 @@ $(document).on("change", ".quantity", function () {
         });
         item.quantity = stock;
         $(this).attr("max", stock);
+        $(this).attr("min", 0);
         $(this).val(stock);
       } else {
         item.quantity = quantity;
@@ -59,6 +60,7 @@ $(document).on("change", ".quantity", function () {
   localStorage.setItem(currentUser.email, JSON.stringify(cartItems));
   localStorage.setItem("products", JSON.stringify(products));
 
+  
   // Update product quantity in localStorage when changed
   //   const productName = $(this).closest("tr").data("name");
   //   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -71,8 +73,6 @@ $(document).on("change", ".quantity", function () {
   //   localStorage.setItem(currentUser.email, JSON.stringify(cartItems));
   // });
 });
-  
-
 
 // Remove product from cart
 $(document).on("click", ".remove-product", function () {
