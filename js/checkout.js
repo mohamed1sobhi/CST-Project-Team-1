@@ -113,14 +113,6 @@ $(document).ready(function () {
       JSON.stringify(ordersForSeller)
     );
 
-    // selledproduct
-    // let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
-    // const selledProducts = cartItems.map((item) => ({
-    //   id: item.id, // Product ID
-    //   quantity: item.quantity, // Quantity of the product
-    // }));
-    // localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
-
     // selledproducts
     let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
     let selledProducts =JSON.parse(localStorage.getItem("selledProducts")) || [];
@@ -131,42 +123,6 @@ $(document).ready(function () {
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
-
-    // Update the product quantity in the stock
-    // function updateStock(){
-    //   const cartItems =JSON.parse(localStorage.getItem(currentUser.email)) || [];
-    //   const products = JSON.parse(localStorage.getItem("products")); //all to get the stock value
-    //   cartItems.forEach((item) => {
-    //     const product = products.find((p) => p.id == item.id); // one product from cart
-    //     let currentProductId = item.id;
-    //     let currentProductQuantity = item.quantity;
-    //     let stock = item.quantity;
-    //     console.log(
-    //       "id:", currentProductId,
-    //       " stock : ", stock,
-    //   "currentProductQuantity : ", currentProductQuantity
-    // )
-    // let quantitySold = item.quantity;
-    // product.quantity = stock - quantitySold;
-    // console.log("Product quantity before sale:", product.quantity,"Product quantity after sale:", stock - quantitySold);
-    // localStorage.setItem("products", JSON.stringify(products));
-
-    // });
-    // }
-    // updateStock();
-
-    // delete card after checkout
-    // console.log("Current User:", currentUser);
-    // console.log("Cart Items Key:", `${currentUser.email}_cartItems`);
-    // console.log("Cart Summary Key:", `${currentUser.email}_cartSummary`);
-    // if (currentUser && currentUser.email) {
-    //   localStorage.removeItem(`${currentUser.email}_cartItems`);
-    //   localStorage.removeItem(`${currentUser.email}_cartSummary`);
-    //   console.log("Cart items and summary removed from localStorage");
-    // } else {
-    //   console.error(
-    //     "currentUser is not defined or does not have an email property"
-    //   );
-    // }
+    
   });
 });

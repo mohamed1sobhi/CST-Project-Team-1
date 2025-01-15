@@ -50,6 +50,7 @@ $(document).on("change", ".quantity", function () {
         });
         item.quantity = stock;
         $(this).attr("max", stock);
+        $(this).attr("min", 0);
         $(this).val(stock);
       } else {
         item.quantity = quantity;
