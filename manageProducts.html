@@ -55,7 +55,7 @@
                             <a class="nav-link" href="reports.html">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
+                            <a class="nav-link" href="UserManegment.html">User Management</a>
                         </li>
                     </ul>
                 </div>
@@ -173,7 +173,7 @@ document
     const productStock = document.getElementById('productStock').value;
     const productStatus = document.getElementById('productStatus').value;
 
-    const sellerName = "Default Seller"; // Provide a default value if this field is not part of the form
+    const sellerName = "Admin"; // Provide a default value if this field is not part of the form
 
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const productId = products.length + 1;
