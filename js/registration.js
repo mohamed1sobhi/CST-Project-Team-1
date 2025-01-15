@@ -92,7 +92,7 @@ $(function () {
         // Check for existing name and email
         let alluser =
           JSON.parse(localStorage.getItem("customer")) ||
-          [].concat(JSON.parse(localStorage.getItem("seller")) || []);
+          [].concat(JSON.parse(localStorage.getItem("seller")) || [],JSON.parse(localStorage.getItem("admin")) || []);
         let nameExist = alluser.some((e) => e.name === $("input:eq(0)").val());
         let emailExist = alluser.some(
           (e) => e.email === $("input:eq(1)").val()
@@ -133,6 +133,7 @@ $(function () {
               $("input:eq(2)").val()
             );
             // localStorage.setItem("CustomerIdCounter", Customer.idCounter);
+            window.close()
             window.location.href = "HomePage.html";
             console.log(obj);
           } else {
@@ -215,5 +216,5 @@ $(function () {
   
   
 }); //end of load
-// export {singup};
+// export { isNameValid };
 export { Customer, Seller, Admin};

@@ -1,23 +1,21 @@
 import { getProducts } from "./productstore.js";
+
  window.onload = function() {
     try {
         let products = getProducts();
-        let orders = JSON.parse(localStorage.getItem('ordersForSeller') || '[]');
+        let orders = JSON.parse(localStorage.getItem('selledProducts') || '[]');
         let matchedProducts = [];
         
         orders.forEach(order => {
-            let orderProducts = order.productsIds.map((id, index) => {
-                const product = products.find(product => String(product.productid) === id);
-                if (product) {
-                    return {
-                        ...product,
-                        quantity: order.productsQuantity[index]
-                    };
-                }
-                return null;
-            }).filter(Boolean);
+            let orderProducts = products.filter(product =>String( product.productid )=== order.id)
+            .map(product => ({
+            ...product,
+            quantity: order.quantity || 1
+            }));
             matchedProducts = matchedProducts.concat(orderProducts);
         });
+        localStorage.setItem('matchedProducts', JSON.stringify(matchedProducts));
+        
         console.log(matchedProducts);
         
         let currentSeller = JSON.parse(localStorage.getItem("seller") || '{}');
@@ -31,7 +29,7 @@ import { getProducts } from "./productstore.js";
                 <tr>
                     <th style="border: 1px solid black; padding: 8px;">Product Name</th>
                     <th style="border: 1px solid black; padding: 8px;">Price</th>
-                    <th style="border: 1px solid black; padding: 8px;">Stocks</th>
+                    <th style="border: 1px solid black; padding: 8px;">quantity</th>
                 </tr>
                 ${sellerProducts.map(product => `
                 <tr>

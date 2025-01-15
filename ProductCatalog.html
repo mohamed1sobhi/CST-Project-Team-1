@@ -22,7 +22,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="js/displayproduct.js"></script>
-    <script src="js/outofstock.js"></script>
+    
 </head>
 
 <body>
@@ -334,11 +334,13 @@
                 const productName = productElement.querySelector(".h4").innerText.trim();
                 const productPrice = productElement.querySelector("h5").innerText.trim();
                 const productImgSrc = productElement.querySelector("img").getAttribute("src");
+                const productDescription = products.find(p => p.name === productName)?.description || "No description available";
                 console.log(productName, " , ", productPrice);
                 localStorage.setItem('currentProduct', JSON.stringify({
                     name: productName,
                     price: productPrice,
-                    imgSrc: productImgSrc
+                    imgSrc: productImgSrc,
+                    description: productDescription
                 }));
                 window.location.href = 'ProductDetail.html';
             }
