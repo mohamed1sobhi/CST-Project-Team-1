@@ -6,6 +6,7 @@ let currentseler = JSON.parse(localStorage.getItem("seller"));
 // Function to filter products by seller ID
 function getSellerProducts() {
     let allProducts = getProducts();
+    //let orders = JSON.parse(localStorage.getItem('matchedProducts') || '[]');
     return Object.values(allProducts).filter(product => 
         product.seller === currentseler.id
     );
@@ -41,7 +42,32 @@ function appendproduct() {
             <td>${product.cost}</td>
             <td>${product.price}</td>
             <td>${revenu}</td>
-            <td>${product.quantity}</td>
+            <td>${(() => {
+            const orders = JSON.parse(localStorage.getItem('matchedProducts') || '[]');
+            const matchedOrders = orders.filter(order => order.productid === product.productid);
+            const originalQuantity = product.quantity; // Store original quantity
+            var newquantity = originalQuantity;
+            
+            // Subtract all matched order quantities but don't display the subtracted value
+            matchedOrders.forEach(order => {
+               newquantity = newquantity - order.quantity;
+            });
+            
+            // Ensure remaining quantity is not negative
+            newquantity = Math.max(0, newquantity);
+            
+            // Update the product quantity in localStorage
+            let allProducts = getProducts();
+            allProducts = allProducts.map(p => {
+            if (p.productid === product.productid) {
+                p.quantity = newquantity;
+            }
+            return p;
+            });
+            localStorage.setItem('products', JSON.stringify(allProducts));
+            
+            return originalQuantity; // Display original quantity instead of new quantity
+            })()}</td>
             <td><input type="checkbox" id="toggleSwitch_${product.productid}" ${product.active ? 'checked' : ''}></td>
             <td colspan="2"><button class="btn btn-danger bg-danger ms-3" onclick="removeRow(this)">Remove</button></td>
         `;
