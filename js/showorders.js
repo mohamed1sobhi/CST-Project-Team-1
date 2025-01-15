@@ -14,6 +14,14 @@ import { getProducts } from "./productstore.js";
             }));
             matchedProducts = matchedProducts.concat(orderProducts);
         });
+        matchedProducts = matchedProducts.reduce((acc, product) => {
+            const existingProduct = acc.find(p => p.productid === product.productid);
+            if (existingProduct) {
+                existingProduct.quantity += product.quantity;
+                return acc;
+            }
+            return [...acc, product];
+        }, []);
         localStorage.setItem('matchedProducts', JSON.stringify(matchedProducts));
         
         console.log(matchedProducts);

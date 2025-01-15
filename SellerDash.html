@@ -10,10 +10,9 @@
 
     <script type="module" src="js/addproduct.js" defer></script>
     <script type="module" src="js/addproductTosellerboard.js"></script>
-    <script type="module" src="js/outofstock.js"></script>
     <script type="module" src="js/charts.js"></script>
     <script type="module" src="js/showorders.js"></script>
-    <script  src="js/outofstock.js"></script>
+    
 
     
    
@@ -130,13 +129,16 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <!-- Sidebar -->
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="#" onclick="showDashboard()">Seller Dashboard</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showProducts()">Products</a>
+                        </li>
+                        <li class="nav-item">
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showOrders()">Order Items</a>
                         </li>
@@ -181,7 +183,7 @@
                           <!-- /.col -->
                         </div>
                       </div>
-                        <div class="my-5 border border-1 rounded ">
+                        <div class="my-5 border border-1 rounded " id="products">
                             <h3 class="m-2"> products </h3>
                             <p>
                             <table class="table table-striped table-hover" id="result">
@@ -283,14 +285,45 @@
 
     </script>
      <script>
+        // Call showDashboard when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showDashboard();
+        });
+
         function showDashboard() {
             document.querySelector('main').style.display = 'block';
             document.getElementById('ordersTable').style.display = 'none';
+            // Show the dashboard content
+            document.querySelector('.content h1').textContent = 'Dashboard';
+            document.querySelector('.content > p').style.display = 'block';
+            document.querySelector('.d-flex.flex-column').style.display = 'flex';
+            // Show all border sections except products table
+            document.querySelectorAll('.border.border-1.rounded').forEach(el => {
+            if (el.id !== 'products') {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+            });
         }
 
         function showOrders() {
             document.querySelector('main').style.display = 'none';
             document.getElementById('ordersTable').style.display = 'block';
+        }
+        function showProducts() {
+            document.querySelector('main').style.display = 'block';
+            document.getElementById('ordersTable').style.display = 'none';
+            // Hide all main content sections first
+            document.querySelector('.content h1').textContent = 'Products';
+            document.querySelector('.content > p').style.display = 'none';
+            document.querySelector('.d-flex.flex-column').style.display = 'none';
+            // Hide all border sections by default
+            document.querySelectorAll('.border.border-1.rounded').forEach(el => {
+                el.style.display = 'none';
+            });
+            // Show only the products table section
+            document.getElementById('products').style.display = 'block';
         }
         </script>
     <script src="js/search.js"></script>

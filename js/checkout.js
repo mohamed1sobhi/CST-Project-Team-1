@@ -124,7 +124,6 @@ $(document).ready(function () {
     }));
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
-    handleNewMatchedProduct(selledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
     
   });
