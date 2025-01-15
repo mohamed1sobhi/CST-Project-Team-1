@@ -59,20 +59,22 @@ $("#sendMessageButton").on('click',function(e){
     let display=document.getElementById('displaymesg');
     test.forEach(e => {
         let div=document.createElement('div');
+        let left=document.createElement('div');
+        let right=document.createElement('div');
+        div.className="parent";
+        left.className="left";
+        right.className="right";
         let p1=document.createElement('p');
         let p2=document.createElement('p');
-        let p11=document.createElement('p');
-        let p22=document.createElement('p');
-        p11.innerText=e.usermesg;
-        p22.innerText=e.adminmasg;
-        p1.append(p11);
-        p2.append(p22);
-        div.append(p1);
-        div.append(p2); 
+        p1.innerText=e.usermesg;
+        p2.innerText=e.adminmasg;
+        left.append(p1);
+        right.append(p2); 
+        div.append(left);
+        div.append(right); 
         display.append(div);    
     });
     
-
 
     // console.log(new Date().toTimeString().split(' ')[0]);
 
