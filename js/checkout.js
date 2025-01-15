@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
@@ -130,6 +131,7 @@ $(document).ready(function () {
     }));
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
+    handleNewMatchedProduct(selledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
 
     // Update the product quantity in the stock
