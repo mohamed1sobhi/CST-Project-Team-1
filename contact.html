@@ -59,38 +59,52 @@
       form p i{
         margin-right: 5px;
       }
-
       #displaymesg {
         margin: 10px 100px;
         padding: 5px;
         background-color: #fff;
         border-radius: 12px;
+     
       } 
-      #displaymesg p{
+      @media (max-width:767px) {
+        #displaymesg {
         margin: 10px 0;
         
+      } 
       }
-      #displaymesg p:nth-child(1){
+      #displaymesg div{
+        margin: 10px 5px; 
+        position: relative;
+        width: 99%;
+        box-sizing: border-box; 
+      }
+      #displaymesg .left{
         display: flex;
         justify-content: start;
+        min-width: 50px;
       }
-      #displaymesg p:nth-child(2){
+      #displaymesg .right{
         display: flex;
         justify-content: end;
+        min-width: 50px;
       }
-      #displaymesg p:nth-child(1) p{
+      #displaymesg .left p{
         background-color:#F5F5F5 ;
         border-radius: 12px;
         padding: 10px;
         margin-left: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
 
       }
       
-      #displaymesg p:nth-child(2) p{
+      #displaymesg .right p{
         background-color: #ffc552;
         border-radius: 12px;
         padding: 10px;
         margin-right: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
       }
             
     
