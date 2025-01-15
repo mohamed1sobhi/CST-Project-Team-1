@@ -10,8 +10,11 @@
 
     <script type="module" src="js/addproduct.js" defer></script>
     <script type="module" src="js/addproductTosellerboard.js"></script>
-    <script  src="js/outofstock.js"></script>
+    <script type="module" src="js/outofstock.js"></script>
     <script type="module" src="js/charts.js"></script>
+    <script type="module" src="js/showorders.js"></script>
+    <script  src="js/outofstock.js"></script>
+
     
    
 
@@ -127,16 +130,27 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
+            <!-- Sidebar -->
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#"> Seller Dashboard</a>
+                            <a class="nav-link active" href="#" onclick="showDashboard()">Seller Dashboard</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showOrders()">Order Items</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
+                
+            <div id="ordersTable" style="display: none;" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <table class="table table-striped">
+                   
+                    <tbody id="orderTableBody">
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -268,6 +282,17 @@
         }
 
     </script>
+     <script>
+        function showDashboard() {
+            document.querySelector('main').style.display = 'block';
+            document.getElementById('ordersTable').style.display = 'none';
+        }
+
+        function showOrders() {
+            document.querySelector('main').style.display = 'none';
+            document.getElementById('ordersTable').style.display = 'block';
+        }
+        </script>
     <script src="js/search.js"></script>
     
 

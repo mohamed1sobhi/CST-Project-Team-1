@@ -15,14 +15,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/ProductCatalog.css">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="js/displayproduct.js"></script>
-    <script src="js/outofstock.js"></script>
 </head>
 
 <body>
@@ -40,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-light">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning">Gallery</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-warning" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
@@ -52,32 +48,36 @@
                     <li class="nav-item">
                         <a href="contact.html" class="nav-link text-warning">Contact</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item w-100">
                         <form class="me-5 d-none d-sm-flex" role="search">
-                            <input class="form-control me-1 w-75" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn btn-outline-warning" type="submit"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <input class="form-control ms-5 me-2 w-100 text-warning" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-warning" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </li>
                 </ul>
             </div>
+            <!-- Right section -->
             <div class="col-lg-4 text-lg-right text-center">
                 <!-- Icons visible only on small screens -->
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Home" href="HomePage.html"><i
-                        class="fas fa-home text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Outfits" href="outfitSuggestions.html"><i
-                        class="fas fa-heart text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart" href="ShoppingCart.html"><i
-                        class="fas fa-shopping-cart text-warning"></i></a>
-
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none"  href="LogIn.html" title="Log in">
+                    <i class="fa-solid fa-user text-warning"></i>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none"  title="log out" class="logout">
+                    <i class="fa-solid fa-right-to-bracket me-2 text-warning"></i>
+                </a>
+                <a class="btn px-0 ms-3 d-sm-inline d-lg-none" title="Shopping Cart" href="ShoppingCart.html">
+                    <i class="fas fa-shopping-cart text-warning"></i>
+                </a>
                 <!-- Icons hidden on small screens -->
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Home" href="HomePage.html"><i
-                        class="fas fa-home text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Outfits" href="outfitSuggestions.html"><i
-                        class="fas fa-heart text-warning"></i></a>
-                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart" href="ShoppingCart.html"><i
-                        class="fas fa-shopping-cart text-warning"></i></a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline"  href="LogIn.html" title="Log in">
+                    <i class="fa-solid fa-user text-warning"></i>
+                </a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="log out" class="logout">
+                    <i class="fa-solid fa-right-to-bracket me-2 text-warning"></i>
+                </a>
+                <a class="btn px-0 ms-3 d-none d-lg-inline" title="Shopping Cart" href="ShoppingCart.html">
+                    <i class="fas fa-shopping-cart text-warning"></i>
+                </a>
             </div>
         </nav>
     </div>
@@ -119,9 +119,7 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-light text-uppercase mb-4">Contact Us</h5>
-                <p class="mb-4">We'd love to hear from you! Get in touch for inquiries, support, or any questions you
-                    might
-                    have. We're here to help.</p>
+                <p class="mb-4">We'd love to hear from you! Get in touch for inquiries, support, or any questions you might have. We're here to help.</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-warning mr-3 me-3"></i>Iti tanta </p>
                 <p class="mb-2"><i class="fa fa-envelope text-warning mr-3 me-3"></i>AMKE@gamil.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-warning mr-3 me-3"></i>+011 123 4567</p>
@@ -173,6 +171,8 @@
             </div>
         </div>
         <!-- Footer End -->
+
+        <!-- Offer section -->
         <script>
             $(document).ready(function () {
                 var offerTexts = ["Limited Time Offer", "Get 20% Off Today", "Shop Now and Save Big", "Exclusive Deal for You", "Hurry, Offer Ends Soon",];
@@ -197,10 +197,9 @@
         </script>
 
         <!-- Add clothes to cart -->
-        <script>
+        <!-- <script>
             $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
                 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-                console.log(currentUser);
                 if (!currentUser) {
                     Swal.fire({
                         title: 'You are not logged in!',
@@ -214,8 +213,7 @@
                             window.location.href = "login.html"; // Redirect to login page
                         }
                     });
-                    return;
-                }
+                
                 const productName = $(this).closest(".product-item").find("a.h4").text().trim();
                 const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
                 const productImage = $(this).closest(".product-item").find("img").attr("src");
@@ -237,7 +235,9 @@
                             id: productId,
                             quantity: 1,
                         };
-                        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                        // let cartItems = JSON.parse(localStorage.getItem(currentUser)) || [];
+                        let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
+                        // let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
                         const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
                         if (existingProductIndex > -1) {
                             cartItems[existingProductIndex].quantity += 1;
@@ -257,8 +257,73 @@
                         // Do nothing if canceled
                     }
                 });
+            }
             });
-        </script>
+        </script> -->
+<script>
+    $(document).on("click", ".btn-square i.fa-shopping-cart", function () {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!currentUser) {
+            Swal.fire({
+                title: 'You are not logged in!',
+                text: 'Do you want to go to the login page?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, take me there!',
+                cancelButtonText: 'No, stay here',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "login.html"; // Redirect to login page
+                }
+            });
+        } else {
+            const productName = $(this).closest(".product-item").find("a.h4").text().trim();
+            const productPriceText = $(this).closest(".product-item").find("h5").text().trim();
+            const productImage = $(this).closest(".product-item").find("img").attr("src");
+            const productPrice = parseFloat(productPriceText.replace('$', '').trim());
+            const productId = $(this).closest(".product-item").find("img").attr("alt");
+
+            Swal.fire({
+                title: 'Add product?',
+                text: `Do you really want to add "${productName}" with price $${productPrice} to the cart?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Add it',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const product = {
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        id: productId,
+                        quantity: 1,
+                    };
+
+                    let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
+                    const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
+
+                    if (existingProductIndex > -1) {
+                        cartItems[existingProductIndex].quantity += 1;
+                    } else {
+                        cartItems.push(product);
+                        Swal.fire({
+                            title: 'Added to Cart!',
+                            text: `"${productName}" added to the cart.`,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+
+                    localStorage.setItem(currentUser.email, JSON.stringify(cartItems));
+                } else {
+                    // Do nothing if canceled
+                }
+            });
+        }
+    });
+</script>
 
         <!-- open product page -->
         <script>
