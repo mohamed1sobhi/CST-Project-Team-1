@@ -55,41 +55,158 @@
                             <a class="nav-link" href="reports.html">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
+                            <a class="nav-link" href="UserManegment.html">User Management</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <!-- Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="content">
-                    <h1 class="h2">Manage Products</h1>
-                    <p>Here you can manage the products in the store.</p>
-
-                    <!-- Add the products table or forms here as required -->
-                </div>
-
-                <div class="my-5 border border-1 rounded ">
-                    <h3 class="m-2">Manage Products</h3>
-                    <table class="table table-striped table-hover" id="productsTable">
-                        <thead>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Seller Name</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody id="productsBody"></tbody>
-                    </table>
-                </div>
-            </main>
+            
+        <!-- Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="content">
+              <h1 class="h2">Manage Products</h1>
+              <p>Here you can manage the products in the store.</p>
+  
+              <div class="my-5 border border-1 rounded">
+                <h3 class="m-2">Manage Products</h3>
+                <table
+                  class="table table-striped table-hover"
+                  id="productsTable"
+                >
+                  <thead>
+                    <tr>
+                      <th>Product ID</th>
+                      <th>Product Name</th>
+                      <th>Seller Name</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsBody"></tbody>
+                </table>
+              </div>
+  
+              <!-- Add Product Form -->
+              <div class="my-5 border border-1 rounded">
+                <h3 class="m-2">Add Product</h3>
+                <form id="addProductForm" class="mx-3">
+                  <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="productName"
+                      placeholder="Enter Product Name"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="productPrice"
+                      placeholder="Enter Product Price"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="productStock" class="form-label">Stock</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productStock"
+                      placeholder="Enter Stock Quantity"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="productStatus" class="form-label">Status</label>
+                    <select class="form-select" id="productStatus">
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+              </div>
+            </div>
+          </main>
         </div>
-    </div>
+      </div>
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+        // Load Products from Local Storage
+        function loadProducts() {
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+          const productsBody = document.getElementById('productsBody');
+          productsBody.innerHTML = '';
+          products.forEach((product) => {
+            const row = `
+  <tr>
+    <td>${product.productId}</td>
+    <td>${product.productName}</td>
+    <td>${product.sellerName || 'N/A'}</td>
+    <td>${product.productPrice}</td>
+    <td>${product.productStock}</td>
+    <td>${product.productStatus}</td>
+    <td>
+      <button
+        class="btn btn-danger btn-sm"
+        onclick="removeProduct(${product.productId})"
+      >Remove</button>
+    </td>
+  </tr>`;
+            productsBody.insertAdjacentHTML('beforeend', row);
+          });
+        }
+  
+        // Add Product to Local Storage and Table
+document
+  .getElementById('addProductForm')
+  .addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    const productName = document.getElementById('productName').value;
+    const productPrice = document.getElementById('productPrice').value;
+    const productStock = document.getElementById('productStock').value;
+    const productStatus = document.getElementById('productStatus').value;
+
+    const sellerName = "Admin"; // Provide a default value if this field is not part of the form
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const productId = products.length + 1;
+
+    products.push({
+      productId,
+      productName,
+      sellerName, // Include sellerName with a default value
+      productPrice,
+      productStock,
+      productStatus,
+    });
+
+    localStorage.setItem('products', JSON.stringify(products));
+    alert('Product added successfully!');
+    loadProducts();
+    this.reset();
+  });
+
+  
+        // Remove Product Function
+        function removeProduct(productId) {
+          let products = JSON.parse(localStorage.getItem('products')) || [];
+          products = products.filter((product) => product.productId !== productId);
+          localStorage.setItem('products', JSON.stringify(products));
+          loadProducts();
+        }
+  
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+          loadProducts();
+        });
+      </script>
 </body>
 
 </html>

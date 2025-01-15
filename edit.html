@@ -38,6 +38,8 @@ $(function () {
                 adminmasg:$('textarea').val()});
 
             localStorage.setItem('adminmesg', JSON.stringify(adminmesg));
+            $("form").trigger("reset");
+            $("input").blur();
 
             
         })

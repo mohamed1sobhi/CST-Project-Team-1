@@ -64,27 +64,41 @@ function creating(table,data){
         span.innerText=e.email;
         div.innerText=e.message;
     
-        button1.addEventListener('click', (e) => {
-            let removeuser=e.currentTarget.parentElement.parentElement.children[2].children[0].innerText;
-            let answer=confirm(`Are you sure to delete this account ${removeuser}`);
-           if(answer){
-            let newusers=users.filter(ele => {
-                return ele.email!=removeuser;
-            });
-            localStorage.setItem(data,JSON.stringify(newusers));
-            e.currentTarget.parentElement.parentElement.remove();
-           }
-        })
+        
+        button2.addEventListener('click', (e) => {
+            let mesg=[e.currentTarget.parentElement.parentElement.children[1].innerText,
+                 e.currentTarget.parentElement.parentElement.children[2].children[0].innerText,
+             e.currentTarget.parentElement.parentElement.children[3].children[0].innerText
+         ]
+             localStorage.setItem('mesg', JSON.stringify(mesg));
+             window.location.href = "edit.html";
+            
+         })
         if(data=="contactus"){
-            button2.addEventListener('click', (e) => {
-                let mesg=[e.currentTarget.parentElement.parentElement.children[1].innerText,
-                     e.currentTarget.parentElement.parentElement.children[2].children[0].innerText,
-                 e.currentTarget.parentElement.parentElement.children[3].children[0].innerText
-             ]
-                 localStorage.setItem('mesg', JSON.stringify(mesg));
-                 window.location.href = "edit.html";
-                
-             })
+            button1.addEventListener('click', (e) => {
+                let removeuser=e.currentTarget.parentElement.parentElement.children[2].children[0].innerText;
+                let answer=confirm(`Are you sure to delete this message from ${removeuser}`);
+                let contactus=JSON.parse(localStorage.getItem("contactus"))||[];
+               if(answer){
+                let newusers=contactus.filter(ele => {
+                    return ele.email!=removeuser;
+                });
+                localStorage.setItem("contactus",JSON.stringify(contactus));
+                e.currentTarget.parentElement.parentElement.remove();
+               }
+            })
+        }else{
+            button1.addEventListener('click', (e) => {
+                let removeuser=e.currentTarget.parentElement.parentElement.children[2].children[0].innerText;
+                let answer=confirm(`Are you sure to delete this account ${removeuser}`);
+               if(answer){
+                let newusers=users.filter(ele => {
+                    return ele.email!=removeuser;
+                });
+                localStorage.setItem(data,JSON.stringify(newusers));
+                e.currentTarget.parentElement.parentElement.remove();
+               }
+            })
         }
         
     });

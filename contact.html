@@ -17,6 +17,9 @@
      crossorigin="anonymous" referrerpolicy="no-referrer" />
      <script type="module" src="./js/contact.js"></script>
      <style>
+        body{
+            background-color: #F5F5F5;
+        }
         .contact{
             background-color: #F5F5F5;
             margin: 0;
@@ -56,37 +59,51 @@
       form p i{
         margin-right: 5px;
       }
-
       #displaymesg {
         margin: 10px 100px;
         padding: 5px;
         background-color: #fff;
         border-radius: 12px;
+     
       } 
-      #displaymesg p{
+      @media (max-width:767px) {
+        #displaymesg {
         margin: 10px 0;
+        
+      } 
       }
-      #displaymesg p:nth-child(1){
+      #displaymesg div{
+        margin: 10px 5px; 
+        position: relative;
+        width: 99%;
+        box-sizing: border-box; 
+      }
+      #displaymesg .left{
         display: flex;
         justify-content: start;
+        min-width: 50px;
       }
-      #displaymesg p:nth-child(2){
+      #displaymesg .right{
         display: flex;
         justify-content: end;
+        min-width: 50px;
       }
-      #displaymesg p:nth-child(1) p{
+      #displaymesg .left p{
         background-color:#F5F5F5 ;
         border-radius: 12px;
         padding: 10px;
         margin-left: 10px;
-
+        max-width: 80%;
+        word-wrap: break-word;
       }
       
-      #displaymesg p:nth-child(2) p{
+      #displaymesg .right p{
         background-color: #ffc552;
         border-radius: 12px;
         padding: 10px;
         margin-right: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
       }
             
     
@@ -94,52 +111,53 @@
 
 </head>
 <body>
-   <!-- nav  bar-->
-   <div class="container-fluid bg-dark mb-1">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="row w-100 align-items-center">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark my-2 ">
+        <div class="container-fluid">
             <!-- Left Section (Brand) -->
-            <div class="col-lg-4 d-none d-lg-block">
-                <a href="#" class="navbar-brand">
-                    <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">Online</span>
-                    <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-end">Store</span>
-                </a>
-            </div>
+            <a class="navbar-brand me-5">
+                <span class="h1 text-uppercase text-warning bg-dark px-2 rounded-start">SKAFE</span>
+                <span class="h1 text-uppercase text-dark bg-warning px-2 rounded-right">Store</span>
+            </a>
+            <!-- toggler with target id  -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <!-- Center Section (Navbar Links) -->
-            <div class="col-lg-4 text-center d-none d-lg-block">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a href="#" class="nav-link text-warning">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-warning">Shop</a></li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle text-warning" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="dropdown-item">Shopping Cart</a></li>
-                                <li><a href="#" class="dropdown-item">Checkout</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-warning">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Right Section (Favorites & Cart) -->
-            <div class="col-lg-4 text-end">
-                <a href="#" class="btn px-0 d-inline d-sm-none" title="Home"><i class="fas fa-home text-warning"></i></a>
+            <!-- collapsable content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+                    <li class="nav-item"><a href="HomePage.html" class="nav-link text-warning active">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning" href="ProductCatalog.html"
+                            aria-current="page">Gallery</a></li>
+                    <!-- <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle text-warning"
+                            data-toggle="dropdown" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="outfitSuggestions.html" class="dropdown-item"
+                                    title="Outfit Suggestions just for you">For you</a></li>
+                            <li><a href="ShoppingCart.html" class="dropdown-item"
+                                    title="Review your selected items before checkout">Shopping Cart</a></li>
+                            <li><a href="checkout.html" class="dropdown-item"
+                                    title="Proceed to Secure Checkou">Checkout</a></li>
+                            <li><a href="chat.html"class="dropdown-item"  title="Chat with Us for Instant Assistance">Support Chat</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item"><a href="#" class="nav-link text-warning"
+                            onclick="window.location.href = 'contact.html';">Contact</a></li>
+                </ul>
                 <a href="#" class="btn px-0 ms-3" title="Favorites"><i class="fas fa-heart text-warning"></i></a>
-                <a href="#" class="btn px-0 ms-3" title="Shopping Cart"><i class="fas fa-shopping-cart text-warning"></i></a>
+                <a href="ShoppingCart.html" class="btn px-0 ms-3" title="Shopping Cart"><i class="fas fa-shopping-cart text-warning"></i></a>
+                <a href="#" title="log out" class="logout  btn px-0 ms-3"><i
+                        class="fa-solid fa-right-to-bracket me-2 text-warning"></i></a>
             </div>
         </div>
     </nav>
-    </div>
-<!-- End of Navbar -->
-    
+  
+    <!-- end of Navigation Bar -->
+   
+
     
    
  <!-- Contact Start -->
@@ -191,5 +209,64 @@
     
 </div>
 <!-- Contact End -->
+ <!-- Footer Start -->
+ <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-light text-uppercase mb-4">Contact Us</h5>
+            <p class="mb-4">We'd love to hear from you! Get in touch for inquiries, support, or any questions you
+                might
+                have. We're here to help.</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-warning mr-3"></i>Iti tanta </p>
+            <p class="mb-2"><i class="fa fa-envelope text-warning mr-3"></i>AMKE@gamil.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-warning mr-3"></i>+011 123 4567</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-light text-uppercase mb-4">Quick Shop</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" href="HomePage.html"><i
+                                class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-secondary mb-2" href="ProductCatalog.html"><i
+                                class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                        <a class="text-secondary mb-2" href="outfitSuggestions.html"><i
+                                class="fa fa-angle-right mr-2"></i>Outfits</a>
+                        <a class="text-secondary mb-2" href="ShoppingCart.html"><i
+                                class="fa fa-angle-right mr-2"></i>ShoppingCart</a>
+                        <a class="text-secondary mb-2" href="checkout.html"><i
+                                class="fa fa-angle-right mr-2"></i>Checkout</a>
+                        <a class="text-secondary" href="test.html"><i class="fa fa-angle-right mr-2"></i>Contact
+                            Us</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-light text-uppercase mb-4">Follow for Updates</h5>
+                    <p>Stay updated with the latest news and offers. Subscribe to our newsletter for exclusive deals
+                        and
+                        updates.</p>
+                    <div>
+
+                        <h6 class="text-light text-uppercase mt-4 mb-3">Follow Us</h6>
+                        <div class="d-flex">
+                            <i class="fab fa-twitter mr-2 p-2 text-warning" style="cursor: pointer;"></i></a>
+                        <i class="fab fa-facebook-f mr-2 p-2 text-warning"style="cursor: pointer;"></i>
+                        <i class="fab fa-linkedin-in mr-2 p-2 text-warning"style="cursor: pointer;"></i>
+                        <i class="fab fa-instagram mr-2 p-2 text-warning"style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-secondary">
+                    &copy; <a class="text-warning" href="#">Domain</a>. All Rights Reserved. Designed by
+                    <a class="text-light">AM KE</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
 </body>
 </html>
