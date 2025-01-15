@@ -119,6 +119,7 @@ $(document).ready(function () {
     const newSelledProducts = cartItems.map((item) => ({
       id: item.id, // Product ID
       quantity: item.quantity, // Quantity of the product
+      addDate: new Date(),
     }));
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
