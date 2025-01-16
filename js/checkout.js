@@ -68,8 +68,6 @@ $(document).ready(function () {
     let addressLine2 = $("#address-line2").val();
     let city = $("#city").val();
     let country = $("#country").val();
-
-    // Get the delivery location coordinates from the map
     const position = marker.getLatLng();
     Swal.fire({
       title: "Order Confirmed!",
@@ -84,7 +82,22 @@ $(document).ready(function () {
     <p>Thank you for shopping with us!<br>We will deliver your order to the provided address.</p>`,
       icon: "success",
       confirmButtonText: "OK",
+    }).then(() => {
+      // Reset the total price, tax, and subtotal to 0
+      $(".summary-item").eq(0).find("span").eq(1).text("$0");
+      $(".summary-item").eq(1).find("span").eq(1).text("$0");
+      $(".summary-item").eq(2).find("span").eq(1).text("$0");
+
+      // Empty the cart
+      localStorage.setItem(currentUser.email, JSON.stringify([]));
+      localStorage.setItem(
+        `${currentUser.email}_cartSummary`,
+        JSON.stringify([])
+      );
+      localStorage.setItem(`${currentUser.email}_orders`, JSON.stringify([]));
+      window.location.href = "HomePage.html";
     });
+
 
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     console.log(currentUser.id);
@@ -106,7 +119,6 @@ $(document).ready(function () {
       orderAddressLine2: addressLine2,
       paymentMethod: selectedPaymentMethod,
     };
-    // Now, push the order data to the ordersForSeller array
     ordersForSeller.push(orderdataforSeller);
 
     // Save updated ordersForSeller to localStorage
@@ -127,5 +139,10 @@ $(document).ready(function () {
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 294c6e9e5eff3e7e075ccf1bd3fe224e1d3390c3
   });
 });

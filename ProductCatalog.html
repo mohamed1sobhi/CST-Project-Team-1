@@ -44,6 +44,7 @@
                         <a class="nav-link dropdown-toggle text-warning" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
                         <ul class="dropdown-menu">
+                            <li><a href="outfitSuggestions.html" class="dropdown-item">Best Seller</a></li>                            
                             <li><a href="ShoppingCart.html" class="dropdown-item">Shopping Cart</a></li>
                             <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
                         </ul>
@@ -122,7 +123,7 @@
     <a class="btn border-warning text-warning back-to-top" href="#"><i class="fa fa-angle-double-up"></i></a>
     <!-- End of Top Button -->
 
-    <!-- Offer Text Animation -->
+  
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
@@ -179,10 +180,10 @@
                     </p>
                 </div>
             </div>
-        </div>
-        <!-- Footer End -->
+    </div>
+    <!-- Footer End -->
 
-        <!-- Offer section -->
+        <!-- Offer Text Animation -->
         <script>
             $(document).ready(function () {
                 var offerTexts = ["Limited Time Offer", "Get 20% Off Today", "Shop Now and Save Big", "Exclusive Deal for You", "Hurry, Offer Ends Soon",];
@@ -356,6 +357,35 @@
         </script>
 
 
+<!-- <script>
+        const searchInput = document.querySelector('input[type="search"]');
+        function liveSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const productItems = document.querySelectorAll('.product-item');
+            console.log(searchTerm);
+
+            productItems.forEach(item => {
+                const productName = item.querySelector('.text-center a').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    item.parentElement.style.display = ''; // Show the product
+                } else {
+                    item.parentElement.style.display = 'none'; // Hide the product
+                }
+            });
+            if (!searchTerm) {
+                productItems.forEach(item => {
+                    item.parentElement.style.display = '';
+                });
+            }
+        }
+
+        // Add event listener for the search input
+        searchInput.addEventListener('input', liveSearch);
+
+</script> -->
+
+
+<script src="js/findproductsInGallery.js"></script>
 </body>
 
 </html>
