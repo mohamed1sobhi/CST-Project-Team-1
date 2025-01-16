@@ -42,9 +42,6 @@
                             <a class="nav-link" href="AdminDash.html">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="manageOrders.html">Manage Orders</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="manageProducts.html">Manage Products</a>
                         </li>
                         <li class="nav-item">
@@ -54,7 +51,7 @@
                             <a class="nav-link" href="reports.html">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin.html">User Manegment</a>
+                            <a class="nav-link" href="UserManegment.html">User Manegment</a>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +70,6 @@
                                     <th>Seller ID</th>
                                     <th>Seller Name</th>
                                     <th>Email</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="sellersBody">
@@ -104,64 +100,72 @@
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        // Load sellers and products from local storage
-                        const sellers = JSON.parse(localStorage.getItem('seller')) || [];
-                        console.log(sellers)
-                        const products = JSON.parse(localStorage.getItem('products')) || [];
-                        console.log(products)
+    // Load sellers and products from local storage
+    const sellers = JSON.parse(localStorage.getItem('seller')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
 
-                        // Populate sellers table
-                        const sellersBody = document.getElementById('sellersBody');
-                        sellersBody.innerHTML = ''; // Clear previous content
+    console.log('Sellers:', sellers);
+    console.log('Products:', products);
 
-                        sellers.forEach(seller => {
-                            const row = `
-                                <tr>
-                                    <td>${seller.id}</td>
-                                    <td>${seller.name}</td>
-                                    <td>${seller.email}</td>
-                                    <td>
-                                        <button class="btn btn-primary view-products" data-seller-id="${seller.id}">
-                                            View Products
-                                        </button>
-                                    </td>
-                                </tr>`;
-                            sellersBody.insertAdjacentHTML('beforeend', row);
-                        });
+    // Map seller IDs to seller names for quick lookup
+    const sellerMap = {};
+    sellers.forEach(seller => {
+        sellerMap[String(seller.seller_id)] = seller.name; // Ensure keys are strings for consistent comparison
+    });
 
-                        // Add event listener to view products buttons
-                        document.querySelectorAll('.view-products').forEach(button => {
-                            button.addEventListener('click', function () {
-                                const sellerId = parseInt(this.getAttribute('data-seller-id'));
-                                console.log(sellerId)
+    console.log('Seller Map:', sellerMap);
 
-                                // Filter products for the selected seller
-                                console.log('Filtering products for sellerId:', sellerId);
-                                console.log('All products:', products);
-                                const sellerProducts = products.filter(product => product.seller_id === sellerId);
-                                console.log('Filtered products:', sellerProducts);
+    // Populate sellers table
+    const sellersBody = document.getElementById('sellersBody');
+    sellersBody.innerHTML = '';
 
-                                // Populate products table
-                                const productsBody = document.getElementById('productsBody');
-                                productsBody.innerHTML = ''; // Clear previous products
-                                if (sellerProducts.length === 0) {
-                                    productsBody.innerHTML = '<tr><td colspan="5">No products assigned to this seller.</td></tr>';
-                                } else {
-                                    sellerProducts.forEach(product => {
-                                        const row = `
-                                            <tr>
-                                                <td>${product.productid}</td>
-                                                <td>${product.name}</td>
-                                                <td>${product.price}</td>
-                                                <td>${product.seller_id}</td>
-                                                <td>${product.active}</td>
-                                            </tr>`;
-                                        productsBody.insertAdjacentHTML('beforeend', row);
-                                    });
-                                }
-                            });
-                        });
-                    });
+    if (sellers.length === 0) {
+        sellersBody.innerHTML = '<tr><td colspan="3">No sellers available.</td></tr>';
+    } else {
+        sellers.forEach(seller => {
+            const row = `
+                <tr>
+                    <td>${seller.id}</td>
+                    <td>${seller.name}</td>
+                    <td>${seller.email}</td>
+                </tr>`;
+            sellersBody.insertAdjacentHTML('beforeend', row);
+        });
+    }
+
+    // Filter out products with non-existent sellers
+    const validProducts = products.filter(product => {
+        const sellerExists = sellerMap[String(product.seller_id)];
+        if (!sellerExists) {
+            console.warn(`Product with ID ${product.productid} has an invalid seller_id: ${product.seller_id}`);
+        }
+        return sellerExists;
+    });
+
+    console.log('Valid Products:', validProducts);
+
+    // Populate products table
+    const productsBody = document.getElementById('productsBody');
+    productsBody.innerHTML = '';
+
+    if (validProducts.length === 0) {
+        productsBody.innerHTML = '<tr><td colspan="6">No products available or sellers have been removed.</td></tr>';
+    } else {
+        validProducts.forEach(product => {
+            const row = `
+                <tr>
+                    <td>${product.productid}</td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.cost}</td>
+                    <td>${sellerMap[String(product.seller_id)]}</td>
+                    <td>${product.active}</td>
+                </tr>`;
+            productsBody.insertAdjacentHTML('beforeend', row);
+        });
+    }
+});
+
                 </script>
             </main>
         </div>
