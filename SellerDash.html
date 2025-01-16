@@ -12,6 +12,8 @@
     <script type="module" src="js/addproductTosellerboard.js"></script>
     <script type="module" src="js/charts.js"></script>
     <script type="module" src="js/showorders.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     
 
     
@@ -65,7 +67,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-light"></body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-xl bg-dark navbar-dark rounded">
         <!-- main container -->
@@ -142,6 +144,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showOrders()">Order Items</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showcharts()">Reports</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -159,27 +164,9 @@
                 <div class="content">
                     <h1 class="h2">Dashboard</h1>
                     <p>Welcome to your seller dashboard. Here you can manage your orders, products, and more.</p>
-                    <div class="d-flex flex-column ">
-                        <div class="col-md-4">
-                            <p class="text-center"><strong>Goal Completion</strong></p>
-                            <div class="progress-group">
-                              Add Products to Cart
-                              <span class="float-right counter"><b id="total">0</b><b id="counter">/0</b></span>
-                              <div class="progress progress-sm">
-                                <div class="progress-bar bg-primary " id="progress" style="width: 0%"></div>
-                              </div>
-                            </div>
-                            <!-- /.progress-group -->
-                            <div class="progress-group">
-                              Complete Purchase
-                              <span class="float-right"><b id="total1">0</b><b id="counter1">/0</b></span>
-                              <div class="progress progress-sm">
-                                <div class="progress-bar bg-danger"id="progress1" style="width: 75%"></div>
-                              </div>
-                            </div>
-                            
-                            <!-- /.progress-group -->
-                          </div>
+                    <div class="d-flex flex-column" id="charts">
+                        <!-- Charts will be dynamically inserted here by showcharts() function -->
+                    </div>
                           <!-- /.col -->
                         </div>
                       </div>
@@ -325,8 +312,86 @@
             // Show only the products table section
             document.getElementById('products').style.display = 'block';
         }
+        function showcharts() {
+            document.querySelector('main').style.display = 'block';
+            document.getElementById('ordersTable').style.display = 'none';
+            // Hide all main content sections first
+            document.querySelector('.content h1').textContent = 'Reports';
+            document.querySelector('.content > p').style.display = 'none';
+            // Hide all border sections
+            document.querySelectorAll('.border.border-1.rounded').forEach(el => {
+            el.style.display = 'none';
+            });
+            // Show only the charts section
+            const chartsDiv = document.getElementById('charts');
+            chartsDiv.style.display = 'flex';
+            chartsDiv.innerHTML = ''; // Clear existing content
+
+            // Create container for charts
+            const chartsContainer = document.createElement('div');
+            chartsContainer.className = 'row w-100';
+
+            // Create revenue chart container with increased height
+            const revenueContainer = document.createElement('div');
+            revenueContainer.className = 'col-md-6';
+            revenueContainer.style.height = '400px';
+            const ctx1 = document.createElement('canvas');
+            ctx1.id = 'revenueChart';
+            revenueContainer.appendChild(ctx1);
+
+            // Create sales chart container with increased height
+            const salesContainer = document.createElement('div');
+            salesContainer.className = 'col-md-6';
+            salesContainer.style.height = '400px';
+            const ctx2 = document.createElement('canvas');
+            ctx2.id = 'salesChart';
+            salesContainer.appendChild(ctx2);
+
+            chartsContainer.appendChild(revenueContainer);
+            chartsContainer.appendChild(salesContainer);
+            chartsDiv.appendChild(chartsContainer);
+
+            // Get dynamic data
+            const data = processOrdersData();
+
+            // Initialize revenue chart
+            new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: data.months,
+                datasets: [{
+                label: 'Monthly Revenue ($)',
+                data: data.revenue,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true
+            }
+            });
+
+            // Initialize sales chart
+            new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: data.months,
+                datasets: [{
+                label: 'Monthly Sales (Units)',
+                data: data.sales,
+                borderColor: 'rgba(255, 99, 132, 1)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true
+            }
+            });
+        }
         </script>
     <script src="js/search.js"></script>
+    <script src="js/sellercharts.js"></script>
+    
     
 
 
