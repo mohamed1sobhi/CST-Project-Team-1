@@ -1,7 +1,7 @@
 import { getProducts } from './productstore.js';
 
 // Get the seller ID from localStorage
-let currentseler = JSON.parse(localStorage.getItem("seller"));
+let currentseler = JSON.parse(localStorage.getItem("currentUser"));
 
 // Function to filter products by seller ID
 function getSellerProducts() {
@@ -45,28 +45,29 @@ function appendproduct() {
             <td>${(() => {
             const orders = JSON.parse(localStorage.getItem('matchedProducts') || '[]');
             const matchedOrders = orders.filter(order => order.productid === product.productid);
-            const originalQuantity = product.quantity; // Store original quantity
-            var newquantity = originalQuantity;
+            const originalQuantity = product.quantity;
+            let newquantity = originalQuantity;
             
-            // Subtract all matched order quantities but don't display the subtracted value
+            // Calculate new quantity by subtracting matched orders
             matchedOrders.forEach(order => {
-               newquantity = newquantity - order.quantity;
+            newquantity -= order.quantity;
             });
             
-            // Ensure remaining quantity is not negative
+            // Ensure quantity doesn't go below 0
             newquantity = Math.max(0, newquantity);
             
-            // Update the product quantity in localStorage
+            // Update localStorage with new quantity
             let allProducts = getProducts();
             allProducts = allProducts.map(p => {
             if (p.productid === product.productid) {
-                p.quantity = newquantity;
+                // Only update the quantity in storage, not the display
+                return { ...p, quantity: newquantity };
             }
             return p;
             });
             localStorage.setItem('products', JSON.stringify(allProducts));
-            
-            return originalQuantity; // Display original quantity instead of new quantity
+            // Return new quantity for display
+            return newquantity;
             })()}</td>
             <td><input type="checkbox" id="toggleSwitch_${product.productid}" ${product.active ? 'checked' : ''}></td>
             <td colspan="2"><button class="btn btn-danger bg-danger ms-3" onclick="removeRow(this)">Remove</button></td>
