@@ -1,8 +1,10 @@
-
 $(document).ready(function () {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
-  const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price,0);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.quantity * item.price,
+    0
+  );
   const tax = totalPrice * 0.1;
   const subtotal = totalPrice + tax;
   $(".summary-item").eq(0).find("span").eq(1).text(`$${totalPrice}`);
@@ -85,6 +87,7 @@ $(document).ready(function () {
     });
 
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(currentUser.id);
     const ordersForSeller =
       JSON.parse(localStorage.getItem(`${currentUser.email}_orders`)) || [];
     const cartSummary = JSON.parse(
@@ -94,6 +97,7 @@ $(document).ready(function () {
     // Define order data for the seller
     let orderdataforSeller = {
       orderId: ordersForSeller.length + 1,
+      customer: currentUser.id,
       city: city,
       country: country,
       lat: position.lat, // map returns the lat and lng of the marker
@@ -116,7 +120,8 @@ $(document).ready(function () {
 
     // selledproducts
     let cartItems = JSON.parse(localStorage.getItem(currentUser.email)) || [];
-    let selledProducts =JSON.parse(localStorage.getItem("selledProducts")) || [];
+    let selledProducts =
+      JSON.parse(localStorage.getItem("selledProducts")) || [];
     const newSelledProducts = cartItems.map((item) => ({
       id: item.id, // Product ID
       quantity: item.quantity, // Quantity of the product
@@ -125,6 +130,5 @@ $(document).ready(function () {
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
-    
   });
 });
