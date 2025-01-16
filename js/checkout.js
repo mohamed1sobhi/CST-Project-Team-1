@@ -98,7 +98,6 @@ $(document).ready(function () {
       window.location.href = "HomePage.html";
     });
 
-
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     console.log(currentUser.id);
     const ordersForSeller =
@@ -139,10 +138,5 @@ $(document).ready(function () {
     // Append the new products to the existing list of sold products
     selledProducts = selledProducts.concat(newSelledProducts);
     localStorage.setItem("selledProducts", JSON.stringify(selledProducts));
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 294c6e9e5eff3e7e075ccf1bd3fe224e1d3390c3
   });
 });
