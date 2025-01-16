@@ -124,13 +124,37 @@ $(document).ready(function () {
 });
 
 // Add review functionality to the form
+// $("#reviewForm").submit(function (e) {
+//     e.preventDefault();
+//     var name = $("#nameval").val();
+//     var review = $("#review").val();
+//     var rating = $("#rating i.fas").length;
+//     if (name == "" || rating === 0 || review =="") {
+//         //alert("Please fill all required fields.");
+//         Swal.fire({
+//           title: "Oops!",
+//           text: "Please fill all required fields.",
+//           icon: "warning",
+//           confirmButtonText: "OK",
+//         });
+//     } else {
+//       Swal.fire({
+//         title: `Thank you ${name} for review`,
+//         text: `your rating is ${rating} out of 5.`,
+//         icon: "success",
+//         confirmButtonText: "OK",
+//       });
+//     }
+// });
+
+
+// Add review functionality to the form
 $("#reviewForm").submit(function (e) {
     e.preventDefault();
     var name = $("#nameval").val();
     var review = $("#review").val();
     var rating = $("#rating i.fas").length;
-    if (name == "" || rating === 0 || review =="") {
-        //alert("Please fill all required fields.");
+    if (name == "" || rating === 0 || review == "") {
         Swal.fire({
           title: "Oops!",
           text: "Please fill all required fields.",
@@ -138,14 +162,53 @@ $("#reviewForm").submit(function (e) {
           confirmButtonText: "OK",
         });
     } else {
-      Swal.fire({
-        title: `Thank you ${name} for review`,
-        text: `your rating is ${rating} out of 5.`,
-        icon: "success",
-        confirmButtonText: "OK",
-      });
+        // Show success message
+        Swal.fire({
+          title: `Thank you ${name} for your review`,
+          text: `Your rating is ${rating} out of 5.`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+
+        // Create the new review HTML to be appended
+        var newReview = `
+            <div class="media mb-4">
+                <img src="imges/img/cat-1.jpg" alt="Image" class="img-fluid mr-3 mt-1 rounded" style="width: 60px;">
+                <div class="media-body">
+                    <h6>${name}<small> - <i>${new Date().toLocaleDateString()}</i></small></h6>
+                    <div class="text-gold mb-2">
+                        ${getRatingStars(rating)}
+                    </div>
+                    <p>${review}</p>
+                </div>
+            </div>
+        `;
+        
+        // Append the new review to the reviews list
+        $("#reviewsList").append(newReview);
+        
+        // Optionally, clear the form after submitting
+        $("#nameval").val("");
+        $("#review").val("");
+        $("#rating i").removeClass("fas").addClass("far");
     }
 });
+
+// Function to get the rating stars
+function getRatingStars(rating) {
+    var stars = "";
+    for (var i = 0; i < 5; i++) {
+        if (i < rating) {
+            stars += '<i class="fas fa-star"></i>';
+        } else if (i === rating - 1) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            stars += '<i class="far fa-star"></i>';
+        }
+    }
+    return stars;
+}
+
 
 
 // Add product to cart functionality
@@ -223,55 +286,55 @@ if (!currentUser) {
 });
 
 
-// Add You may AlsoLike products to wishlist functionality
-$(document).on("click", ".fa-shopping-cart", async function () {
-  const productItem = $(this).closest(".product-item");
-  const productName = productItem.find("a.h3.text-decoration-none.text-warning").text().trim();
-    const productPriceText = productItem.find("h5").text().trim();
-  const productImage = productItem.find(".product-img img").attr("src");
-  const productPrice = parseFloat(productPriceText.replace("$", "").trim());
+// // Add You may AlsoLike products to wishlist functionality
+// $(document).on("click", ".fa-shopping-cart", async function () {
+//   const productItem = $(this).closest(".product-item");
+//   const productName = productItem.find("a.h3.text-decoration-none.text-warning").text().trim();
+//     const productPriceText = productItem.find("h5").text().trim();
+//   const productImage = productItem.find(".product-img img").attr("src");
+//   const productPrice = parseFloat(productPriceText.replace("$", "").trim());
 
-  const confirmAction = await Swal.fire({
-    title: "Are you sure?",
-    text: `You want to add "${productName}" with price $${productPrice} to the cart?`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, add it!",
-    cancelButtonText: "No, cancel!",
-  });
+//   const confirmAction = await Swal.fire({
+//     title: "Are you sure?",
+//     text: `You want to add "${productName}" with price $${productPrice} to the cart?`,
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonText: "Yes, add it!",
+//     cancelButtonText: "No, cancel!",
+//   });
 
-  if (confirmAction.isConfirmed) {
-    const product = {
-      name: productName,
-      price: productPrice,
-      image: productImage,
-      quantity: 1,
-    };
+//   if (confirmAction.isConfirmed) {
+//     const product = {
+//       name: productName,
+//       price: productPrice,
+//       image: productImage,
+//       quantity: 1,
+//     };
 
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const existingProductIndex = cartItems.findIndex(
-      (item) => item.name === product.name
-    );
+//     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+//     const existingProductIndex = cartItems.findIndex(
+//       (item) => item.name === product.name
+//     );
 
-    if (existingProductIndex > -1) {
-      Swal.fire({
-        icon: "info",
-        title: `"${productName}" is already in the cart.`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    } else {
-      cartItems.push(product);
-      Swal.fire({
-        icon: "success",
-        title: `"${productName}" added to the cart.`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    }
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }
-});
+//     if (existingProductIndex > -1) {
+//       Swal.fire({
+//         icon: "info",
+//         title: `"${productName}" is already in the cart.`,
+//         showConfirmButton: false,
+//         timer: 1000,
+//       });
+//     } else {
+//       cartItems.push(product);
+//       Swal.fire({
+//         icon: "success",
+//         title: `"${productName}" added to the cart.`,
+//         showConfirmButton: false,
+//         timer: 1000,
+//       });
+//     }
+//     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+//   }
+// });
 
 
 
