@@ -47,12 +47,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="viewSellers.html">View Sellers</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reports.html">Reports</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="UserManegment.html">User Manegment</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -83,10 +77,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Product ID</th>
                                     <th>Product Name</th>
                                     <th>Price</th>
-                                    <th>Cost</th>
+                                    <th>Stock</th>
                                     <th>Seller</th>
                                     <th>Status</th>
                                 </tr>
@@ -110,7 +103,7 @@
     // Map seller IDs to seller names for quick lookup
     const sellerMap = {};
     sellers.forEach(seller => {
-        sellerMap[String(seller.seller_id)] = seller.name; // Ensure keys are strings for consistent comparison
+        sellerMap[String(seller.id)] = seller.name; // Ensure keys are strings for consistent comparison
     });
 
     console.log('Seller Map:', sellerMap);
@@ -135,9 +128,9 @@
 
     // Filter out products with non-existent sellers
     const validProducts = products.filter(product => {
-        const sellerExists = sellerMap[String(product.seller_id)];
+        const sellerExists = product.currentseler.id;
         if (!sellerExists) {
-            console.warn(`Product with ID ${product.productid} has an invalid seller_id: ${product.seller_id}`);
+            console.warn(`Product with Name ${product.name} has an invalid seller_id: ${Seller.id}`);
         }
         return sellerExists;
     });
@@ -154,12 +147,11 @@
         validProducts.forEach(product => {
             const row = `
                 <tr>
-                    <td>${product.productid}</td>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
-                    <td>${product.cost}</td>
-                    <td>${sellerMap[String(product.seller_id)]}</td>
-                    <td>${product.active}</td>
+                    <td>${product.stock}</td>
+                    <td>${product.currentseler.id}</td>
+                    <td>${product.Active}</td>
                 </tr>`;
             productsBody.insertAdjacentHTML('beforeend', row);
         });
