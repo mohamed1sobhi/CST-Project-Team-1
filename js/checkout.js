@@ -105,9 +105,6 @@ $(document).ready(function () {
       orderAddressLine1: addressLine1,
       orderAddressLine2: addressLine2,
       paymentMethod: selectedPaymentMethod,
-      // productsNames: cartSummary.productNames,
-      // productsQuantity: cartSummary.productQuantity,
-      // productsIds: cartSummary.productIds,
     };
     // Now, push the order data to the ordersForSeller array
     ordersForSeller.push(orderdataforSeller);

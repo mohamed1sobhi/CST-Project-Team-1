@@ -7,393 +7,178 @@
   <title>Admin</title>
   <script type="module" src="js/addproduct.js"></script>
 
-
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- apexcharts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
     integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous" />
   <style>
-    .img-custom-width {
-      width: 25%;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .user-image {
-      width: 32px;
-      height: 32px;
+    .sidebar {
+      height: 100%;
+      background-color: #f8f9fa;
+      padding-top: 20px;
     }
 
-    .img-small {
-      width: 32px;
-      height: 32px;
+    .sidebar a {
+      padding: 10px;
+      font-size: 18px;
+      color: #333;
+      display: block;
     }
 
-    .img-medium {
-      width: 25%;
+    .content {
+      padding: 20px;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      table-layout: auto;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: middle;
+      word-wrap: break-word;
     }
   </style>
-  <script>
-    let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
-    //if (loginStatus.type != "admin") {
-    //  window.location.href = '404.html';
-    //}
-  </script>
 </head>
 
 <body>
-    <style>
-        * {margin: 0;padding: 0;box-sizing: border-box;}
-        .sidebar {height: 100%;background-color: #f8f9fa;padding-top: 20px;}
-        .sidebar a {padding: 10px;font-size: 18px;color: #333;}
-        .content {padding: 20px;}
-        .chart {max-height: 200px;}
-    </style>
-</head>
-
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-xl bg-dark navbar-dark rounded">
-        <div class="container-fluid">
-            <a class="nav-link ms-sm-5 me-2" href="#">
-                <span class="h2 bg-warning p-1 text-dark rounded px-2">Admin</span>
-                <span class="h2 bg-light p-1 text-warning rounded px-2 ml-n1">Dashboard</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="HomePage.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ProductCatalog.html">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="OrdersPage.html">Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Registration.html">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="LogIn.html">Log In</a>
-                    </li>
-                </ul>
-                <form class="d-flex w-auto" role="search">
-                    <input class="form-control me-1 w-50" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-xl bg-dark navbar-dark rounded">
     <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="position-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="AdminDash.html">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manageOrders.html">Manage Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manageProducts.html">Manage Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="viewSellers.html">View Sellers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reports.html">Reports</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="UserManegment.html">User Manegment</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-  <!--begin::App Wrapper-->
-   <div class="wrapper">
-
-  <!--begin::App Main-->
-  <main class="app-main">
-    <!--begin::App Content Header-->
-    <div class="app-content-header">
-      <!--begin::Container-->
-      <div class="container-fluid px-3">
-        <!--begin::Row-->
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="mb-0">Admin</h3>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Admin v2</li>
-            </ol>
-          </div>
-        </div>
-        <!--end::Row-->
-      </div>
-      <!--end::Container-->
-    </div>
-    <!--end::App Content Header-->
-
-    <div class="container-fluid px-3">
-      <div class="row">
-        <div class="col-md-12">
-          <!--begin::Latest Order Widget-->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Users Mnagement</h3>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool float-sm-right" data-toggle="collapse"
-                  data-target="#latestOrdersContent" aria-expanded="true">
-                  <i class="fa fa-plus"></i>
-                  <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool float-sm-right" data-dismiss="card">
-                  <i class="fa fa-times"></i>
-                </button>
-                <button onclick="" type="button" class="btn btn-primary float-right">
-                  Add user
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0 collapse show " id="latestOrdersContent">
-              <div class="table-responsive">
-                <table class="table m-0">
-                  <thead>
-                    <tr>
-                      <th>customer ID</th>
-                      <th>Name</th>
-                      <th>Emails</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="customers">
-
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>seller ID</th>
-                      <th>Name</th>
-                      <th>Emails</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="sellers">
-
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>admin ID</th>
-                      <th>Name</th>
-                      <th>Emails</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="admin">
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!--end::Latest Order Widget-->
-
-        </div>
+      <a class="nav-link ms-sm-5 me-2" href="#">
+        <span class="h2 bg-warning p-1 text-dark rounded px-2">Admin</span>
+        <span class="h2 bg-light p-1 text-warning rounded px-2 ml-n1">Dashboard</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="HomePage.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ProductCatalog.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="OrdersPage.html">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Registration.html">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="LogIn.html">Log In</a>
+          </li>
+        </ul>
+        <form class="d-flex w-auto" role="search">
+          <input class="form-control me-1 w-50" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
+  </nav>
 
-    <div class="container-fluid px-3">
-      <div class="row">
-        <div class="col-md-12">
-          <!--begin::Latest Order Widget-->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Contact Us</h3>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool float-sm-right" data-toggle="collapse"
-                  data-target="#latestOrdersContent" aria-expanded="true">
-                  <i class="fa fa-plus"></i>
-                  <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool float-sm-right" data-dismiss="card">
-                  <i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0 collapse show " id="latestOrdersContent">
-              <div class="table-responsive">
-                <table class="table m-0">
-                  <thead>
-                    <tr>
-                      <th>user ID</th>
-                      <th>Name</th>
-                      <th>Emails</th>
-                      <th>Message</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="message">
-
-                  </tbody>
-                </table>
-
-              </div>
-
-            </div>
-          </div>
-          <!--end::Latest Order Widget-->
-
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-2 d-none d-md-block sidebar">
+        <div class="position-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="AdminDash.html">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manageProducts.html">Manage Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="viewSellers.html">View Sellers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reports.html">Reports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UserManegment.html">User Management</a>
+            </li>
+          </ul>
         </div>
-      </div>
-    </div>
-    
-    
+      </nav>
 
-
-
-    <!--begin::Row-->
-    <div class="container-fluid px-3">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card mb-4">
-                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                  <a href="#" class="dropdown-item">Action</a>
-                  <a href="#" class="dropdown-item">Another action</a>
-                  <a href="#" class="dropdown-item">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">Separated link</a>
-                </div>
-              </div>
-              <button type="button" class="btn btn-tool float-sm-right" data-toggle="remove">
-                <i class="fa fa-times"></i>
-              </button>
+      <!-- Content -->
+      <main class="col-md-10 ml-sm-auto px-md-4">
+        <!-- Users Management Section -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Users Management</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="customers">
+                  <!-- Data dynamically populated -->
+                </tbody>
+              </table>
             </div>
           </div>
-         
-              <!--begin::Latest Order Widget-->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Latest Products</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool float-sm-right" data-toggle="collapse"
-                      data-target="#latestOrdersContent" aria-expanded="true">
-                      <i class="fa fa-plus"></i>
-                      <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool float-sm-right" data-dismiss="card">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0 collapse show " id="latestOrdersContent">
-                  <div class="table-responsive">
-                    <table class="table m-0">
-                      <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Item</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR9842</a>
-                          </td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success"> Shipped </span></td>
-                          <td>
-                            <div id="table-sparkline-1"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR1848</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div id="table-sparkline-2"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger"> Delivered </span></td>
-                          <td>
-                            <div id="table-sparkline-3"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-info">Processing</span></td>
-                          <td>
-                            <div id="table-sparkline-4"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR1848</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div id="table-sparkline-5"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger"> Delivered </span></td>
-                          <td>
-                            <div id="table-sparkline-6"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR9842</a>
-                          </td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success">Shipped</span></td>
-                          <td>
-                            <div id="table-sparkline-7"></div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+        </div>
+
+        <!-- Latest Products Section -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Latest Products</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>OR9842</td>
+                    <td>Call of Duty IV</td>
+                    <td><span class="badge badge-success">Shipped</span></td>
+                  </tr>
+                  <!-- Additional rows -->
+                </tbody>
+              </table>
             </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="module" src="js/charts.js"></script>
-
-    <script src="js/user.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="module" src="js/charts.js"></script>
+  <script src="js/user.js"></script>
 </body>
 
 </html>
