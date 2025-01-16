@@ -26,7 +26,7 @@ import { getProducts } from "./productstore.js";
         
         console.log(matchedProducts);
         
-        let currentSeller = JSON.parse(localStorage.getItem("seller") || '{}');
+        let currentSeller = JSON.parse(localStorage.getItem("currentUser") || '{}');
         const sellerProducts = matchedProducts.filter(product => product.seller === currentSeller.id);
         
 
