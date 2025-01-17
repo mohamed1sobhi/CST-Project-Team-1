@@ -67,7 +67,7 @@ $(document).ready(function () {
         );
         // Redirect using window.location instead of form submission
         if (user.type === "admin") {
-          window.location.href = "AdminDash.html";
+          window.location.href = "admin.html";
         } else if (user.type === "seller") {
           window.location.href = "SellerDash.html";
         } else if (user.type === "customer") {

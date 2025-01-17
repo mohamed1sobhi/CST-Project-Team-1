@@ -24,12 +24,19 @@
             if (loginStatus.type == "admin") {
                 $("#admindash").show();
                 $("#sellerdash").hide();
+                $("#customerProfile").hide();
             } else if (loginStatus.type == "seller") {
                 $("#sellerdash").show();
                 $("#admindash").hide();
+                $("#customerProfile").hide();
+            } else if (loginStatus.type == "customer") {
+                $("#sellerdash").hide();
+                $("#admindash").hide();
+                $("#customerProfile").show();
             } else {
                 $("#sellerdash").hide();
                 $("#admindash").hide();
+                $("#customerProfile").hide();
             }
             if (loginStatus.status == "logged in") {
                 console.log(loginStatus.status)
@@ -163,6 +170,8 @@
                             onclick="window.location.href = 'SellerDash.html';">Dashboard</a></li>
                     <li class="nav-item"><a href="#" id="admindash" class="nav-link text-warning"
                             onclick="window.location.href = 'admin.html';">Admin Panel</a></li>
+                    <li class="nav-item"><a href="#" id="customerProfile" class="nav-link text-warning"
+                            onclick="window.location.href = 'customerProfile.html';">Manage Profile</a></li>
                 </ul>
                 <a href="Registration.html" id="register" title="Sign up">
                     <i class="fa-solid fa-user-plus me-4 text-warning"></i>

@@ -12,7 +12,6 @@
     <script>
         let loginStatus = JSON.parse(sessionStorage.getItem("currentUser")) || [];
         if (loginStatus.status == "logged in") {
-            console.log();
             window.location.href = 'HomePage.html';
         }
     </script>

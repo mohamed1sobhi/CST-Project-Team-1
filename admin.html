@@ -50,6 +50,9 @@
   </style>
   <script>
     let loginStatus = JSON.parse(localStorage.getItem("currentUser")) || [];
+    if (loginStatus.type != "admin") {
+      window.location.href = 'HomePage.html';
+    }
     console.log(loginStatus);
 
     $(document).ready(function () {
@@ -291,124 +294,6 @@
 
 
     <!--begin::Row-->
-    <div class="container-fluid px-3">
-      <div class="row">
-        <div class="col-md-12">
-
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <!--begin::Latest Order Widget-->
-              <div class="div card my-4">
-                <div class="card-header">
-                  <h3 class="card-title">Latest Products</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool float-sm-right" data-toggle="collapse"
-                      data-target="#latestOrdersContent" aria-expanded="true">
-                      <i class="fa fa-plus"></i>
-                      <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool float-sm-right" data-dismiss="card">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0 collapse show " id="latestOrdersContent">
-                  <div class="table-responsive">
-                    <table class="table m-0">
-                      <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Item</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR9842</a>
-                          </td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success"> Shipped </span></td>
-                          <td>
-                            <div id="table-sparkline-1"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR1848</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div id="table-sparkline-2"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger"> Delivered </span></td>
-                          <td>
-                            <div id="table-sparkline-3"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-info">Processing</span></td>
-                          <td>
-                            <div id="table-sparkline-4"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR1848</a>
-                          </td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge badge-warning">Pending</span></td>
-                          <td>
-                            <div id="table-sparkline-5"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR7429</a>
-                          </td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge badge-danger"> Delivered </span></td>
-                          <td>
-                            <div id="table-sparkline-6"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="pages/examples/invoice.html" class="text-primary">OR9842</a>
-                          </td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge badge-success">Shipped</span></td>
-                          <td>
-                            <div id="table-sparkline-7"></div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"

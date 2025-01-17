@@ -18,6 +18,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let loginStatus = JSON.parse(localStorage.getItem("currentUser")) || [];
+        if (loginStatus.type != "customer") {
+            window.location.href = 'HomePage.html';
+        }
         console.log(loginStatus);
 
         $(document).ready(function () {
@@ -56,6 +59,50 @@
                 window.location.href = "contact.html";
             });
         });
+
+        let customerdata = JSON.parse(localStorage.getItem("customer")) || [];
+
+        $(document).ready(function () {
+            $("#profilename").text(loginStatus.name);
+            $("#profiletype").text(loginStatus.type);
+            $("#email").text(loginStatus.email);
+            $("#resetPasswordForm").submit(function (e) {
+                e.preventDefault();
+                let oldPassword = $("#oldPassword").val();
+                let newPassword = $("#newPassword").val();
+                let confirmPassword = $("#confirmPassword").val();
+                if (oldPassword == "" || newPassword == "" || confirmPassword == "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please fill in all fields!',
+                    })
+                } else if (newPassword != confirmPassword) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Passwords do not match!',
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Password reset successful!',
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            for (let i = 0; i < customerdata.length; i++) {
+                                if (customerdata[i].email == loginStatus.email) {
+                                    customerdata[i].password = newPassword;
+                                    localStorage.setItem("customer", JSON.stringify(customerdata));
+                                }
+                            }
+                        }
+                    })
+                }
+            });
+        })
+
 
     </script>
     <style>
@@ -177,63 +224,48 @@
 
     <!-- Profile Section -->
     <div class="container">
-        <div class="row">
+        <div class="flex-row">
             <!-- Profile Section -->
             <div class="col-lg-3">
                 <div class="card shadow-lg mb-4">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
                             <div class="mt-3">
-                                <h4>John Doe</h4>
-                                <p class="text-secondary mb-1">Customer</p>
-                                <p class="text-muted font-size-sm">customer@eample.com</p>
+                                <h4 id="profilename">John Doe</h4>
+                                <p class="text-secondary mb-1" id="profiletype">Customer</p>
+                                <p class="text-muted font-size-sm" id="email">customer@eample.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Adjacent Sections -->
-            <div class="col-lg-9">
-                <!-- User Purchases Section -->
-                <div class="card shadow-lg mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Orders History</h5>
-                        <ul class="list-group">
-                            <!-- Example purchase items -->
-                            <li class="list-group-item">Purchase 1 - $10</li>
-                            <li class="list-group-item">Purchase 2 - $20</li>
-                            <li class="list-group-item">Purchase 3 - $30</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Reset Password Form -->
-                <div class="card shadow-lg">
-                    <div class="card-body">
-                        <h5 class="card-title">Reset Password</h5>
-                        <form>
-                            <div class="form-group">
-                                <label for="oldPassword">Old Password</label>
-                                <input type="password" class="form-control" id="oldPassword"
-                                    placeholder="Enter old password">
-                            </div>
-                            <div class="form-group">
-                                <label for="newPassword">New Password</label>
-                                <input type="password" class="form-control" id="newPassword"
-                                    placeholder="Enter new password">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword"
-                                    placeholder="Confirm new password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Reset Password</button>
-                        </form>
-                    </div>
+            <!-- Reset Password Form -->
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="card-title">Reset Password</h5>
+                    <form id="resetPasswordForm">
+                        <div class="form-group">
+                            <label for="oldPassword">Old Password</label>
+                            <input type="password" class="form-control" id="oldPassword"
+                                placeholder="Enter old password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" class="form-control" id="newPassword"
+                                placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                placeholder="Confirm new password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Reset Password</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Footer Start -->
